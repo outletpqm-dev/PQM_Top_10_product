@@ -1,0 +1,2546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PQM Top 10 Product Showcase</title>
+
+<style>
+
+:root{
+    --bg:#f3f0ea;
+    --surface:#ffffff;
+    --surface-soft:#f8f6f1;
+
+    --text:#171717;
+    --muted:#88847c;
+    --border:#e5e0d7;
+
+    --gold:#b18a52;
+    --gold-dark:#8d6937;
+
+    --green:#3f8064;
+    --yellow:#b78935;
+    --red:#b95c59;
+    --blue:#547aa3;
+
+    --shadow:
+        0 18px 50px rgba(48,42,32,.08);
+
+    --shadow-hover:
+        0 28px 70px rgba(48,42,32,.14);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(177,138,82,.10),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(255,255,255,.8),
+            transparent 30%
+        ),
+
+        var(--bg);
+
+    color:var(--text);
+
+    min-height:100vh;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header{
+
+    padding:24px 45px;
+
+    background:
+        rgba(255,255,255,.78);
+
+    backdrop-filter:blur(20px);
+
+    border-bottom:
+        1px solid rgba(0,0,0,.07);
+
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
+}
+
+.header-inner{
+
+    max-width:1500px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+.logo-area{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+.logo{
+
+    width:46px;
+    height:46px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#171717;
+
+    color:#fff;
+
+    font-size:19px;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.16);
+}
+
+.logo-text h1{
+
+    font-size:18px;
+
+    font-weight:750;
+
+    letter-spacing:-.5px;
+}
+
+.logo-text p{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    margin-top:4px;
+
+    letter-spacing:.5px;
+}
+
+.header-actions{
+
+    display:flex;
+
+    gap:10px;
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.btn{
+
+    border:
+        1px solid var(--border);
+
+    background:#fff;
+
+    color:#222;
+
+    padding:11px 17px;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-weight:650;
+
+    transition:.25s;
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.08);
+}
+
+.btn-primary{
+
+    background:#171717;
+
+    color:#fff;
+
+    border-color:#171717;
+}
+
+.btn-primary:hover{
+
+    background:#292929;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.container{
+
+    max-width:1500px;
+
+    margin:auto;
+
+    padding:45px 40px 70px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    margin-bottom:35px;
+}
+
+.hero h2{
+
+    font-size:40px;
+
+    font-weight:750;
+
+    letter-spacing:-1.8px;
+}
+
+.hero p{
+
+    color:var(--muted);
+
+    margin-top:9px;
+
+    font-size:14px;
+}
+
+.date-box{
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:16px;
+
+    margin-bottom:35px;
+}
+
+.stat-card{
+
+    background:
+        rgba(255,255,255,.75);
+
+    border:
+        1px solid rgba(0,0,0,.06);
+
+    border-radius:20px;
+
+    padding:22px;
+
+    box-shadow:var(--shadow);
+}
+
+.stat-label{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1.2px;
+}
+
+.stat-value{
+
+    margin-top:9px;
+
+    font-size:30px;
+
+    font-weight:750;
+
+    letter-spacing:-1px;
+}
+
+.stat-sub{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+}
+
+.search{
+
+    position:relative;
+
+    width:350px;
+}
+
+.search input{
+
+    width:100%;
+
+    background:
+        rgba(255,255,255,.8);
+
+    border:
+        1px solid var(--border);
+
+    color:var(--text);
+
+    padding:13px 15px 13px 43px;
+
+    border-radius:12px;
+
+    outline:none;
+
+    transition:.2s;
+}
+
+.search input:focus{
+
+    border-color:var(--gold);
+
+    box-shadow:
+        0 0 0 3px rgba(177,138,82,.1);
+}
+
+.search-icon{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#999;
+}
+
+
+/* =====================================================
+   PRODUCT GRID
+===================================================== */
+
+.product-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:22px;
+}
+
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+
+.product-card{
+
+    position:relative;
+
+    background:
+        rgba(255,255,255,.9);
+
+    border:
+        1px solid rgba(0,0,0,.06);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    transition:
+
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.product-card:hover{
+
+    transform:translateY(-7px);
+
+    box-shadow:var(--shadow-hover);
+}
+
+
+/* =====================================================
+   CARD TOP
+===================================================== */
+
+.card-top{
+
+    position:relative;
+
+    padding:18px 18px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+}
+
+
+/* =====================================================
+   RANK
+===================================================== */
+
+.rank{
+
+    width:38px;
+    height:38px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#f1eee7;
+
+    color:#777;
+
+    font-size:13px;
+
+    font-weight:750;
+}
+
+.rank.top1{
+
+    background:#171717;
+
+    color:#fff;
+}
+
+.rank.top2{
+
+    background:#ddd8ce;
+
+    color:#333;
+}
+
+.rank.top3{
+
+    background:#d9c2a5;
+
+    color:#513a20;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:7px 10px;
+
+    border-radius:20px;
+
+    font-size:10px;
+
+    font-weight:750;
+}
+
+.status-dot{
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+}
+
+.status.good{
+
+    background:#edf5ef;
+
+    color:var(--green);
+}
+
+.status.good .status-dot{
+
+    background:var(--green);
+}
+
+.status.warning{
+
+    background:#f8f2e5;
+
+    color:var(--yellow);
+}
+
+.status.warning .status-dot{
+
+    background:var(--yellow);
+}
+
+.status.bad{
+
+    background:#f8eaea;
+
+    color:var(--red);
+}
+
+.status.bad .status-dot{
+
+    background:var(--red);
+}
+
+.status.over{
+
+    background:#eaf1f8;
+
+    color:var(--blue);
+}
+
+.status.over .status-dot{
+
+    background:var(--blue);
+}
+
+
+/* =====================================================
+   IMAGE AREA
+===================================================== */
+
+.image-area{
+
+    height:245px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    position:relative;
+}
+
+.image-area::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:185px;
+
+    height:185px;
+
+    border-radius:50%;
+
+    background:
+        #f3f0e9;
+}
+
+.product-image{
+
+    position:relative;
+
+    z-index:2;
+
+    width:190px;
+
+    height:190px;
+
+    object-fit:contain;
+
+    border-radius:20px;
+
+    transition:
+        transform .35s ease;
+
+    filter:
+        drop-shadow(
+            0 18px 18px rgba(0,0,0,.12)
+        );
+}
+
+.product-card:hover
+.product-image{
+
+    transform:
+        scale(1.06)
+        translateY(-4px);
+}
+
+
+/* =====================================================
+   PRODUCT INFO
+===================================================== */
+
+.product-info{
+
+    padding:0 20px 20px;
+}
+
+.product-name{
+
+    font-size:17px;
+
+    font-weight:750;
+
+    letter-spacing:-.4px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+}
+
+.product-code{
+
+    margin-top:5px;
+
+    font-size:11px;
+
+    color:var(--muted);
+
+    letter-spacing:.5px;
+}
+
+
+/* =====================================================
+   METRICS
+===================================================== */
+
+.metrics{
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.metric{
+
+    background:
+        var(--surface-soft);
+
+    border-radius:13px;
+
+    padding:12px;
+}
+
+.metric-label{
+
+    font-size:9px;
+
+    color:var(--muted);
+
+    text-transform:uppercase;
+
+    letter-spacing:.8px;
+}
+
+.metric-value{
+
+    margin-top:5px;
+
+    font-size:17px;
+
+    font-weight:750;
+}
+
+.metric-value span{
+
+    font-size:10px;
+
+    font-weight:500;
+
+    color:var(--muted);
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress-section{
+
+    margin-top:18px;
+}
+
+.progress-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:8px;
+}
+
+.progress-label{
+
+    font-size:10px;
+
+    color:var(--muted);
+
+    text-transform:uppercase;
+
+    letter-spacing:.7px;
+}
+
+.progress-percent{
+
+    font-size:12px;
+
+    font-weight:750;
+}
+
+.progress{
+
+    height:7px;
+
+    background:#ebe7df;
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-bar{
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a9824d,
+            #c9a66b
+        );
+
+    transition:
+        width .5s ease;
+}
+
+
+/* =====================================================
+   CARD BOTTOM
+===================================================== */
+
+.card-bottom{
+
+    margin-top:20px;
+
+    padding-top:15px;
+
+    border-top:
+        1px solid #eeeae3;
+
+    display:flex;
+
+    justify-content:flex-end;
+}
+
+.action-btn{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:10px;
+
+    border:
+        1px solid var(--border);
+
+    background:#fff;
+
+    color:#aaa;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.action-btn:hover{
+
+    color:#b95c59;
+
+    border-color:#d7aaa8;
+
+    background:#fbf2f2;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty{
+
+    grid-column:
+        1 / -1;
+
+    text-align:center;
+
+    padding:80px;
+
+    color:var(--muted);
+
+    background:#fff;
+
+    border-radius:20px;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+        rgba(20,18,14,.55);
+
+    backdrop-filter:
+        blur(12px);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:100;
+}
+
+.modal-overlay.active{
+
+    display:flex;
+}
+
+.modal{
+
+    width:min(520px,92%);
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.25);
+
+    animation:
+        modalIn .25s ease;
+}
+
+@keyframes modalIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(15px)
+            scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:22px;
+}
+
+.modal-header h3{
+
+    font-size:20px;
+}
+
+.close{
+
+    border:none;
+
+    background:none;
+
+    color:#999;
+
+    font-size:22px;
+
+    cursor:pointer;
+}
+
+.form-group{
+
+    margin-bottom:16px;
+}
+
+.form-group label{
+
+    display:block;
+
+    font-size:12px;
+
+    color:#777;
+
+    margin-bottom:7px;
+}
+
+.form-group input{
+
+    width:100%;
+
+    background:#f7f5f1;
+
+    border:
+        1px solid var(--border);
+
+    color:#222;
+
+    padding:12px 13px;
+
+    border-radius:10px;
+
+    outline:none;
+}
+
+.form-group input:focus{
+
+    border-color:var(--gold);
+}
+
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:10px;
+
+    margin-top:22px;
+}
+
+
+/* =====================================================
+   IMAGE UPLOAD
+===================================================== */
+
+.image-upload{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+}
+
+.preview{
+
+    width:80px;
+    height:80px;
+
+    border-radius:14px;
+
+    object-fit:cover;
+
+    background:#f2efe8;
+
+    border:1px solid var(--border);
+}
+
+.upload-label{
+
+    padding:10px 13px;
+
+    background:#f5f2ec;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+    font-size:12px;
+}
+
+#imageInput{
+
+    display:none;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1250px){
+
+    .product-grid{
+
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+}
+
+@media(max-width:950px){
+
+    .product-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .stats{
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .hero h2{
+
+        font-size:32px;
+    }
+
+}
+
+@media(max-width:650px){
+
+    .header{
+
+        padding:18px 20px;
+    }
+
+    .header-inner{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .container{
+
+        padding:30px 18px 50px;
+    }
+
+    .hero{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:12px;
+    }
+
+    .stats{
+
+        grid-template-columns:1fr;
+    }
+
+    .product-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    .search{
+
+        width:100%;
+    }
+
+    .toolbar{
+
+        display:block;
+    }
+
+    .image-area{
+
+        height:280px;
+    }
+
+    .product-image{
+
+        width:220px;
+
+        height:220px;
+    }
+
+}
+
+
+/* =====================================================
+   EXTRA LARGE SCREEN
+===================================================== */
+
+@media(min-width:1550px){
+
+    .product-grid{
+
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <div class="logo-area">
+
+            <div class="logo">
+                ✦
+            </div>
+
+            <div class="logo-text">
+
+                <h1>
+                    Product Collection
+                </h1>
+
+                <p>
+                    TOP 10 PERFORMANCE
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button
+                class="btn"
+                onclick="resetData()"
+            >
+                Reset
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="openModal()"
+            >
+                ＋ Add Product
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div>
+
+            <h2>
+                PQM Top 10 Products
+            </h2>
+
+            <p>
+                A premium overview of your product sales performance.
+            </p>
+
+        </div>
+
+        <div class="date-box">
+
+            <span id="currentDate"></span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         STATS
+    ================================================= -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Total Products
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalProducts"
+            >
+                10
+            </div>
+
+            <div class="stat-sub">
+                Active products
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Total Target
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalTarget"
+            >
+                0
+            </div>
+
+            <div class="stat-sub">
+                RM
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Total Sold
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalSold"
+            >
+                0
+            </div>
+
+            <div class="stat-sub">
+                RM sold
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                Overall Progress
+            </div>
+
+            <div
+                class="stat-value"
+                id="overallProgress"
+            >
+                0%
+            </div>
+
+            <div class="stat-sub">
+                Total performance
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SEARCH
+    ================================================= -->
+
+    <div class="toolbar">
+
+        <div class="search">
+
+            <span class="search-icon">
+                ⌕
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search product..."
+                oninput="renderProducts()"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         PRODUCT GRID
+    ================================================= -->
+
+    <section
+        class="product-grid"
+        id="productList"
+    ></section>
+
+
+</main>
+
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="modalOverlay"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h3>
+                Add Product
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Product Name
+            </label>
+
+            <input
+                id="productName"
+                placeholder="例如：Premium Collagen"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Product Code
+            </label>
+
+            <input
+                id="productCode"
+                placeholder="例如：P-001"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Target (RM)
+            </label>
+
+            <input
+                type="number"
+                id="productTarget"
+                step="0.01"
+                placeholder="例如：40"
+                min="1"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Sold (RM)
+            </label>
+
+            <input
+                type="number"
+                id="productSold"
+                step="0.01"
+                placeholder="例如：25"
+                min="0"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Product Image
+            </label>
+
+            <div class="image-upload">
+
+                <img
+                    id="imagePreview"
+                    class="preview"
+                    src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=300&q=80"
+                >
+
+                <label class="upload-label">
+
+                    Choose Image
+
+                    <input
+                        type="file"
+                        id="imageInput"
+                        accept="image/*"
+                        onchange="previewImage(event)"
+                    >
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="btn"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="addProduct()"
+            >
+                Add Product
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   DEFAULT PRODUCTS
+===================================================== */
+
+let products = [
+
+    {
+        id:1,
+        name:"Premium Collagen",
+        code:"P-001",
+        target:40,
+        sold:32,
+        image:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=500&q=85"
+    },
+
+    {
+        id:2,
+        name:"Vitamin C Premium",
+        code:"P-002",
+        target:40,
+        sold:28,
+        image:"https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=500&q=85"
+    },
+
+    {
+        id:3,
+        name:"Beauty Drink",
+        code:"P-003",
+        target:40,
+        sold:36,
+        image:"https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=500&q=85"
+    },
+
+    {
+        id:4,
+        name:"Slimming Tea",
+        code:"P-004",
+        target:40,
+        sold:22,
+        image:"https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=500&q=85"
+    },
+
+    {
+        id:5,
+        name:"Detox Drink",
+        code:"P-005",
+        target:40,
+        sold:18,
+        image:"https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=500&q=85"
+    },
+
+    {
+        id:6,
+        name:"Omega Plus",
+        code:"P-006",
+        target:40,
+        sold:30,
+        image:"https://images.unsplash.com/photo-1471864190281-a93a3070b6de?auto=format&fit=crop&w=500&q=85"
+    },
+
+    {
+        id:7,
+        name:"Probiotic Plus",
+        code:"P-007",
+        target:40,
+        sold:25,
+        image:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=500&q=85"
+    },
+
+    {
+        id:8,
+        name:"Hair Growth Formula",
+        code:"P-008",
+        target:40,
+        sold:15,
+        image:"https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=500&q=85"
+    },
+
+    {
+        id:9,
+        name:"Liver Care",
+        code:"P-009",
+        target:40,
+        sold:34,
+        image:"https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?auto=format&fit=crop&w=500&q=85"
+    },
+
+    {
+        id:10,
+        name:"Energy Booster",
+        code:"P-010",
+        target:40,
+        sold:20,
+        image:"https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?auto=format&fit=crop&w=500&q=85"
+    }
+
+];
+
+
+/* =====================================================
+   LOAD
+===================================================== */
+
+const savedData =
+    localStorage.getItem(
+        "productTrackerData"
+    );
+
+if(savedData){
+
+    products =
+        JSON.parse(savedData);
+
+}
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function saveData(){
+
+    localStorage.setItem(
+        "productTrackerData",
+        JSON.stringify(products)
+    );
+
+}
+
+
+/* =====================================================
+   PERCENTAGE
+===================================================== */
+
+function getPercentage(
+    sold,
+    target
+){
+
+    if(
+        !target ||
+        target <= 0
+    ){
+
+        return 0;
+
+    }
+
+    return (sold / target) * 100;
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+function getStatus(percent){
+
+    if(percent >= 100){
+
+        return {
+            class:"over",
+            text:"Target Reached"
+        };
+
+    }
+
+    if(percent >= 70){
+
+        return {
+            class:"good",
+            text:"On Track"
+        };
+
+    }
+
+    if(percent >= 40){
+
+        return {
+            class:"warning",
+            text:"Needs Push"
+        };
+
+    }
+
+    return {
+        class:"bad",
+        text:"Behind"
+    };
+
+}
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderProducts(){
+
+    const list =
+        document.getElementById(
+            "productList"
+        );
+
+    const keyword =
+        document
+        .getElementById(
+            "searchInput"
+        )
+        .value
+        .toLowerCase();
+
+
+    let filtered =
+        products.filter(
+            product =>
+                product.name
+                .toLowerCase()
+                .includes(keyword)
+        );
+
+
+    filtered.sort(
+        (a,b) => {
+
+            return (
+                getPercentage(
+                    b.sold,
+                    b.target
+                )
+                -
+                getPercentage(
+                    a.sold,
+                    a.target
+                )
+            );
+
+        }
+    );
+
+
+    if(filtered.length === 0){
+
+        list.innerHTML = `
+            <div class="empty">
+                No products found.
+            </div>
+        `;
+
+        updateStats();
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        filtered
+        .map(
+            (product,index) => {
+
+                const percent =
+                    getPercentage(
+                        product.sold,
+                        product.target
+                    );
+
+
+                const status =
+                    getStatus(percent);
+
+
+                let rankClass = "";
+
+                if(index === 0)
+                    rankClass = "top1";
+
+                if(index === 1)
+                    rankClass = "top2";
+
+                if(index === 2)
+                    rankClass = "top3";
+
+
+                return `
+
+                <article
+                    class="product-card"
+                >
+
+                    <!-- CARD TOP -->
+
+                    <div
+                        class="card-top"
+                    >
+
+                        <div
+                            class="
+                                rank
+                                ${rankClass}
+                            "
+                        >
+
+                            ${
+                                index === 0
+                                ? "🥇"
+                                : index === 1
+                                ? "🥈"
+                                : index === 2
+                                ? "🥉"
+                                : "#" + (index + 1)
+                            }
+
+                        </div>
+
+
+                        <div
+                            class="
+                                status
+                                ${status.class}
+                            "
+                        >
+
+                            <span
+                                class="status-dot"
+                            ></span>
+
+                            ${status.text}
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRODUCT IMAGE -->
+
+                    <div
+                        class="image-area"
+                    >
+
+                        <img
+                            class="product-image"
+                            src="${product.image}"
+                            alt="${product.name}"
+                        >
+
+                    </div>
+
+
+                    <!-- PRODUCT INFO -->
+
+                    <div
+                        class="product-info"
+                    >
+
+                        <div
+                            class="product-name"
+                            title="${product.name}"
+                        >
+
+                            ${product.name}
+
+                        </div>
+
+
+                        <div
+                            class="product-code"
+                        >
+
+                            ${product.code}
+
+                        </div>
+
+
+                        <!-- METRICS -->
+
+                        <div
+                            class="metrics"
+                        >
+
+                            <div
+                                class="metric"
+                            >
+
+                                <div
+                                    class="metric-label"
+                                >
+                                    Target
+                                </div>
+
+                                <div
+                                    class="metric-value"
+                                >
+
+                                    ${Number(product.target).toFixed(2)}
+
+                                    <span>
+                                        RM
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="metric"
+                            >
+
+                                <div
+                                    class="metric-label"
+                                >
+                                    Sold
+                                </div>
+
+                                <div
+                                    class="metric-value"
+                                >
+
+                                    <input
+                                        class="sales-input"
+                                        type="number"
+                                        min="0"
+                                        step="0.01"
+                                        value="${Number(product.sold).toFixed(2)}"
+                                        onchange="
+                                            updateSold(
+                                                ${product.id},
+                                                this.value
+                                            )
+                                        "
+                                        style="
+                                            width:75px;
+                                            border:none;
+                                            background:transparent;
+                                            outline:none;
+                                            font-size:17px;
+                                            font-weight:750;
+                                            color:#171717;
+                                            padding:0;
+                                        "
+                                    >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PROGRESS -->
+
+                        <div
+                            class="progress-section"
+                        >
+
+                            <div
+                                class="progress-header"
+                            >
+
+                                <span
+                                    class="progress-label"
+                                >
+                                    Performance
+                                </span>
+
+                                <span
+                                    class="progress-percent"
+                                >
+
+                                    ${percent.toFixed(2)}%
+
+                                </span>
+
+                            </div>
+
+
+                            <div
+                                class="progress"
+                            >
+
+                                <div
+                                    class="progress-bar"
+                                    style="
+                                        width:${Math.min(percent,100)}%
+                                    "
+                                ></div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- BOTTOM -->
+
+                        <div
+                            class="card-bottom"
+                        >
+
+                            <button
+                                class="action-btn"
+                                onclick="
+                                    deleteProduct(
+                                        ${product.id}
+                                    )
+                                "
+                                title="Delete"
+                            >
+                                ×
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                `;
+
+            }
+        )
+        .join("");
+
+
+    updateStats();
+
+}
+
+
+/* =====================================================
+   UPDATE SOLD
+===================================================== */
+
+function updateSold(
+    id,
+    value
+){
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+    if(!product)
+        return;
+
+
+    product.sold =
+        Math.max(
+            0,
+            Number(value) || 0
+        );
+
+
+    saveData();
+
+    renderProducts();
+
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+function deleteProduct(id){
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+    if(!product)
+        return;
+
+
+    if(
+        !confirm(
+            `确定要删除 ${product.name} 吗？`
+        )
+    ){
+
+        return;
+
+    }
+
+
+    products =
+        products.filter(
+            p => p.id !== id
+        );
+
+
+    saveData();
+
+    renderProducts();
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function updateStats(){
+
+    const totalProducts =
+        products.length;
+
+
+    const totalTarget =
+        products.reduce(
+            (sum,p) =>
+                sum + Number(p.target),
+            0
+        );
+
+
+    const totalSold =
+        products.reduce(
+            (sum,p) =>
+                sum + Number(p.sold),
+            0
+        );
+
+
+    const overall =
+        totalTarget > 0
+        ? (totalSold /
+            totalTarget *
+            100)
+        : 0;
+
+
+    document
+        .getElementById(
+            "totalProducts"
+        )
+        .textContent =
+        totalProducts;
+
+
+    document
+        .getElementById(
+            "totalTarget"
+        )
+        .textContent =
+        totalTarget.toFixed(2);
+
+
+    document
+        .getElementById(
+            "totalSold"
+        )
+        .textContent =
+        totalSold.toFixed(2);
+
+
+    document
+        .getElementById(
+            "overallProgress"
+        )
+        .textContent =
+        overall.toFixed(2) + "%";
+
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+function openModal(){
+
+    document
+        .getElementById(
+            "modalOverlay"
+        )
+        .classList
+        .add("active");
+
+}
+
+function closeModal(){
+
+    document
+        .getElementById(
+            "modalOverlay"
+        )
+        .classList
+        .remove("active");
+
+}
+
+
+/* =====================================================
+   IMAGE PREVIEW
+===================================================== */
+
+let selectedImage = "";
+
+
+function previewImage(event){
+
+    const file =
+        event.target.files[0];
+
+    if(!file)
+        return;
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(e){
+
+            selectedImage =
+                e.target.result;
+
+
+            document
+                .getElementById(
+                    "imagePreview"
+                )
+                .src =
+                selectedImage;
+
+        };
+
+
+    reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+   ADD PRODUCT
+===================================================== */
+
+function addProduct(){
+
+    const name =
+        document
+        .getElementById(
+            "productName"
+        )
+        .value
+        .trim();
+
+
+    const code =
+        document
+        .getElementById(
+            "productCode"
+        )
+        .value
+        .trim();
+
+
+    const target =
+        Number(
+            document
+            .getElementById(
+                "productTarget"
+            )
+            .value
+        );
+
+
+    const sold =
+        Number(
+            document
+            .getElementById(
+                "productSold"
+            )
+            .value
+        ) || 0;
+
+
+    if(!name){
+
+        alert(
+            "请输入产品名称"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        !target ||
+        target <= 0
+    ){
+
+        alert(
+            "请输入正确的 Target"
+        );
+
+        return;
+
+    }
+
+
+    const newProduct = {
+
+        id:
+            Date.now(),
+
+        name:
+            name,
+
+        code:
+            code ||
+            "P-" +
+            String(
+                products.length + 1
+            ).padStart(
+                3,
+                "0"
+            ),
+
+        target:
+            target,
+
+        sold:
+            sold,
+
+        image:
+            selectedImage ||
+            "https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=500&q=85"
+
+    };
+
+
+    products.push(
+        newProduct
+    );
+
+
+    saveData();
+
+    renderProducts();
+
+    closeModal();
+
+    clearForm();
+
+}
+
+
+/* =====================================================
+   CLEAR FORM
+===================================================== */
+
+function clearForm(){
+
+    document
+        .getElementById(
+            "productName"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "productCode"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "productTarget"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "productSold"
+        )
+        .value = "";
+
+
+    selectedImage = "";
+
+
+    document
+        .getElementById(
+            "imagePreview"
+        )
+        .src =
+        "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=300&q=80";
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+function resetData(){
+
+    if(
+        !confirm(
+            "确定要恢复默认产品数据吗？"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    localStorage.removeItem(
+        "productTrackerData"
+    );
+
+
+    location.reload();
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+function showDate(){
+
+    const date =
+        new Date();
+
+
+    const formatted =
+        date.toLocaleDateString(
+            "zh-CN",
+            {
+                year:"numeric",
+                month:"long",
+                day:"numeric"
+            }
+        );
+
+
+    document
+        .getElementById(
+            "currentDate"
+        )
+        .textContent =
+        formatted;
+
+}
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+document
+    .getElementById(
+        "modalOverlay"
+    )
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(
+                e.target === this
+            ){
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   INIT
+===================================================== */
+
+showDate();
+
+renderProducts();
+
+</script>
+
+</body>
+</html>
