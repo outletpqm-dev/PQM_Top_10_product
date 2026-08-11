@@ -1,29 +1,65 @@
 <!DOCTYPE html>
 
 <html lang="zh-CN">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
 
 <title>PQM Top 10 Product Showcase</title>
 
+<!-- =====================================================
+     EXPORT LIBRARIES
+===================================================== -->
+
+<!-- Excel Library -->
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+<!-- PDF Library -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- PDF Table Library -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
 <style>
 
+/* =====================================================
+   ROOT
+===================================================== */
+
 :root{
+
     --bg:#f3f0ea;
+
     --surface:#ffffff;
+
     --surface-soft:#f8f6f1;
 
     --text:#171717;
+
     --muted:#88847c;
+
     --border:#e5e0d7;
 
     --gold:#b18a52;
+
     --gold-dark:#8d6937;
 
     --green:#3f8064;
+
     --yellow:#b78935;
+
     --red:#b95c59;
+
     --blue:#547aa3;
 
     --shadow:
@@ -31,15 +67,31 @@
 
     --shadow-hover:
         0 28px 70px rgba(48,42,32,.14);
+
 }
+
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
+
     box-sizing:border-box;
+
     margin:0;
+
     padding:0;
+
 }
 
+
+/* =====================================================
+   BODY
+===================================================== */
+
 body{
+
     font-family:
         Inter,
         -apple-system,
@@ -48,100 +100,142 @@ body{
         sans-serif;
 
     background:
+
         radial-gradient(
             circle at 10% 0%,
             rgba(177,138,82,.10),
             transparent 28%
         ),
+
         radial-gradient(
             circle at 90% 20%,
             rgba(255,255,255,.8),
             transparent 30%
         ),
+
         var(--bg);
 
     color:var(--text);
+
     min-height:100vh;
+
 }
+
 
 /* =====================================================
    HEADER
 ===================================================== */
 
 .header{
+
     padding:24px 45px;
 
     background:
         rgba(255,255,255,.78);
 
-    backdrop-filter:blur(20px);
+    backdrop-filter:
+        blur(20px);
 
     border-bottom:
         1px solid rgba(0,0,0,.07);
 
     position:sticky;
+
     top:0;
+
     z-index:50;
+
 }
 
+
 .header-inner{
+
     max-width:1500px;
+
     margin:auto;
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
     gap:20px;
+
 }
+
 
 .logo-area{
+
     display:flex;
+
     align-items:center;
+
     gap:14px;
+
 }
 
-.logo{
+
+.logo-img{
     width:46px;
     height:46px;
 
-    border-radius:50%;
+    object-fit:contain;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#171717;
-    color:#fff;
-
-    font-size:19px;
-
-    box-shadow:
-        0 8px 20px rgba(0,0,0,.16);
+    display:block;
 }
+
 
 .logo-text h1{
+
     font-size:18px;
+
     font-weight:750;
+
     letter-spacing:-.5px;
+
 }
 
+
 .logo-text p{
+
     color:var(--muted);
+
     font-size:11px;
+
     margin-top:4px;
+
     letter-spacing:.5px;
+
 }
+
+
+/* =====================================================
+   HEADER ACTIONS
+===================================================== */
+
+.header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
 
 /* =====================================================
    BUTTON
 ===================================================== */
 
 .btn{
+
     border:
         1px solid var(--border);
 
     background:#fff;
+
     color:#222;
 
     padding:11px 17px;
@@ -149,82 +243,128 @@ body{
     border-radius:11px;
 
     cursor:pointer;
+
     font-weight:650;
 
     transition:.25s;
+
+    white-space:nowrap;
+
 }
 
+
 .btn:hover{
-    transform:translateY(-2px);
+
+    transform:
+        translateY(-2px);
 
     box-shadow:
         0 8px 20px rgba(0,0,0,.08);
+
 }
+
 
 .btn-primary{
+
     background:#171717;
+
     color:#fff;
+
     border-color:#171717;
+
 }
 
+
 .btn-primary:hover{
+
     background:#292929;
+
 }
+
 
 /* =====================================================
    MAIN
 ===================================================== */
 
 .container{
+
     max-width:1500px;
+
     margin:auto;
 
     padding:45px 40px 70px;
+
 }
+
 
 /* =====================================================
    HERO
 ===================================================== */
 
 .hero{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:flex-end;
 
     margin-bottom:35px;
+
 }
+
 
 .hero h2{
+
     font-size:40px;
+
     font-weight:750;
+
     letter-spacing:-1.8px;
+
 }
+
 
 .hero p{
+
     color:var(--muted);
+
     margin-top:9px;
+
     font-size:14px;
+
 }
 
+
 .date-box{
+
     color:var(--muted);
+
     font-size:13px;
+
 }
+
 
 /* =====================================================
    STATS
 ===================================================== */
 
 .stats{
+
     display:grid;
+
     grid-template-columns:
         repeat(4,1fr);
 
     gap:16px;
+
     margin-bottom:35px;
+
 }
 
+
 .stat-card{
+
     background:
         rgba(255,255,255,.75);
 
@@ -236,9 +376,12 @@ body{
     padding:22px;
 
     box-shadow:var(--shadow);
+
 }
 
+
 .stat-label{
+
     color:var(--muted);
 
     font-size:11px;
@@ -246,9 +389,12 @@ body{
     text-transform:uppercase;
 
     letter-spacing:1.2px;
+
 }
 
+
 .stat-value{
+
     margin-top:9px;
 
     font-size:30px;
@@ -256,34 +402,49 @@ body{
     font-weight:750;
 
     letter-spacing:-1px;
+
 }
 
+
 .stat-sub{
+
     margin-top:6px;
 
     color:var(--muted);
 
     font-size:12px;
+
 }
+
 
 /* =====================================================
    TOOLBAR
 ===================================================== */
 
 .toolbar{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
 
     margin-bottom:22px;
+
 }
+
 
 .search{
+
     position:relative;
+
     width:350px;
+
 }
 
+
 .search input{
+
     width:100%;
 
     background:
@@ -294,51 +455,66 @@ body{
 
     color:var(--text);
 
-    padding:13px 15px 13px 43px;
+    padding:
+        13px 15px 13px 43px;
 
     border-radius:12px;
 
     outline:none;
 
     transition:.2s;
+
 }
 
+
 .search input:focus{
+
     border-color:var(--gold);
 
     box-shadow:
         0 0 0 3px rgba(177,138,82,.1);
+
 }
 
+
 .search-icon{
+
     position:absolute;
 
     left:15px;
+
     top:50%;
 
-    transform:translateY(-50%);
+    transform:
+        translateY(-50%);
 
     color:#999;
+
 }
+
 
 /* =====================================================
    PRODUCT GRID
 ===================================================== */
 
 .product-grid{
+
     display:grid;
 
     grid-template-columns:
         repeat(4,1fr);
 
     gap:22px;
+
 }
+
 
 /* =====================================================
    PRODUCT CARD
 ===================================================== */
 
 .product-card{
+
     position:relative;
 
     background:
@@ -356,40 +532,57 @@ body{
     transition:
         transform .3s ease,
         box-shadow .3s ease;
+
 }
+
 
 .product-card:hover{
-    transform:translateY(-7px);
 
-    box-shadow:var(--shadow-hover);
+    transform:
+        translateY(-7px);
+
+    box-shadow:
+        var(--shadow-hover);
+
 }
+
 
 /* =====================================================
    CARD TOP
 ===================================================== */
 
 .card-top{
+
     position:relative;
 
-    padding:18px 18px 0;
+    padding:
+        18px 18px 0;
 
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
 }
+
 
 /* =====================================================
    RANK
 ===================================================== */
 
 .rank{
+
     width:38px;
+
     height:38px;
 
     border-radius:12px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     background:#f1eee7;
@@ -399,120 +592,182 @@ body{
     font-size:13px;
 
     font-weight:750;
+
 }
+
 
 .rank.top1{
+
     background:#171717;
+
     color:#fff;
+
 }
+
 
 .rank.top2{
+
     background:#ddd8ce;
+
     color:#333;
+
 }
 
+
 .rank.top3{
+
     background:#d9c2a5;
+
     color:#513a20;
+
 }
+
 
 /* =====================================================
    STATUS
 ===================================================== */
 
 .status{
+
     display:inline-flex;
 
     align-items:center;
 
     gap:6px;
 
-    padding:7px 10px;
+    padding:
+        7px 10px;
 
     border-radius:20px;
 
     font-size:10px;
 
     font-weight:750;
+
 }
 
+
 .status-dot{
+
     width:6px;
+
     height:6px;
 
     border-radius:50%;
+
 }
+
 
 .status.good{
+
     background:#edf5ef;
+
     color:var(--green);
+
 }
+
 
 .status.good .status-dot{
+
     background:var(--green);
+
 }
+
 
 .status.warning{
+
     background:#f8f2e5;
+
     color:var(--yellow);
+
 }
+
 
 .status.warning .status-dot{
+
     background:var(--yellow);
+
 }
+
 
 .status.bad{
+
     background:#f8eaea;
+
     color:var(--red);
+
 }
+
 
 .status.bad .status-dot{
+
     background:var(--red);
+
 }
+
 
 .status.over{
+
     background:#eaf1f8;
+
     color:var(--blue);
+
 }
 
+
 .status.over .status-dot{
+
     background:var(--blue);
+
 }
+
 
 /* =====================================================
    IMAGE AREA
 ===================================================== */
 
 .image-area{
+
     height:245px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     padding:20px;
 
     position:relative;
+
 }
 
+
 .image-area::before{
+
     content:"";
 
     position:absolute;
 
     width:185px;
+
     height:185px;
 
     border-radius:50%;
 
     background:#f3f0e9;
+
 }
 
+
 .product-image{
+
     position:relative;
+
     z-index:2;
 
     width:190px;
+
     height:190px;
 
     object-fit:contain;
@@ -526,23 +781,33 @@ body{
         drop-shadow(
             0 18px 18px rgba(0,0,0,.12)
         );
+
 }
 
+
 .product-card:hover .product-image{
+
     transform:
         scale(1.06)
         translateY(-4px);
+
 }
+
 
 /* =====================================================
    PRODUCT INFO
 ===================================================== */
 
 .product-info{
-    padding:0 20px 20px;
+
+    padding:
+        0 20px 20px;
+
 }
 
+
 .product-name{
+
     font-size:17px;
 
     font-weight:750;
@@ -554,9 +819,12 @@ body{
     overflow:hidden;
 
     text-overflow:ellipsis;
+
 }
 
+
 .product-code{
+
     margin-top:5px;
 
     font-size:11px;
@@ -564,13 +832,16 @@ body{
     color:var(--muted);
 
     letter-spacing:.5px;
+
 }
+
 
 /* =====================================================
    METRICS
 ===================================================== */
 
 .metrics{
+
     display:grid;
 
     grid-template-columns:
@@ -579,18 +850,24 @@ body{
     gap:10px;
 
     margin-top:20px;
+
 }
 
+
 .metric{
+
     background:
         var(--surface-soft);
 
     border-radius:13px;
 
     padding:12px;
+
 }
 
+
 .metric-label{
+
     font-size:9px;
 
     color:var(--muted);
@@ -598,29 +875,38 @@ body{
     text-transform:uppercase;
 
     letter-spacing:.8px;
+
 }
 
+
 .metric-value{
+
     margin-top:5px;
 
     font-size:17px;
 
     font-weight:750;
+
 }
 
+
 .metric-value span{
+
     font-size:10px;
 
     font-weight:500;
 
     color:var(--muted);
+
 }
+
 
 /* =====================================================
    SOLD INPUT
 ===================================================== */
 
 .sales-input{
+
     width:90px;
 
     border:none;
@@ -636,22 +922,31 @@ body{
     color:#171717;
 
     padding:0;
+
 }
 
+
 .sales-input:focus{
+
     border-bottom:
         1px solid var(--gold);
+
 }
+
 
 /* =====================================================
    PROGRESS
 ===================================================== */
 
 .progress-section{
+
     margin-top:18px;
+
 }
 
+
 .progress-header{
+
     display:flex;
 
     justify-content:space-between;
@@ -659,9 +954,12 @@ body{
     align-items:center;
 
     margin-bottom:8px;
+
 }
 
+
 .progress-label{
+
     font-size:10px;
 
     color:var(--muted);
@@ -669,15 +967,21 @@ body{
     text-transform:uppercase;
 
     letter-spacing:.7px;
+
 }
 
+
 .progress-percent{
+
     font-size:12px;
 
     font-weight:750;
+
 }
 
+
 .progress{
+
     height:7px;
 
     background:#ebe7df;
@@ -685,9 +989,12 @@ body{
     border-radius:20px;
 
     overflow:hidden;
+
 }
 
+
 .progress-bar{
+
     height:100%;
 
     border-radius:20px;
@@ -701,13 +1008,16 @@ body{
 
     transition:
         width .5s ease;
+
 }
+
 
 /* =====================================================
    CARD BOTTOM
 ===================================================== */
 
 .card-bottom{
+
     margin-top:20px;
 
     padding-top:15px;
@@ -718,9 +1028,12 @@ body{
     display:flex;
 
     justify-content:flex-end;
+
 }
 
+
 .card-number{
+
     font-size:10px;
 
     color:var(--muted);
@@ -728,13 +1041,16 @@ body{
     letter-spacing:.8px;
 
     text-transform:uppercase;
+
 }
+
 
 /* =====================================================
    EMPTY
 ===================================================== */
 
 .empty{
+
     grid-column:
         1 / -1;
 
@@ -747,19 +1063,9 @@ body{
     background:#fff;
 
     border-radius:20px;
+
 }
 
-/* =====================================================
-   RESET NOTICE
-===================================================== */
-
-.reset-info{
-    margin-top:10px;
-
-    font-size:11px;
-
-    color:var(--muted);
-}
 
 /* =====================================================
    RESPONSIVE
@@ -768,83 +1074,143 @@ body{
 @media(max-width:1250px){
 
     .product-grid{
+
         grid-template-columns:
             repeat(3,1fr);
+
     }
 
 }
+
 
 @media(max-width:950px){
 
     .product-grid{
+
         grid-template-columns:
             repeat(2,1fr);
+
     }
 
     .stats{
+
         grid-template-columns:
             repeat(2,1fr);
+
     }
 
     .hero h2{
+
         font-size:32px;
+
     }
 
 }
+
 
 @media(max-width:650px){
 
     .header{
+
         padding:18px 20px;
+
     }
 
     .header-inner{
+
         align-items:flex-start;
+
         flex-direction:column;
+
+    }
+
+    .header-actions{
+
+        width:100%;
+
+        display:grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+    .header-actions .btn{
+
+        width:100%;
+
+        padding:
+            10px 8px;
+
+        font-size:12px;
+
     }
 
     .container{
-        padding:30px 18px 50px;
+
+        padding:
+            30px 18px 50px;
+
     }
 
     .hero{
+
         flex-direction:column;
+
         align-items:flex-start;
+
         gap:12px;
+
     }
 
     .stats{
+
         grid-template-columns:1fr;
+
     }
 
     .product-grid{
+
         grid-template-columns:1fr;
+
     }
 
     .search{
+
         width:100%;
+
     }
 
     .toolbar{
+
         display:block;
+
     }
 
     .image-area{
+
         height:280px;
+
     }
 
     .product-image{
+
         width:220px;
+
         height:220px;
+
     }
 
 }
 
+
 @media(min-width:1550px){
 
     .product-grid{
+
         grid-template-columns:
             repeat(4,1fr);
+
     }
 
 }
@@ -864,10 +1230,11 @@ body{
 
 <div class="header-inner">
 
+
     <div class="logo-area">
 
         <div class="logo">
-            ✦
+            <img src="image/logo-responsive.png" alt="PQM Logo">
         </div>
 
         <div class="logo-text">
@@ -884,6 +1251,29 @@ body{
 
     </div>
 
+
+    <!-- EXPORT BUTTONS -->
+
+    <div class="header-actions">
+
+        <button
+            class="btn"
+            onclick="exportExcel()"
+        >
+            📊 Export Excel
+        </button>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="exportPDF()"
+        >
+            📄 Export PDF
+        </button>
+
+    </div>
+
+
 </div>
 
 
@@ -896,7 +1286,9 @@ body{
 <main class="container">
 
 
-<!-- HERO -->
+<!-- =================================================
+     HERO
+================================================= -->
 
 <section class="hero">
 
@@ -912,6 +1304,7 @@ body{
 
     </div>
 
+
     <div class="date-box">
 
         <span id="currentDate"></span>
@@ -921,11 +1314,13 @@ body{
 </section>
 
 
+
 <!-- =================================================
      STATS
 ================================================= -->
 
 <section class="stats">
+
 
     <div class="stat-card">
 
@@ -945,6 +1340,7 @@ body{
         </div>
 
     </div>
+
 
 
     <div class="stat-card">
@@ -967,6 +1363,7 @@ body{
     </div>
 
 
+
     <div class="stat-card">
 
         <div class="stat-label">
@@ -985,6 +1382,7 @@ body{
         </div>
 
     </div>
+
 
 
     <div class="stat-card">
@@ -1006,7 +1404,9 @@ body{
 
     </div>
 
+
 </section>
+
 
 
 <!-- =================================================
@@ -1033,6 +1433,7 @@ body{
 </div>
 
 
+
 <!-- =================================================
      PRODUCT GRID
 ================================================= -->
@@ -1049,20 +1450,6 @@ body{
 
 /* =====================================================
    FIXED TOP 10 PRODUCTS
-
-   IMPORTANT:
-   如果你要更新 GitHub Pages 上的数据，
-   直接修改这里的 target / sold。
-
-   例如：
-
-   sold: 32.50
-
-   然后：
-   git add .
-   git commit -m "Update sales"
-   git push
-
 ===================================================== */
 
 const products = [
@@ -1076,6 +1463,7 @@ const products = [
         image:"image/eysmy_955616010728_300x300.jpg"
     },
 
+
     {
         id:2,
         name:"Active Liva",
@@ -1084,6 +1472,7 @@ const products = [
         sold:2117.00,
         image:"image/eysmy_955616010829_300x300.jpg"
     },
+
 
     {
         id:3,
@@ -1094,6 +1483,7 @@ const products = [
         image:"image/eysmy_955616010810_300x300.jpg"
     },
 
+
     {
         id:4,
         name:"Essence of American Ginseng",
@@ -1102,6 +1492,7 @@ const products = [
         sold:511.00,
         image:"image/eysmy_955616010848_1000x1000.jpg"
     },
+
 
     {
         id:5,
@@ -1112,6 +1503,7 @@ const products = [
         image:"image/eysmy_955616040039-1_1000x1000.jpg"
     },
 
+
     {
         id:6,
         name:"Cordyceps Sinensis Mycelia",
@@ -1120,6 +1512,7 @@ const products = [
         sold:2079.00,
         image:"image/eysmy_955616030009_Capsules-of-Cordyceps-Sinensis-Mycelia_300x300.jpg"
     },
+
 
     {
         id:7,
@@ -1130,6 +1523,7 @@ const products = [
         image:"image/eysmy_955616040023_300x300.jpg"
     },
 
+
     {
         id:8,
         name:"Lingzhi Cracked Spores Plus Capsules",
@@ -1139,6 +1533,7 @@ const products = [
         image:"image/eysmy_955764734526_ling-zhi-cracked-spores-capsules-plus_300x300.jpg"
     },
 
+
     {
         id:9,
         name:"Men Vitality Capsule",
@@ -1147,6 +1542,7 @@ const products = [
         sold:1281.00,
         image:"image/eysmy_955764734540_300x300.jpg"
     },
+
 
     {
         id:10,
@@ -1160,59 +1556,133 @@ const products = [
 ];
 
 
+
 /* =====================================================
    PERCENTAGE
 ===================================================== */
 
-function getPercentage(sold,target){
+function getPercentage(
+    sold,
+    target
+){
 
-    if(!target || target <= 0){
+    if(
+        !target ||
+        target <= 0
+    ){
+
         return 0;
+
     }
 
-    return (sold / target) * 100;
+
+    return (
+        sold / target
+    ) * 100;
+
 }
+
 
 
 /* =====================================================
    STATUS
 ===================================================== */
 
-function getStatus(percent){
+function getStatus(
+    percent
+){
 
-    if(percent >= 100){
+    if(
+        percent >= 100
+    ){
 
         return {
+
             class:"over",
+
             text:"Target Reached"
+
         };
 
     }
 
-    if(percent >= 70){
+
+    if(
+        percent >= 70
+    ){
 
         return {
+
             class:"good",
+
             text:"On Track"
+
         };
 
     }
 
-    if(percent >= 40){
+
+    if(
+        percent >= 40
+    ){
 
         return {
+
             class:"warning",
+
             text:"Needs Push"
+
         };
 
     }
+
 
     return {
+
         class:"bad",
+
         text:"Behind"
+
     };
 
 }
+
+
+
+/* =====================================================
+   SORT PRODUCTS
+===================================================== */
+
+function getSortedProducts(){
+
+    return [
+
+        ...products
+
+    ].sort(
+        (a,b) => {
+
+            return (
+
+                getPercentage(
+                    b.sold,
+                    b.target
+                )
+
+                -
+
+                getPercentage(
+                    a.sold,
+                    a.target
+                )
+
+            );
+
+        }
+    );
+
+}
+
 
 
 /* =====================================================
@@ -1226,6 +1696,7 @@ function renderProducts(){
             "productList"
         );
 
+
     const keyword =
         document
         .getElementById(
@@ -1237,49 +1708,66 @@ function renderProducts(){
 
 
     let filtered =
-        products.filter(product => {
+        products.filter(
+            product => {
 
-            return (
-                product.name
+                return (
+
+                    product.name
                     .toLowerCase()
                     .includes(keyword)
-                ||
-                product.code
+
+                    ||
+
+                    product.code
                     .toLowerCase()
                     .includes(keyword)
-            );
 
-        });
+                );
+
+            }
+        );
 
 
     /*
         排名根据销售完成率
-        最高的排 #1
     */
 
-    filtered.sort((a,b) => {
+    filtered.sort(
+        (a,b) => {
 
-        return (
-            getPercentage(
-                b.sold,
-                b.target
-            )
-            -
-            getPercentage(
-                a.sold,
-                a.target
-            )
-        );
+            return (
 
-    });
+                getPercentage(
+                    b.sold,
+                    b.target
+                )
+
+                -
+
+                getPercentage(
+                    a.sold,
+                    a.target
+                )
+
+            );
+
+        }
+    );
 
 
-    if(filtered.length === 0){
+    if(
+        filtered.length === 0
+    ){
 
         list.innerHTML = `
+
             <div class="empty">
+
                 No products found.
+
             </div>
+
         `;
 
         updateStats();
@@ -1290,254 +1778,313 @@ function renderProducts(){
 
 
     list.innerHTML =
+
         filtered
-        .map((product,index) => {
-
-            const percent =
-                getPercentage(
-                    product.sold,
-                    product.target
-                );
+        .map(
+            (product,index) => {
 
 
-            const status =
-                getStatus(percent);
+                const percent =
+                    getPercentage(
+                        product.sold,
+                        product.target
+                    );
 
 
-            let rankClass = "";
-
-            if(index === 0){
-                rankClass = "top1";
-            }
-
-            if(index === 1){
-                rankClass = "top2";
-            }
-
-            if(index === 2){
-                rankClass = "top3";
-            }
+                const status =
+                    getStatus(
+                        percent
+                    );
 
 
-            let rankDisplay;
-
-            if(index === 0){
-                rankDisplay = "🥇";
-            }
-            else if(index === 1){
-                rankDisplay = "🥈";
-            }
-            else if(index === 2){
-                rankDisplay = "🥉";
-            }
-            else{
-                rankDisplay = "#" + (index + 1);
-            }
+                let rankClass = "";
 
 
-            return `
+                if(
+                    index === 0
+                ){
 
-                <article
-                    class="product-card"
-                >
+                    rankClass =
+                        "top1";
 
-                    <!-- CARD TOP -->
+                }
 
-                    <div
-                        class="card-top"
+
+                if(
+                    index === 1
+                ){
+
+                    rankClass =
+                        "top2";
+
+                }
+
+
+                if(
+                    index === 2
+                ){
+
+                    rankClass =
+                        "top3";
+
+                }
+
+
+                let rankDisplay;
+
+
+                if(
+                    index === 0
+                ){
+
+                    rankDisplay = "🥇";
+
+                }
+                else if(
+                    index === 1
+                ){
+
+                    rankDisplay = "🥈";
+
+                }
+                else if(
+                    index === 2
+                ){
+
+                    rankDisplay = "🥉";
+
+                }
+                else{
+
+                    rankDisplay =
+                        "#" +
+                        (index + 1);
+
+                }
+
+
+                return `
+
+                    <article
+                        class="product-card"
                     >
 
-                        <div
-                            class="
-                                rank
-                                ${rankClass}
-                            "
-                        >
-                            ${rankDisplay}
-                        </div>
-
 
                         <div
-                            class="
-                                status
-                                ${status.class}
-                            "
-                        >
-
-                            <span
-                                class="status-dot"
-                            ></span>
-
-                            ${status.text}
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- PRODUCT IMAGE -->
-
-                    <div
-                        class="image-area"
-                    >
-
-                        <img
-                            class="product-image"
-                            src="${product.image}"
-                            alt="${product.name}"
-                        >
-
-                    </div>
-
-
-                    <!-- PRODUCT INFO -->
-
-                    <div
-                        class="product-info"
-                    >
-
-                        <div
-                            class="product-name"
-                            title="${product.name}"
-                        >
-                            ${product.name}
-                        </div>
-
-
-                        <div
-                            class="product-code"
-                        >
-                            ${product.code}
-                        </div>
-
-
-                        <!-- METRICS -->
-
-                        <div
-                            class="metrics"
+                            class="card-top"
                         >
 
                             <div
-                                class="metric"
+                                class="
+                                    rank
+                                    ${rankClass}
+                                "
                             >
-
-                                <div
-                                    class="metric-label"
-                                >
-                                    Target
-                                </div>
-
-                                <div
-                                    class="metric-value"
-                                >
-
-                                    RM
-                                    ${Number(product.target).toFixed(2)}
-
-                                </div>
-
+                                ${rankDisplay}
                             </div>
 
 
                             <div
-                                class="metric"
+                                class="
+                                    status
+                                    ${status.class}
+                                "
                             >
 
-                                <div
-                                    class="metric-label"
-                                >
-                                    Sold
-                                </div>
+                                <span
+                                    class="status-dot"
+                                ></span>
+
+                                ${status.text}
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div
+                            class="image-area"
+                        >
+
+                            <img
+                                class="product-image"
+                                src="${product.image}"
+                                alt="${product.name}"
+                                onerror="this.style.opacity='0.3'"
+                            >
+
+                        </div>
+
+
+
+                        <div
+                            class="product-info"
+                        >
+
+
+                            <div
+                                class="product-name"
+                                title="${product.name}"
+                            >
+                                ${product.name}
+                            </div>
+
+
+                            <div
+                                class="product-code"
+                            >
+                                ${product.code}
+                            </div>
+
+
+
+                            <div
+                                class="metrics"
+                            >
+
 
                                 <div
-                                    class="metric-value"
+                                    class="metric"
                                 >
 
-                                    <input
-                                        class="sales-input"
-                                        type="number"
-                                        min="0"
-                                        step="0.01"
-                                        value="${Number(product.sold).toFixed(2)}"
-                                        onchange="
-                                            updateSold(
-                                                ${product.id},
-                                                this.value
-                                            )
-                                        "
+                                    <div
+                                        class="metric-label"
+                                    >
+                                        Target
+                                    </div>
+
+
+                                    <div
+                                        class="metric-value"
                                     >
 
-                                    <span>
                                         RM
+                                        ${Number(
+                                            product.target
+                                        ).toFixed(2)}
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div
+                                    class="metric"
+                                >
+
+                                    <div
+                                        class="metric-label"
+                                    >
+                                        Sold
+                                    </div>
+
+
+                                    <div
+                                        class="metric-value"
+                                    >
+
+                                        <input
+                                            class="sales-input"
+                                            type="number"
+                                            min="0"
+                                            step="0.01"
+                                            value="${Number(
+                                                product.sold
+                                            ).toFixed(2)}"
+                                            onchange="
+                                                updateSold(
+                                                    ${product.id},
+                                                    this.value
+                                                )
+                                            "
+                                        >
+
+                                        <span>
+                                            RM
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div
+                                class="progress-section"
+                            >
+
+
+                                <div
+                                    class="progress-header"
+                                >
+
+                                    <span
+                                        class="progress-label"
+                                    >
+                                        Performance
+                                    </span>
+
+
+                                    <span
+                                        class="progress-percent"
+                                    >
+                                        ${percent.toFixed(2)}%
                                     </span>
 
                                 </div>
 
-                            </div>
 
-                        </div>
-
-
-                        <!-- PROGRESS -->
-
-                        <div
-                            class="progress-section"
-                        >
-
-                            <div
-                                class="progress-header"
-                            >
-
-                                <span
-                                    class="progress-label"
+                                <div
+                                    class="progress"
                                 >
-                                    Performance
-                                </span>
 
-                                <span
-                                    class="progress-percent"
-                                >
-                                    ${percent.toFixed(2)}%
-                                </span>
+                                    <div
+                                        class="progress-bar"
+                                        style="
+                                            width:${Math.min(
+                                                percent,
+                                                100
+                                            )}%
+                                        "
+                                    ></div>
+
+                                </div>
+
 
                             </div>
 
 
+
                             <div
-                                class="progress"
+                                class="card-bottom"
                             >
 
                                 <div
-                                    class="progress-bar"
-                                    style="
-                                        width:${Math.min(percent,100)}%
-                                    "
-                                ></div>
+                                    class="card-number"
+                                >
+                                    PRODUCT
+                                    ${String(
+                                        product.id
+                                    ).padStart(2,"0")}
+                                </div>
 
                             </div>
+
 
                         </div>
 
 
-                        <!-- CARD BOTTOM -->
+                    </article>
 
-                        <div
-                            class="card-bottom"
-                        >
+                `;
 
-                            <div class="card-number">
-                                PRODUCT ${String(product.id).padStart(2,"0")}
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </article>
-
-            `;
-
-        })
+            }
+        )
         .join("");
 
 
@@ -1546,28 +2093,29 @@ function renderProducts(){
 }
 
 
+
 /* =====================================================
    UPDATE SOLD
-
-   注意：
-
-   这里修改的只是当前网页 JavaScript
-   不会自动修改 GitHub 上的 HTML。
-
-   如果要永久保存：
-   修改 products 数组里的 sold，
-   然后 git push。
 ===================================================== */
 
-function updateSold(id,value){
+function updateSold(
+    id,
+    value
+){
 
     const product =
         products.find(
-            p => p.id === id
+            p =>
+                p.id === id
         );
 
-    if(!product){
+
+    if(
+        !product
+    ){
+
         return;
+
     }
 
 
@@ -1576,7 +2124,9 @@ function updateSold(id,value){
 
 
     if(
-        Number.isNaN(newValue)
+        Number.isNaN(
+            newValue
+        )
         ||
         newValue < 0
     ){
@@ -1597,6 +2147,7 @@ function updateSold(id,value){
 }
 
 
+
 /* =====================================================
    UPDATE STATS
 ===================================================== */
@@ -1609,25 +2160,48 @@ function updateStats(){
 
     const totalTarget =
         products.reduce(
-            (sum,product) =>
-                sum + Number(product.target),
+            (
+                sum,
+                product
+            ) =>
+
+                sum +
+                Number(
+                    product.target
+                ),
+
             0
         );
 
 
     const totalSold =
         products.reduce(
-            (sum,product) =>
-                sum + Number(product.sold),
+            (
+                sum,
+                product
+            ) =>
+
+                sum +
+                Number(
+                    product.sold
+                ),
+
             0
         );
 
 
     const overall =
         totalTarget > 0
+
         ?
-        (totalSold / totalTarget) * 100
+
+        (
+            totalSold /
+            totalTarget
+        ) * 100
+
         :
+
         0;
 
 
@@ -1644,7 +2218,8 @@ function updateStats(){
             "totalTarget"
         )
         .textContent =
-        "RM " + totalTarget.toFixed(2);
+        "RM " +
+        totalTarget.toFixed(2);
 
 
     document
@@ -1652,7 +2227,8 @@ function updateStats(){
             "totalSold"
         )
         .textContent =
-        "RM " + totalSold.toFixed(2);
+        "RM " +
+        totalSold.toFixed(2);
 
 
     document
@@ -1660,19 +2236,15 @@ function updateStats(){
             "overallProgress"
         )
         .textContent =
-        overall.toFixed(2) + "%";
+        overall.toFixed(2) +
+        "%";
 
 }
 
 
+
 /* =====================================================
    RESET
-
-   因为现在没有 LocalStorage，
-   Reset 只需要重新读取原始 products 数据。
-
-   如果你在网页上修改了 Sold，
-   点击 Reset 会恢复成 HTML 中的数值。
 ===================================================== */
 
 function resetData(){
@@ -1680,6 +2252,7 @@ function resetData(){
     renderProducts();
 
 }
+
 
 
 /* =====================================================
@@ -1694,11 +2267,15 @@ function showDate(){
 
     const formatted =
         date.toLocaleDateString(
-            "zh-CN",
+            "en-MY",
             {
+
                 year:"numeric",
+
                 month:"long",
+
                 day:"numeric"
+
             }
         );
 
@@ -1713,6 +2290,703 @@ function showDate(){
 }
 
 
+
+/* =====================================================
+   EXPORT EXCEL
+===================================================== */
+
+function exportExcel(){
+
+    if(
+        typeof XLSX ===
+        "undefined"
+    ){
+
+        alert(
+            "Excel library failed to load. Please check your internet connection."
+        );
+
+        return;
+
+    }
+
+
+    /*
+        Sort by performance
+    */
+
+    const sortedProducts =
+        getSortedProducts();
+
+
+    /*
+        Excel data
+    */
+
+    const excelData =
+        sortedProducts.map(
+            (
+                product,
+                index
+            ) => {
+
+
+                const percent =
+                    getPercentage(
+                        product.sold,
+                        product.target
+                    );
+
+
+                const status =
+                    getStatus(
+                        percent
+                    );
+
+
+                return {
+
+                    "Rank":
+                        index + 1,
+
+                    "Product Name":
+                        product.name,
+
+                    "Product Code":
+                        product.code,
+
+                    "Target (RM)":
+                        Number(
+                            product.target
+                        ),
+
+                    "Sold (RM)":
+                        Number(
+                            product.sold
+                        ),
+
+                    "Performance (%)":
+                        Number(
+                            percent.toFixed(2)
+                        ),
+
+                    "Status":
+                        status.text
+
+                };
+
+            }
+        );
+
+
+    /*
+        Create worksheet
+    */
+
+    const worksheet =
+        XLSX.utils.json_to_sheet(
+            excelData
+        );
+
+
+    /*
+        Column widths
+    */
+
+    worksheet["!cols"] = [
+
+        {
+            wch:8
+        },
+
+        {
+            wch:35
+        },
+
+        {
+            wch:18
+        },
+
+        {
+            wch:16
+        },
+
+        {
+            wch:16
+        },
+
+        {
+            wch:20
+        },
+
+        {
+            wch:20
+        }
+
+    ];
+
+
+    /*
+        Format Excel cells
+    */
+
+    for(
+        let row = 2;
+
+        row <=
+        excelData.length + 1;
+
+        row++
+    ){
+
+        if(
+            worksheet[
+                `D${row}`
+            ]
+        ){
+
+            worksheet[
+                `D${row}`
+            ].z =
+                'RM #,##0.00';
+
+        }
+
+
+        if(
+            worksheet[
+                `E${row}`
+            ]
+        ){
+
+            worksheet[
+                `E${row}`
+            ].z =
+                'RM #,##0.00';
+
+        }
+
+
+        if(
+            worksheet[
+                `F${row}`
+            ]
+        ){
+
+            worksheet[
+                `F${row}`
+            ].z =
+                '0.00';
+
+        }
+
+    }
+
+
+    /*
+        Create workbook
+    */
+
+    const workbook =
+        XLSX.utils.book_new();
+
+
+    XLSX.utils.book_append_sheet(
+
+        workbook,
+
+        worksheet,
+
+        "Top 10 Products"
+
+    );
+
+
+    /*
+        Date
+    */
+
+    const date =
+        new Date()
+        .toISOString()
+        .slice(
+            0,
+            10
+        );
+
+
+    /*
+        Download
+    */
+
+    XLSX.writeFile(
+
+        workbook,
+
+        `PQM_Top_10_Products_${date}.xlsx`
+
+    );
+
+}
+
+
+
+/* =====================================================
+   EXPORT PDF
+===================================================== */
+
+function exportPDF(){
+
+    if(
+        typeof window.jspdf ===
+        "undefined"
+    ){
+
+        alert(
+            "PDF library failed to load. Please check your internet connection."
+        );
+
+        return;
+
+    }
+
+
+    const {
+        jsPDF
+    } =
+        window.jspdf;
+
+
+    /*
+        Create A4 Landscape
+    */
+
+    const doc =
+        new jsPDF({
+
+            orientation:
+                "landscape",
+
+            unit:
+                "mm",
+
+            format:
+                "a4"
+
+        });
+
+
+    /*
+        Products
+    */
+
+    const sortedProducts =
+        getSortedProducts();
+
+
+    /*
+        Date
+    */
+
+    const today =
+        new Date();
+
+
+    const date =
+        today.toLocaleDateString(
+            "en-MY",
+            {
+
+                year:"numeric",
+
+                month:"long",
+
+                day:"numeric"
+
+            }
+        );
+
+
+    /*
+        Total
+    */
+
+    const totalTarget =
+        products.reduce(
+            (
+                sum,
+                product
+            ) =>
+
+                sum +
+                Number(
+                    product.target
+                ),
+
+            0
+        );
+
+
+    const totalSold =
+        products.reduce(
+            (
+                sum,
+                product
+            ) =>
+
+                sum +
+                Number(
+                    product.sold
+                ),
+
+            0
+        );
+
+
+    const overall =
+        totalTarget > 0
+
+        ?
+
+        (
+            totalSold /
+            totalTarget
+        ) * 100
+
+        :
+
+        0;
+
+
+    /*
+        Title
+    */
+
+    doc.setFontSize(
+        20
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "bold"
+    );
+
+
+    doc.text(
+        "PQM Top 10 Products",
+        14,
+        15
+    );
+
+
+    /*
+        Subtitle
+    */
+
+    doc.setFontSize(
+        10
+    );
+
+
+    doc.setFont(
+        "helvetica",
+        "normal"
+    );
+
+
+    doc.text(
+        "Product Sales Performance Report",
+        14,
+        22
+    );
+
+
+    doc.text(
+        `Date: ${date}`,
+        14,
+        28
+    );
+
+
+    /*
+        Summary
+    */
+
+    doc.text(
+        `Total Target: RM ${totalTarget.toFixed(2)}`,
+        180,
+        20
+    );
+
+
+    doc.text(
+        `Total Sold: RM ${totalSold.toFixed(2)}`,
+        180,
+        25
+    );
+
+
+    doc.text(
+        `Overall Progress: ${overall.toFixed(2)}%`,
+        180,
+        30
+    );
+
+
+    /*
+        Table
+    */
+
+    const tableData =
+        sortedProducts.map(
+            (
+                product,
+                index
+            ) => {
+
+
+                const percent =
+                    getPercentage(
+                        product.sold,
+                        product.target
+                    );
+
+
+                const status =
+                    getStatus(
+                        percent
+                    );
+
+
+                return [
+
+                    index + 1,
+
+                    product.name,
+
+                    product.code,
+
+                    `RM ${Number(
+                        product.target
+                    ).toFixed(2)}`,
+
+                    `RM ${Number(
+                        product.sold
+                    ).toFixed(2)}`,
+
+                    `${percent.toFixed(2)}%`,
+
+                    status.text
+
+                ];
+
+            }
+        );
+
+
+    /*
+        Auto Table
+    */
+
+    doc.autoTable({
+
+        startY:36,
+
+        head:[
+
+            [
+
+                "Rank",
+
+                "Product Name",
+
+                "Product Code",
+
+                "Target (RM)",
+
+                "Sold (RM)",
+
+                "Performance",
+
+                "Status"
+
+            ]
+
+        ],
+
+        body:
+            tableData,
+
+        theme:
+            "grid",
+
+        styles:{
+
+            font:
+                "helvetica",
+
+            fontSize:
+                8,
+
+            cellPadding:
+                3,
+
+            valign:
+                "middle"
+
+        },
+
+        headStyles:{
+
+            fontStyle:
+                "bold",
+
+            halign:
+                "center"
+
+        },
+
+        columnStyles:{
+
+            0:{
+
+                halign:
+                    "center",
+
+                cellWidth:
+                    15
+
+            },
+
+            1:{
+
+                cellWidth:
+                    65
+
+            },
+
+            2:{
+
+                cellWidth:
+                    35
+
+            },
+
+            3:{
+
+                halign:
+                    "right",
+
+                cellWidth:
+                    32
+
+            },
+
+            4:{
+
+                halign:
+                    "right",
+
+                cellWidth:
+                    32
+
+            },
+
+            5:{
+
+                halign:
+                    "center",
+
+                cellWidth:
+                    28
+
+            },
+
+            6:{
+
+                halign:
+                    "center",
+
+                cellWidth:
+                    35
+
+            }
+
+        }
+
+    });
+
+
+    /*
+        Footer
+    */
+
+    const pageCount =
+        doc.internal
+            .getNumberOfPages();
+
+
+    for(
+        let i = 1;
+
+        i <= pageCount;
+
+        i++
+    ){
+
+        doc.setPage(
+            i
+        );
+
+
+        doc.setFontSize(
+            8
+        );
+
+
+        doc.setFont(
+            "helvetica",
+            "normal"
+        );
+
+
+        doc.text(
+
+            `PQM Top 10 Products | Page ${i} of ${pageCount}`,
+
+            14,
+
+            200
+
+        );
+
+    }
+
+
+    /*
+        Download
+    */
+
+    const fileDate =
+        new Date()
+        .toISOString()
+        .slice(
+            0,
+            10
+        );
+
+
+    doc.save(
+
+        `PQM_Top_10_Products_${fileDate}.pdf`
+
+    );
+
+}
+
+
+
 /* =====================================================
    INIT
 ===================================================== */
@@ -1724,4 +2998,5 @@ renderProducts();
 </script>
 
 </body>
+
 </html>
