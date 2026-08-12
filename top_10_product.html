@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>PQM | Premium Top 10 Product Performance</title>
@@ -134,6 +135,9 @@ body{
 
     min-height:100vh;
 
+    animation:
+        pageReveal .8s ease both;
+
 }
 
 
@@ -173,14 +177,6 @@ body{
 /* =====================================================
    PAGE LOAD
 ===================================================== */
-
-body{
-
-    animation:
-        pageReveal .8s ease both;
-
-}
-
 
 @keyframes pageReveal{
 
@@ -1591,34 +1587,6 @@ body{
 }
 
 
-.sales-input{
-
-    width:78px;
-
-    border:none;
-
-    outline:none;
-
-    background:transparent;
-
-    color:#35322d;
-
-    font-size:13px;
-
-    font-weight:800;
-
-    padding:0;
-
-}
-
-
-.sales-input:focus{
-
-    color:var(--gold-dark);
-
-}
-
-
 /* =====================================================
    REMAINING
 ===================================================== */
@@ -2696,7 +2664,9 @@ body{
 <main class="container">
 
 
-<!-- HERO -->
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
@@ -3099,7 +3069,6 @@ body{
 
 <script>
 
-
 /* =====================================================
    PRODUCT DATA
 ===================================================== */
@@ -3282,6 +3251,7 @@ function getStatus(percent){
 
 /* =====================================================
    SORT PRODUCTS
+   Ranking is based on Achievement %
 ===================================================== */
 
 function getSortedProducts(){
@@ -3325,14 +3295,16 @@ function renderProducts(){
         );
 
 
+    const searchElement =
+        document.getElementById(
+            "searchInput"
+        );
+
+
     const keyword =
-        document
-            .getElementById(
-                "searchInput"
-            )
-            .value
-            .toLowerCase()
-            .trim();
+        searchElement
+            ? searchElement.value.toLowerCase().trim()
+            : "";
 
 
     let filtered =
@@ -3517,9 +3489,7 @@ function renderProducts(){
                                 src="${product.image}"
                                 alt="${product.name}"
                                 onclick="event.stopPropagation()"
-                                onerror="
-                                    this.style.opacity='0.25';
-                                "
+                                onerror="this.style.opacity='0.25';"
                             >
 
                         </div>
@@ -3585,7 +3555,6 @@ function renderProducts(){
 
                                 <div
                                     class="metric"
-                                    onclick="event.stopPropagation()"
                                 >
 
                                     <div
@@ -3605,22 +3574,9 @@ function renderProducts(){
                                             RM
                                         </span>
 
-
-                                        <input
-                                            class="sales-input"
-                                            type="number"
-                                            min="0"
-                                            step="0.01"
-                                            value="${Number(
-                                                product.sold
-                                            ).toFixed(2)}"
-                                            onchange="
-                                                updateSold(
-                                                    ${product.id},
-                                                    this.value
-                                                )
-                                            "
-                                        >
+                                        ${formatRM(
+                                            product.sold
+                                        )}
 
                                     </div>
 
@@ -3728,51 +3684,6 @@ function renderProducts(){
 
 
     updateStats();
-
-}
-
-
-/* =====================================================
-   UPDATE SOLD
-===================================================== */
-
-function updateSold(id,value){
-
-    const product =
-        products.find(
-            p => p.id === id
-        );
-
-
-    if(!product){
-
-        return;
-
-    }
-
-
-    const newValue =
-        Number(value);
-
-
-    if(
-        Number.isNaN(newValue)
-        ||
-        newValue < 0
-    ){
-
-        renderProducts();
-
-        return;
-
-    }
-
-
-    product.sold =
-        newValue;
-
-
-    renderProducts();
 
 }
 
@@ -4121,14 +4032,10 @@ function openProductModal(id){
         );
 
 
-    ring.style
-        .setProperty(
-            "--ring-progress",
-            `${Math.min(
-                percent,
-                100
-            )}%`
-        );
+    ring.style.setProperty(
+        "--ring-progress",
+        `${Math.min(percent,100)}%`
+    );
 
 
     document
@@ -4796,7 +4703,6 @@ function exportPDF(){
 showDate();
 
 renderProducts();
-
 
 </script>
 
