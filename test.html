@@ -1,34 +1,23 @@
 <!DOCTYPE html>
-
-<html lang="zh-CN">
+<html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-
->
-
-<title>PQM Top 10 Product Showcase</title>
+<title>PQM | Premium Top 10 Product Performance</title>
 
 <!-- =====================================================
      EXPORT LIBRARIES
 ===================================================== -->
 
-<!-- Excel Library -->
-
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-
-<!-- PDF Library -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<!-- PDF Table Library -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
 
 <style>
 
@@ -38,35 +27,51 @@ content="width=device-width, initial-scale=1.0"
 
 :root{
 
-    --bg:#f3f0ea;
+    --bg:#f5f2ec;
+
+    --bg-2:#f0ece4;
 
     --surface:#ffffff;
 
-    --surface-soft:#f8f6f1;
+    --surface-2:#faf8f4;
 
-    --text:#171717;
+    --surface-3:#f7f4ee;
 
-    --muted:#88847c;
+    --surface-soft:#eee9df;
 
-    --border:#e5e0d7;
+    --text:#252525;
 
-    --gold:#b18a52;
+    --text-soft:#4c4a46;
 
-    --gold-dark:#8d6937;
+    --muted:#858078;
 
-    --green:#3f8064;
+    --muted-light:#aaa49a;
 
-    --yellow:#b78935;
+    --border:rgba(45,40,32,.10);
 
-    --red:#b95c59;
+    --border-gold:rgba(184,149,90,.40);
 
-    --blue:#547aa3;
+    --gold:#b8955a;
+
+    --gold-light:#d2b57d;
+
+    --gold-dark:#8f6d37;
+
+    --gold-soft:rgba(184,149,90,.10);
+
+    --green:#4f9270;
+
+    --yellow:#bd8e3f;
+
+    --red:#bd625d;
+
+    --blue:#6688ad;
 
     --shadow:
-        0 18px 50px rgba(48,42,32,.08);
+        0 15px 45px rgba(70,60,45,.08);
 
     --shadow-hover:
-        0 28px 70px rgba(48,42,32,.14);
+        0 25px 65px rgba(70,60,45,.15);
 
 }
 
@@ -86,9 +91,12 @@ content="width=device-width, initial-scale=1.0"
 }
 
 
-/* =====================================================
-   BODY
-===================================================== */
+html{
+
+    scroll-behavior:smooth;
+
+}
+
 
 body{
 
@@ -97,19 +105,26 @@ body{
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
+        Arial,
         sans-serif;
 
     background:
 
         radial-gradient(
-            circle at 10% 0%,
-            rgba(177,138,82,.10),
+            circle at 10% -10%,
+            rgba(184,149,90,.16),
             transparent 28%
         ),
 
         radial-gradient(
-            circle at 90% 20%,
-            rgba(255,255,255,.8),
+            circle at 100% 0%,
+            rgba(255,255,255,.90),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(184,149,90,.07),
             transparent 30%
         ),
 
@@ -123,98 +138,214 @@ body{
 
 
 /* =====================================================
+   SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+
+::-webkit-scrollbar-track{
+
+    background:#eeeae2;
+
+}
+
+
+::-webkit-scrollbar-thumb{
+
+    background:
+        linear-gradient(
+            180deg,
+            #a88750,
+            #cdb27c,
+            #a88750
+        );
+
+    border-radius:20px;
+
+}
+
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+body{
+
+    animation:
+        pageReveal .8s ease both;
+
+}
+
+
+@keyframes pageReveal{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+
+/* =====================================================
    HEADER
 ===================================================== */
 
 .header{
 
-    padding:24px 45px;
-
-    background:
-        rgba(255,255,255,.78);
-
-    backdrop-filter:
-        blur(20px);
-
-    border-bottom:
-        1px solid rgba(0,0,0,.07);
-
     position:sticky;
 
     top:0;
 
-    z-index:50;
+    z-index:1000;
+
+    background:
+        rgba(250,248,244,.86);
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    border-bottom:
+        1px solid rgba(50,45,38,.08);
+
+}
+
+
+.header::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:-1px;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(184,149,90,.45),
+            transparent
+        );
 
 }
 
 
 .header-inner{
 
-    max-width:1500px;
+    max-width:1550px;
+
+    min-height:88px;
 
     margin:auto;
 
+    padding:
+        0 42px;
+
     display:flex;
+
+    align-items:center;
 
     justify-content:space-between;
 
-    align-items:center;
-
-    gap:20px;
-
-}
-
-
-.logo-area{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-}
-
-
-.logo-img{
-    width:46px;
-    height:46px;
-
-    object-fit:contain;
-
-    display:block;
-}
-
-
-.logo-text h1{
-
-    font-size:18px;
-
-    font-weight:750;
-
-    letter-spacing:-.5px;
-
-}
-
-
-.logo-text p{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    margin-top:4px;
-
-    letter-spacing:.5px;
+    gap:25px;
 
 }
 
 
 /* =====================================================
-   HEADER ACTIONS
+   BRAND
 ===================================================== */
 
-.header-actions{
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+.logo-img{
+
+    width:52px;
+
+    height:52px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(
+            0 5px 10px rgba(100,80,45,.12)
+        );
+
+}
+
+
+.brand-text{
+
+    min-width:0;
+
+}
+
+
+.brand-title{
+
+    font-size:16px;
+
+    font-weight:800;
+
+    letter-spacing:.4px;
+
+    color:#292724;
+
+}
+
+
+.brand-subtitle{
+
+    margin-top:6px;
+
+    color:var(--gold-dark);
+
+    font-size:8px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+}
+
+
+/* =====================================================
+   HEADER RIGHT
+===================================================== */
+
+.header-right{
 
     display:flex;
 
@@ -225,30 +356,100 @@ body{
 }
 
 
+.header-date{
+
+    padding-right:17px;
+
+    margin-right:3px;
+
+    border-right:
+        1px solid var(--border);
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    white-space:nowrap;
+
+}
+
+
 /* =====================================================
    BUTTON
 ===================================================== */
 
 .btn{
 
+    position:relative;
+
+    overflow:hidden;
+
     border:
-        1px solid var(--border);
+        1px solid rgba(50,45,38,.10);
 
-    background:#fff;
+    background:
+        rgba(255,255,255,.72);
 
-    color:#222;
+    color:#514e48;
 
-    padding:11px 17px;
+    padding:
+        11px 16px;
 
-    border-radius:11px;
+    border-radius:10px;
 
     cursor:pointer;
 
-    font-weight:650;
+    font-size:11px;
 
-    transition:.25s;
+    font-weight:700;
 
-    white-space:nowrap;
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        background .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-100%;
+
+    width:100%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(184,149,90,.10),
+            transparent
+        );
+
+    transition:left .5s ease;
+
+}
+
+
+.btn:hover::before{
+
+    left:100%;
 
 }
 
@@ -258,26 +459,47 @@ body{
     transform:
         translateY(-2px);
 
+    border-color:
+        rgba(184,149,90,.35);
+
+    background:#fff;
+
     box-shadow:
-        0 8px 20px rgba(0,0,0,.08);
+        0 10px 25px rgba(70,60,45,.10);
 
 }
 
 
-.btn-primary{
+.btn-gold{
 
-    background:#171717;
+    background:
+        linear-gradient(
+            135deg,
+            #a8844b,
+            #d1b477
+        );
 
     color:#fff;
 
-    border-color:#171717;
+    border-color:
+        #b8955a;
+
+    box-shadow:
+        0 8px 25px rgba(184,149,90,.18);
 
 }
 
 
-.btn-primary:hover{
+.btn-gold:hover{
 
-    background:#292929;
+    background:
+        linear-gradient(
+            135deg,
+            #b28f55,
+            #dcc18a
+        );
+
+    color:#fff;
 
 }
 
@@ -288,11 +510,12 @@ body{
 
 .container{
 
-    max-width:1500px;
+    max-width:1550px;
 
     margin:auto;
 
-    padding:45px 40px 70px;
+    padding:
+        55px 42px 90px;
 
 }
 
@@ -303,42 +526,153 @@ body{
 
 .hero{
 
-    display:flex;
+    position:relative;
 
-    justify-content:space-between;
+    display:flex;
 
     align-items:flex-end;
 
-    margin-bottom:35px;
+    justify-content:space-between;
+
+    gap:30px;
+
+    margin-bottom:38px;
 
 }
 
 
-.hero h2{
+.hero::before{
 
-    font-size:40px;
+    content:"01";
 
-    font-weight:750;
+    position:absolute;
 
-    letter-spacing:-1.8px;
+    right:2%;
+
+    top:-35px;
+
+    font-size:150px;
+
+    line-height:1;
+
+    font-weight:900;
+
+    color:rgba(50,45,38,.035);
+
+    pointer-events:none;
 
 }
 
 
-.hero p{
+.eyebrow{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--gold-dark);
+
+    font-size:9px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
+}
+
+
+.eyebrow-line{
+
+    width:34px;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold-dark),
+            var(--gold)
+        );
+
+}
+
+
+.hero-title{
+
+    margin-top:14px;
+
+    font-size:
+        clamp(40px,5vw,68px);
+
+    line-height:.98;
+
+    letter-spacing:-3.5px;
+
+    font-weight:850;
+
+    color:#282724;
+
+}
+
+
+.hero-title span{
+
+    background:
+        linear-gradient(
+            135deg,
+            #8d6a35,
+            #b8955a,
+            #d2b57d
+        );
+
+    -webkit-background-clip:text;
+
+    background-clip:text;
+
+    color:transparent;
+
+}
+
+
+.hero-description{
+
+    margin-top:17px;
+
+    max-width:690px;
 
     color:var(--muted);
 
-    margin-top:9px;
+    font-size:12px;
 
-    font-size:14px;
+    line-height:1.8;
 
 }
 
 
-.date-box{
+.hero-date{
+
+    position:relative;
+
+    z-index:2;
 
     color:var(--muted);
+
+    font-size:10px;
+
+    text-align:right;
+
+}
+
+
+.hero-date strong{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#4b4945;
 
     font-size:13px;
 
@@ -346,73 +680,196 @@ body{
 
 
 /* =====================================================
-   STATS
+   KPI
 ===================================================== */
 
-.stats{
+.kpi-grid{
 
     display:grid;
 
     grid-template-columns:
         repeat(4,1fr);
 
-    gap:16px;
+    gap:14px;
 
-    margin-bottom:35px;
+    margin-bottom:40px;
 
 }
 
 
-.stat-card{
+.kpi{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:145px;
 
     background:
-        rgba(255,255,255,.75);
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.96),
+            rgba(250,247,241,.92)
+        );
 
     border:
-        1px solid rgba(0,0,0,.06);
+        1px solid rgba(55,48,38,.08);
 
-    border-radius:20px;
+    border-radius:18px;
 
     padding:22px;
 
-    box-shadow:var(--shadow);
+    box-shadow:
+        var(--shadow);
+
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
 
 }
 
 
-.stat-label{
+.kpi:hover{
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        var(--border-gold);
+
+    box-shadow:
+        0 22px 50px rgba(70,60,45,.12);
+
+}
+
+
+.kpi::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+
+    height:120px;
+
+    right:-50px;
+
+    bottom:-60px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(184,149,90,.13),
+            transparent 65%
+        );
+
+}
+
+
+.kpi::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:2px;
+
+    height:45px;
+
+    background:
+        linear-gradient(
+            180deg,
+            var(--gold),
+            transparent
+        );
+
+}
+
+
+.kpi-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+
+.kpi-label{
 
     color:var(--muted);
 
-    font-size:11px;
+    font-size:8px;
+
+    font-weight:800;
+
+    letter-spacing:1.8px;
 
     text-transform:uppercase;
 
-    letter-spacing:1.2px;
+}
+
+
+.kpi-icon{
+
+    width:30px;
+
+    height:30px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:9px;
+
+    background:
+        var(--gold-soft);
+
+    color:var(--gold-dark);
+
+    font-size:10px;
+
+    font-weight:800;
 
 }
 
 
-.stat-value{
+.kpi-value{
 
-    margin-top:9px;
+    margin-top:17px;
 
-    font-size:30px;
+    font-size:25px;
 
-    font-weight:750;
+    line-height:1;
+
+    font-weight:800;
 
     letter-spacing:-1px;
 
+    color:#292724;
+
 }
 
 
-.stat-sub{
+.kpi-sub{
 
-    margin-top:6px;
+    margin-top:10px;
 
-    color:var(--muted);
+    color:var(--muted-light);
 
-    font-size:12px;
+    font-size:9px;
 
 }
 
@@ -425,20 +882,72 @@ body{
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
 
-    margin-bottom:22px;
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:20px;
 
 }
 
+
+.toolbar-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+}
+
+
+.section-label{
+
+    color:#302e2a;
+
+    font-size:14px;
+
+    font-weight:800;
+
+}
+
+
+.product-count{
+
+    padding:
+        5px 10px;
+
+    border:
+        1px solid var(--border-gold);
+
+    border-radius:20px;
+
+    background:
+        var(--gold-soft);
+
+    color:var(--gold-dark);
+
+    font-size:8px;
+
+    font-weight:800;
+
+    letter-spacing:.7px;
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
 
 .search{
 
     position:relative;
 
-    width:350px;
+    width:310px;
 
 }
 
@@ -447,32 +956,46 @@ body{
 
     width:100%;
 
-    background:
-        rgba(255,255,255,.8);
-
-    border:
-        1px solid var(--border);
-
-    color:var(--text);
+    height:44px;
 
     padding:
-        13px 15px 13px 43px;
+        0 15px 0 42px;
+
+    border:
+        1px solid rgba(55,48,38,.10);
 
     border-radius:12px;
 
     outline:none;
 
-    transition:.2s;
+    background:
+        rgba(255,255,255,.80);
+
+    color:#302e2a;
+
+    font-size:11px;
+
+    transition:.25s ease;
+
+}
+
+
+.search input::placeholder{
+
+    color:#aaa59c;
 
 }
 
 
 .search input:focus{
 
-    border-color:var(--gold);
+    border-color:
+        rgba(184,149,90,.55);
+
+    background:#fff;
 
     box-shadow:
-        0 0 0 3px rgba(177,138,82,.1);
+        0 0 0 4px rgba(184,149,90,.08);
 
 }
 
@@ -488,7 +1011,9 @@ body{
     transform:
         translateY(-50%);
 
-    color:#999;
+    color:var(--gold-dark);
+
+    font-size:16px;
 
 }
 
@@ -504,7 +1029,7 @@ body{
     grid-template-columns:
         repeat(4,1fr);
 
-    gap:22px;
+    gap:18px;
 
 }
 
@@ -517,21 +1042,55 @@ body{
 
     position:relative;
 
-    background:
-        rgba(255,255,255,.9);
-
-    border:
-        1px solid rgba(0,0,0,.06);
-
-    border-radius:24px;
-
     overflow:hidden;
 
-    box-shadow:var(--shadow);
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf8f3
+        );
+
+    border:
+        1px solid rgba(55,48,38,.09);
+
+    border-radius:21px;
+
+    box-shadow:
+        var(--shadow);
+
+    cursor:pointer;
 
     transition:
-        transform .3s ease,
-        box-shadow .3s ease;
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        box-shadow .35s ease,
+        border-color .35s ease;
+
+    animation:
+        cardReveal .55s ease both;
+
+}
+
+
+@keyframes cardReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
 
 }
 
@@ -539,45 +1098,83 @@ body{
 .product-card:hover{
 
     transform:
-        translateY(-7px);
+        translateY(-8px);
 
     box-shadow:
         var(--shadow-hover);
 
+    border-color:
+        rgba(184,149,90,.35);
+
+}
+
+
+.product-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:180px;
+
+    height:180px;
+
+    right:-80px;
+
+    top:-90px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(184,149,90,.12),
+            transparent 68%
+        );
+
+    transition:
+        transform .4s ease;
+
+}
+
+
+.product-card:hover::before{
+
+    transform:
+        scale(1.5);
+
 }
 
 
 /* =====================================================
-   CARD TOP
+   CARD HEADER
 ===================================================== */
 
-.card-top{
+.card-header{
 
     position:relative;
 
-    padding:
-        18px 18px 0;
+    z-index:3;
 
     display:flex;
 
+    align-items:center;
+
     justify-content:space-between;
 
-    align-items:center;
+    padding:
+        17px 17px 0;
 
 }
 
 
-/* =====================================================
-   RANK
-===================================================== */
+.rank-box{
 
-.rank{
+    position:relative;
 
     width:38px;
 
     height:38px;
-
-    border-radius:12px;
 
     display:flex;
 
@@ -585,40 +1182,66 @@ body{
 
     justify-content:center;
 
-    background:#f1eee7;
+    border-radius:11px;
 
-    color:#777;
+    background:
+        #f2efe8;
 
-    font-size:13px;
+    border:
+        1px solid rgba(55,48,38,.08);
 
-    font-weight:750;
+    color:#8d887f;
+
+    font-size:10px;
+
+    font-weight:900;
 
 }
 
 
-.rank.top1{
+.rank-box.top1{
 
-    background:#171717;
+    background:
+        linear-gradient(
+            135deg,
+            #c6a667,
+            #9b773d
+        );
 
     color:#fff;
 
-}
+    border-color:#b8955a;
 
-
-.rank.top2{
-
-    background:#ddd8ce;
-
-    color:#333;
+    box-shadow:
+        0 5px 18px rgba(184,149,90,.22);
 
 }
 
 
-.rank.top3{
+.rank-box.top2{
 
-    background:#d9c2a5;
+    background:
+        linear-gradient(
+            135deg,
+            #d5d4cf,
+            #a7a59f
+        );
 
-    color:#513a20;
+    color:#45433f;
+
+}
+
+
+.rank-box.top3{
+
+    background:
+        linear-gradient(
+            135deg,
+            #c49670,
+            #946744
+        );
+
+    color:#fff;
 
 }
 
@@ -636,99 +1259,82 @@ body{
     gap:6px;
 
     padding:
-        7px 10px;
+        6px 9px;
 
     border-radius:20px;
 
-    font-size:10px;
+    font-size:7px;
 
-    font-weight:750;
+    font-weight:800;
+
+    letter-spacing:.7px;
+
+    text-transform:uppercase;
 
 }
 
 
 .status-dot{
 
-    width:6px;
+    width:5px;
 
-    height:6px;
+    height:5px;
 
     border-radius:50%;
+
+    box-shadow:
+        0 0 7px currentColor;
 
 }
 
 
 .status.good{
 
-    background:#edf5ef;
+    background:
+        rgba(79,146,112,.10);
 
     color:var(--green);
 
 }
 
 
-.status.good .status-dot{
-
-    background:var(--green);
-
-}
-
-
 .status.warning{
 
-    background:#f8f2e5;
+    background:
+        rgba(189,142,63,.10);
 
     color:var(--yellow);
 
 }
 
 
-.status.warning .status-dot{
-
-    background:var(--yellow);
-
-}
-
-
 .status.bad{
 
-    background:#f8eaea;
+    background:
+        rgba(189,98,93,.10);
 
     color:var(--red);
 
 }
 
 
-.status.bad .status-dot{
-
-    background:var(--red);
-
-}
-
-
 .status.over{
 
-    background:#eaf1f8;
+    background:
+        rgba(102,136,173,.10);
 
     color:var(--blue);
 
 }
 
 
-.status.over .status-dot{
-
-    background:var(--blue);
-
-}
-
-
 /* =====================================================
-   IMAGE AREA
+   IMAGE
 ===================================================== */
 
-.image-area{
+.product-image-area{
 
-    height:245px;
+    height:250px;
 
     display:flex;
 
@@ -736,26 +1342,69 @@ body{
 
     justify-content:center;
 
-    padding:20px;
-
     position:relative;
+
+    padding:18px;
 
 }
 
 
-.image-area::before{
+.product-image-area::before{
 
     content:"";
 
     position:absolute;
 
-    width:185px;
+    width:205px;
 
-    height:185px;
+    height:205px;
 
     border-radius:50%;
 
-    background:#f3f0e9;
+    background:
+        radial-gradient(
+            circle,
+            rgba(184,149,90,.12),
+            rgba(255,255,255,.75) 48%,
+            transparent 70%
+        );
+
+    transition:
+        transform .45s ease;
+
+}
+
+
+.product-image-area::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:130px;
+
+    height:20px;
+
+    bottom:28px;
+
+    border-radius:50%;
+
+    background:
+        rgba(80,65,45,.16);
+
+    filter:
+        blur(15px);
+
+    opacity:.55;
+
+}
+
+
+.product-card:hover
+.product-image-area::before{
+
+    transform:
+        scale(1.12);
 
 }
 
@@ -766,59 +1415,72 @@ body{
 
     z-index:2;
 
-    width:190px;
+    width:200px;
 
-    height:190px;
+    height:200px;
 
     object-fit:contain;
 
-    border-radius:20px;
-
-    transition:
-        transform .35s ease;
+    border-radius:18px;
 
     filter:
         drop-shadow(
-            0 18px 18px rgba(0,0,0,.12)
+            0 20px 18px rgba(80,65,45,.20)
+        );
+
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        filter .5s ease;
+
+}
+
+
+.product-card:hover
+.product-image{
+
+    transform:
+        scale(1.08)
+        translateY(-5px);
+
+    filter:
+        drop-shadow(
+            0 25px 25px rgba(80,65,45,.25)
         );
 
 }
 
 
-.product-card:hover .product-image{
-
-    transform:
-        scale(1.06)
-        translateY(-4px);
-
-}
-
-
 /* =====================================================
-   PRODUCT INFO
+   PRODUCT CONTENT
 ===================================================== */
 
-.product-info{
+.product-content{
+
+    position:relative;
+
+    z-index:3;
 
     padding:
-        0 20px 20px;
+        0 18px 18px;
 
 }
 
 
 .product-name{
 
-    font-size:17px;
+    font-size:15px;
 
-    font-weight:750;
+    font-weight:800;
 
-    letter-spacing:-.4px;
+    letter-spacing:-.3px;
 
     white-space:nowrap;
 
     overflow:hidden;
 
     text-overflow:ellipsis;
+
+    color:#292724;
 
 }
 
@@ -827,11 +1489,11 @@ body{
 
     margin-top:5px;
 
-    font-size:11px;
-
     color:var(--muted);
 
-    letter-spacing:.5px;
+    font-size:8px;
+
+    letter-spacing:1.2px;
 
 }
 
@@ -847,9 +1509,9 @@ body{
     grid-template-columns:
         1fr 1fr;
 
-    gap:10px;
+    gap:9px;
 
-    margin-top:20px;
+    margin-top:17px;
 
 }
 
@@ -857,69 +1519,93 @@ body{
 .metric{
 
     background:
-        var(--surface-soft);
+        #f8f6f1;
 
-    border-radius:13px;
+    border:
+        1px solid rgba(55,48,38,.06);
+
+    border-radius:12px;
 
     padding:12px;
+
+    transition:
+        border-color .25s ease,
+        background .25s ease;
+
+}
+
+
+.metric:hover{
+
+    background:
+        #f5f0e6;
+
+    border-color:
+        rgba(184,149,90,.20);
 
 }
 
 
 .metric-label{
 
-    font-size:9px;
-
     color:var(--muted);
 
-    text-transform:uppercase;
+    font-size:7px;
 
-    letter-spacing:.8px;
+    font-weight:800;
+
+    letter-spacing:1.2px;
+
+    text-transform:uppercase;
 
 }
 
 
 .metric-value{
 
-    margin-top:5px;
+    display:flex;
 
-    font-size:17px;
+    align-items:center;
 
-    font-weight:750;
+    gap:3px;
 
-}
+    margin-top:7px;
 
+    font-size:13px;
 
-.metric-value span{
+    font-weight:800;
 
-    font-size:10px;
-
-    font-weight:500;
-
-    color:var(--muted);
+    color:#35322d;
 
 }
 
 
-/* =====================================================
-   SOLD INPUT
-===================================================== */
+.metric-value .currency{
+
+    color:var(--gold-dark);
+
+    font-size:8px;
+
+    font-weight:700;
+
+}
+
 
 .sales-input{
 
-    width:90px;
+    width:78px;
 
     border:none;
 
-    background:transparent;
-
     outline:none;
 
-    font-size:17px;
+    background:transparent;
 
-    font-weight:750;
+    color:#35322d;
 
-    color:#171717;
+    font-size:13px;
+
+    font-weight:800;
 
     padding:0;
 
@@ -928,8 +1614,37 @@ body{
 
 .sales-input:focus{
 
-    border-bottom:
-        1px solid var(--gold);
+    color:var(--gold-dark);
+
+}
+
+
+/* =====================================================
+   REMAINING
+===================================================== */
+
+.remaining{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-top:10px;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+
+.remaining strong{
+
+    color:#5a5751;
+
+    font-size:9px;
 
 }
 
@@ -940,7 +1655,7 @@ body{
 
 .progress-section{
 
-    margin-top:18px;
+    margin-top:17px;
 
 }
 
@@ -958,33 +1673,38 @@ body{
 }
 
 
-.progress-label{
-
-    font-size:10px;
+.progress-title{
 
     color:var(--muted);
 
-    text-transform:uppercase;
+    font-size:7px;
 
-    letter-spacing:.7px;
+    font-weight:800;
+
+    letter-spacing:1.1px;
+
+    text-transform:uppercase;
 
 }
 
 
 .progress-percent{
 
-    font-size:12px;
+    color:var(--gold-dark);
 
-    font-weight:750;
+    font-size:9px;
+
+    font-weight:900;
 
 }
 
 
 .progress{
 
-    height:7px;
+    height:5px;
 
-    background:#ebe7df;
+    background:
+        #e8e3d9;
 
     border-radius:20px;
 
@@ -995,6 +1715,8 @@ body{
 
 .progress-bar{
 
+    position:relative;
+
     height:100%;
 
     border-radius:20px;
@@ -1002,45 +1724,107 @@ body{
     background:
         linear-gradient(
             90deg,
-            #a9824d,
-            #c9a66b
+            #9b773d,
+            #c9a86a,
+            #dfc896
         );
 
+    box-shadow:
+        0 0 10px rgba(184,149,90,.18);
+
     transition:
-        width .5s ease;
+        width .8s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+.progress-bar::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-50%;
+
+    width:50%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.65),
+            transparent
+        );
+
+    animation:
+        progressShine 2.4s infinite;
+
+}
+
+
+@keyframes progressShine{
+
+    0%{
+
+        left:-50%;
+
+    }
+
+    100%{
+
+        left:120%;
+
+    }
 
 }
 
 
 /* =====================================================
-   CARD BOTTOM
+   CARD FOOTER
 ===================================================== */
 
-.card-bottom{
-
-    margin-top:20px;
-
-    padding-top:15px;
-
-    border-top:
-        1px solid #eeeae3;
+.card-footer{
 
     display:flex;
 
-    justify-content:flex-end;
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-top:17px;
+
+    padding-top:13px;
+
+    border-top:
+        1px solid rgba(55,48,38,.07);
 
 }
 
 
 .card-number{
 
-    font-size:10px;
+    color:var(--muted-light);
 
-    color:var(--muted);
+    font-size:7px;
 
-    letter-spacing:.8px;
+    font-weight:700;
 
-    text-transform:uppercase;
+    letter-spacing:1.3px;
+
+}
+
+
+.performance-mini{
+
+    color:var(--gold-dark);
+
+    font-size:8px;
+
+    font-weight:800;
 
 }
 
@@ -1054,15 +1838,496 @@ body{
     grid-column:
         1 / -1;
 
+    padding:90px 20px;
+
     text-align:center;
 
-    padding:80px;
+    background:
+        rgba(255,255,255,.70);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:20px;
 
     color:var(--muted);
 
-    background:#fff;
+    font-size:12px;
 
-    border-radius:20px;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:3000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(50,45,38,.38);
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+
+}
+
+
+.modal-overlay.active{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+.modal{
+
+    position:relative;
+
+    width:min(680px,100%);
+
+    max-height:90vh;
+
+    overflow:auto;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4ed
+        );
+
+    border:
+        1px solid rgba(184,149,90,.28);
+
+    border-radius:24px;
+
+    box-shadow:
+        0 40px 100px rgba(70,60,45,.25);
+
+    transform:
+        translateY(25px)
+        scale(.97);
+
+    transition:
+        transform .35s ease;
+
+}
+
+
+.modal-overlay.active .modal{
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.modal-close{
+
+    position:absolute;
+
+    top:16px;
+
+    right:16px;
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(55,48,38,.10);
+
+    background:
+        rgba(255,255,255,.80);
+
+    color:#5b5750;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.2s;
+
+}
+
+
+.modal-close:hover{
+
+    background:
+        var(--gold-soft);
+
+    color:var(--gold-dark);
+
+    border-color:
+        rgba(184,149,90,.30);
+
+}
+
+
+/* =====================================================
+   MODAL TOP
+===================================================== */
+
+.modal-top{
+
+    display:grid;
+
+    grid-template-columns:
+        230px 1fr;
+
+    gap:28px;
+
+    padding:30px;
+
+}
+
+
+.modal-image-area{
+
+    height:230px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+}
+
+
+.modal-image-area::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:190px;
+
+    height:190px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(184,149,90,.15),
+            transparent 68%
+        );
+
+}
+
+
+.modal-image{
+
+    position:relative;
+
+    z-index:2;
+
+    width:210px;
+
+    height:210px;
+
+    object-fit:contain;
+
+    filter:
+        drop-shadow(
+            0 25px 20px rgba(80,65,45,.20)
+        );
+
+}
+
+
+.modal-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+}
+
+
+.modal-eyebrow{
+
+    color:var(--gold-dark);
+
+    font-size:8px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+}
+
+
+.modal-title{
+
+    margin-top:9px;
+
+    font-size:27px;
+
+    font-weight:850;
+
+    letter-spacing:-1px;
+
+    color:#292724;
+
+}
+
+
+.modal-code{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+    letter-spacing:1px;
+
+}
+
+
+.modal-achievement{
+
+    margin-top:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:17px;
+
+}
+
+
+/* =====================================================
+   RING
+===================================================== */
+
+.achievement-ring{
+
+    width:105px;
+
+    height:105px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        conic-gradient(
+            var(--gold) 0deg,
+            var(--gold) var(--ring-progress),
+            #e6e1d7 var(--ring-progress),
+            #e6e1d7 360deg
+        );
+
+    position:relative;
+
+}
+
+
+.achievement-ring::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:82px;
+
+    height:82px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+}
+
+
+.achievement-ring span{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    color:var(--gold-dark);
+
+}
+
+
+.achievement-label{
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+}
+
+
+.achievement-status{
+
+    margin-top:8px;
+
+    color:#48453f;
+
+    font-size:12px;
+
+    font-weight:800;
+
+}
+
+
+/* =====================================================
+   MODAL METRICS
+===================================================== */
+
+.modal-metrics{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:10px;
+
+    padding:
+        0 30px 30px;
+
+}
+
+
+.modal-metric{
+
+    padding:16px;
+
+    background:
+        #f8f6f1;
+
+    border:
+        1px solid rgba(55,48,38,.07);
+
+    border-radius:13px;
+
+}
+
+
+.modal-metric-label{
+
+    color:var(--muted);
+
+    font-size:7px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+}
+
+
+.modal-metric-value{
+
+    margin-top:8px;
+
+    font-size:14px;
+
+    font-weight:850;
+
+    color:#37342f;
+
+}
+
+
+.modal-footer{
+
+    padding:
+        15px 30px;
+
+    border-top:
+        1px solid rgba(55,48,38,.07);
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    letter-spacing:.7px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+    margin-top:60px;
+
+    padding-top:20px;
+
+    border-top:
+        1px solid rgba(55,48,38,.08);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    letter-spacing:1px;
 
 }
 
@@ -1083,7 +2348,14 @@ body{
 }
 
 
-@media(max-width:950px){
+@media(max-width:1000px){
+
+    .kpi-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
 
     .product-grid{
 
@@ -1092,39 +2364,26 @@ body{
 
     }
 
-    .stats{
-
-        grid-template-columns:
-            repeat(2,1fr);
-
-    }
-
-    .hero h2{
-
-        font-size:32px;
-
-    }
-
 }
 
 
-@media(max-width:650px){
-
-    .header{
-
-        padding:18px 20px;
-
-    }
+@media(max-width:700px){
 
     .header-inner{
 
-        align-items:flex-start;
+        padding:
+            14px 18px;
+
+        min-height:auto;
 
         flex-direction:column;
 
+        align-items:stretch;
+
     }
 
-    .header-actions{
+
+    .header-right{
 
         width:100%;
 
@@ -1135,23 +2394,28 @@ body{
 
     }
 
-    .header-actions .btn{
+
+    .header-date{
+
+        display:none;
+
+    }
+
+
+    .header-right .btn{
 
         width:100%;
 
-        padding:
-            10px 8px;
-
-        font-size:12px;
-
     }
+
 
     .container{
 
         padding:
-            30px 18px 50px;
+            32px 16px 60px;
 
     }
+
 
     .hero{
 
@@ -1159,21 +2423,63 @@ body{
 
         align-items:flex-start;
 
-        gap:12px;
+        gap:14px;
+
+        margin-bottom:30px;
 
     }
 
-    .stats{
 
-        grid-template-columns:1fr;
+    .hero-title{
+
+        font-size:42px;
+
+        letter-spacing:-2.3px;
+
+    }
+
+
+    .hero-date{
+
+        text-align:left;
 
     }
 
-    .product-grid{
 
-        grid-template-columns:1fr;
+    .kpi-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:10px;
 
     }
+
+
+    .kpi{
+
+        min-height:130px;
+
+        padding:17px;
+
+    }
+
+
+    .kpi-value{
+
+        font-size:19px;
+
+    }
+
+
+    .toolbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
 
     .search{
 
@@ -1181,35 +2487,120 @@ body{
 
     }
 
-    .toolbar{
 
-        display:block;
+    .product-grid{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .product-image-area{
+
+        height:285px;
 
     }
 
-    .image-area{
-
-        height:280px;
-
-    }
 
     .product-image{
 
-        width:220px;
+        width:235px;
+
+        height:235px;
+
+    }
+
+
+    .modal-top{
+
+        grid-template-columns:1fr;
+
+        padding:25px;
+
+    }
+
+
+    .modal-image-area{
 
         height:220px;
+
+    }
+
+
+    .modal-metrics{
+
+        grid-template-columns:1fr;
+
+        padding:
+            0 25px 25px;
+
+    }
+
+
+    .footer{
+
+        flex-direction:column;
+
+        gap:8px;
 
     }
 
 }
 
 
-@media(min-width:1550px){
+@media(max-width:430px){
 
-    .product-grid{
+    .brand-title{
 
-        grid-template-columns:
-            repeat(4,1fr);
+        font-size:14px;
+
+    }
+
+
+    .logo-img{
+
+        width:44px;
+
+        height:44px;
+
+    }
+
+
+    .kpi{
+
+        padding:14px;
+
+    }
+
+
+    .kpi-label{
+
+        font-size:7px;
+
+    }
+
+
+    .kpi-value{
+
+        font-size:17px;
+
+    }
+
+
+    .btn{
+
+        padding:
+            10px 8px;
+
+        font-size:9px;
+
+    }
+
+
+    .hero-title{
+
+        font-size:38px;
 
     }
 
@@ -1219,7 +2610,9 @@ body{
 
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      HEADER
@@ -1227,57 +2620,74 @@ body{
 
 <header class="header">
 
-
 <div class="header-inner">
 
 
-    <div class="logo-area">
+    <div class="brand">
 
-        <div class="logo">
-            <img src="image/logo-responsive.png" alt="PQM Logo">
-        </div>
+        <img
+            class="logo-img"
+            src="image/logo-responsive.png"
+            alt="PQM Logo"
+        >
 
-        <div class="logo-text">
+        <div class="brand-text">
 
-            <h1>
+            <div class="brand-title">
                 Product Collection
-            </h1>
+            </div>
 
-            <p>
-                TOP 10 PERFORMANCE
-            </p>
+            <div class="brand-subtitle">
+                Premium Sales Intelligence
+            </div>
 
         </div>
 
     </div>
 
 
-    <!-- EXPORT BUTTONS -->
+    <div class="header-right">
 
-    <div class="header-actions">
+        <div class="header-date">
+
+            <span id="headerDate"></span>
+
+        </div>
+
 
         <button
             class="btn"
             onclick="exportExcel()"
         >
-            📊 Export Excel
+
+            📊
+
+            <span>
+                Export Excel
+            </span>
+
         </button>
 
 
         <button
-            class="btn btn-primary"
+            class="btn btn-gold"
             onclick="exportPDF()"
         >
-            📄 Export PDF
+
+            📄
+
+            <span>
+                Export PDF
+            </span>
+
         </button>
 
     </div>
 
-
 </div>
 
-
 </header>
+
 
 <!-- =====================================================
      MAIN
@@ -1286,134 +2696,204 @@ body{
 <main class="container">
 
 
-<!-- =================================================
-     HERO
-================================================= -->
+<!-- HERO -->
 
 <section class="hero">
 
-    <div>
+    <div class="hero-left">
 
-        <h2>
-            PQM Top 10 Products
-        </h2>
+        <div class="eyebrow">
 
-        <p>
-            A premium overview of your product sales performance.
+            <span class="eyebrow-line"></span>
+
+            PQM SALES PERFORMANCE
+
+        </div>
+
+
+        <h1 class="hero-title">
+
+            Top 10
+
+            <span>
+                Products
+            </span>
+
+        </h1>
+
+
+        <p class="hero-description">
+
+            Executive overview of product sales performance,
+            target achievement, ranking and revenue progression.
+            Monitor your best-performing products in real time.
+
         </p>
 
     </div>
 
 
-    <div class="date-box">
+    <div class="hero-date">
 
-        <span id="currentDate"></span>
+        Last Updated
+
+        <strong id="heroDate"></strong>
 
     </div>
 
 </section>
 
 
+<!-- =====================================================
+     KPI
+===================================================== -->
 
-<!-- =================================================
-     STATS
-================================================= -->
-
-<section class="stats">
+<section class="kpi-grid">
 
 
-    <div class="stat-card">
+    <div class="kpi">
 
-        <div class="stat-label">
-            Total Products
+        <div class="kpi-top">
+
+            <div class="kpi-label">
+                Total Products
+            </div>
+
+            <div class="kpi-icon">
+                ◆
+            </div>
+
         </div>
+
 
         <div
-            class="stat-value"
+            class="kpi-value"
             id="totalProducts"
         >
-            10
+            0
         </div>
 
-        <div class="stat-sub">
-            Fixed Top 10 products
+
+        <div class="kpi-sub">
+            Active products tracked
         </div>
 
     </div>
 
 
+    <div class="kpi">
 
-    <div class="stat-card">
+        <div class="kpi-top">
 
-        <div class="stat-label">
-            Total Target
+            <div class="kpi-label">
+                Total Target
+            </div>
+
+            <div class="kpi-icon">
+                RM
+            </div>
+
         </div>
 
+
         <div
-            class="stat-value"
+            class="kpi-value"
             id="totalTarget"
         >
             RM 0.00
         </div>
 
-        <div class="stat-sub">
-            Total target
+
+        <div class="kpi-sub">
+            Combined sales target
         </div>
 
     </div>
 
 
+    <div class="kpi">
 
-    <div class="stat-card">
+        <div class="kpi-top">
 
-        <div class="stat-label">
-            Total Sold
+            <div class="kpi-label">
+                Total Sold
+            </div>
+
+            <div class="kpi-icon">
+                ↑
+            </div>
+
         </div>
 
+
         <div
-            class="stat-value"
+            class="kpi-value"
             id="totalSold"
         >
             RM 0.00
         </div>
 
-        <div class="stat-sub">
-            Total sales
+
+        <div class="kpi-sub">
+            Current sales achieved
         </div>
 
     </div>
 
 
+    <div class="kpi">
 
-    <div class="stat-card">
+        <div class="kpi-top">
 
-        <div class="stat-label">
-            Overall Progress
+            <div class="kpi-label">
+                Overall Progress
+            </div>
+
+            <div class="kpi-icon">
+                %
+            </div>
+
         </div>
 
+
         <div
-            class="stat-value"
+            class="kpi-value"
             id="overallProgress"
         >
             0.00%
         </div>
 
-        <div class="stat-sub">
-            Total performance
+
+        <div class="kpi-sub">
+            Overall target achievement
         </div>
 
     </div>
 
-
 </section>
 
 
-
-<!-- =================================================
-     SEARCH
-================================================= -->
+<!-- =====================================================
+     TOOLBAR
+===================================================== -->
 
 <div class="toolbar">
+
+    <div class="toolbar-left">
+
+        <div class="section-label">
+            Product Ranking
+        </div>
+
+        <div
+            class="product-count"
+            id="productCount"
+        >
+            10 PRODUCTS
+        </div>
+
+    </div>
+
 
     <div class="search">
 
@@ -1424,7 +2904,7 @@ body{
         <input
             type="text"
             id="searchInput"
-            placeholder="Search product..."
+            placeholder="Search product or product code..."
             oninput="renderProducts()"
         >
 
@@ -1433,23 +2913,195 @@ body{
 </div>
 
 
-
-<!-- =================================================
+<!-- =====================================================
      PRODUCT GRID
-================================================= -->
+===================================================== -->
 
 <section
     class="product-grid"
     id="productList"
-></section>
+>
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div>
+        PQM PRODUCT PERFORMANCE
+    </div>
+
+    <div>
+        RM • SALES TARGET • ACHIEVEMENT • RANKING
+    </div>
+
+</footer>
 
 
 </main>
 
+
+<!-- =====================================================
+     PRODUCT DETAIL MODAL
+===================================================== -->
+
+<div
+    class="modal-overlay"
+    id="productModal"
+    onclick="closeModal(event)"
+>
+
+    <div class="modal">
+
+        <button
+            class="modal-close"
+            onclick="closeProductModal()"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-top">
+
+            <div class="modal-image-area">
+
+                <img
+                    id="modalImage"
+                    class="modal-image"
+                    src=""
+                    alt=""
+                >
+
+            </div>
+
+
+            <div class="modal-info">
+
+                <div class="modal-eyebrow">
+                    Product Performance
+                </div>
+
+
+                <div
+                    class="modal-title"
+                    id="modalTitle"
+                >
+                </div>
+
+
+                <div
+                    class="modal-code"
+                    id="modalCode"
+                >
+                </div>
+
+
+                <div class="modal-achievement">
+
+                    <div
+                        class="achievement-ring"
+                        id="achievementRing"
+                    >
+
+                        <span
+                            id="modalPercent"
+                        >
+                            0.00%
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="achievement-label">
+                            Achievement
+                        </div>
+
+                        <div
+                            class="achievement-status"
+                            id="modalStatus"
+                        >
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-metrics">
+
+
+            <div class="modal-metric">
+
+                <div class="modal-metric-label">
+                    Target
+                </div>
+
+                <div
+                    class="modal-metric-value"
+                    id="modalTarget"
+                >
+                </div>
+
+            </div>
+
+
+            <div class="modal-metric">
+
+                <div class="modal-metric-label">
+                    Sold
+                </div>
+
+                <div
+                    class="modal-metric-value"
+                    id="modalSold"
+                >
+                </div>
+
+            </div>
+
+
+            <div class="modal-metric">
+
+                <div class="modal-metric-label">
+                    Remaining
+                </div>
+
+                <div
+                    class="modal-metric-value"
+                    id="modalRemaining"
+                >
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            PQM PRODUCT PERFORMANCE • REAL-TIME SALES TRACKING
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
+
 /* =====================================================
-   FIXED TOP 10 PRODUCTS
+   PRODUCT DATA
 ===================================================== */
 
 const products = [
@@ -1463,7 +3115,6 @@ const products = [
         image:"image/eysmy_955616010728_300x300.jpg"
     },
 
-
     {
         id:2,
         name:"Active Liva",
@@ -1472,7 +3123,6 @@ const products = [
         sold:2117.00,
         image:"image/eysmy_955616010829_300x300.jpg"
     },
-
 
     {
         id:3,
@@ -1483,7 +3133,6 @@ const products = [
         image:"image/eysmy_955616010810_300x300.jpg"
     },
 
-
     {
         id:4,
         name:"Essence of American Ginseng",
@@ -1492,7 +3141,6 @@ const products = [
         sold:511.00,
         image:"image/eysmy_955616010848_1000x1000.jpg"
     },
-
 
     {
         id:5,
@@ -1503,7 +3151,6 @@ const products = [
         image:"image/eysmy_955616040039-1_1000x1000.jpg"
     },
 
-
     {
         id:6,
         name:"Cordyceps Sinensis Mycelia",
@@ -1512,7 +3159,6 @@ const products = [
         sold:2079.00,
         image:"image/eysmy_955616030009_Capsules-of-Cordyceps-Sinensis-Mycelia_300x300.jpg"
     },
-
 
     {
         id:7,
@@ -1523,7 +3169,6 @@ const products = [
         image:"image/eysmy_955616040023_300x300.jpg"
     },
 
-
     {
         id:8,
         name:"Lingzhi Cracked Spores Plus Capsules",
@@ -1533,7 +3178,6 @@ const products = [
         image:"image/eysmy_955764734526_ling-zhi-cracked-spores-capsules-plus_300x300.jpg"
     },
 
-
     {
         id:9,
         name:"Men Vitality Capsule",
@@ -1542,7 +3186,6 @@ const products = [
         sold:1281.00,
         image:"image/eysmy_955764734540_300x300.jpg"
     },
-
 
     {
         id:10,
@@ -1556,15 +3199,28 @@ const products = [
 ];
 
 
+/* =====================================================
+   FORMAT RM
+===================================================== */
+
+function formatRM(value){
+
+    return Number(value).toLocaleString(
+        "en-MY",
+        {
+            minimumFractionDigits:2,
+            maximumFractionDigits:2
+        }
+    );
+
+}
+
 
 /* =====================================================
    PERCENTAGE
 ===================================================== */
 
-function getPercentage(
-    sold,
-    target
-){
+function getPercentage(sold,target){
 
     if(
         !target ||
@@ -1575,78 +3231,53 @@ function getPercentage(
 
     }
 
-
     return (
-        sold / target
+        Number(sold) /
+        Number(target)
     ) * 100;
 
 }
-
 
 
 /* =====================================================
    STATUS
 ===================================================== */
 
-function getStatus(
-    percent
-){
+function getStatus(percent){
 
-    if(
-        percent >= 100
-    ){
+    if(percent >= 100){
 
         return {
-
             class:"over",
-
             text:"Target Reached"
-
         };
 
     }
 
-
-    if(
-        percent >= 70
-    ){
+    if(percent >= 70){
 
         return {
-
             class:"good",
-
             text:"On Track"
-
         };
 
     }
 
-
-    if(
-        percent >= 40
-    ){
+    if(percent >= 40){
 
         return {
-
             class:"warning",
-
             text:"Needs Push"
-
         };
 
     }
-
 
     return {
-
         class:"bad",
-
         text:"Behind"
-
     };
 
 }
-
 
 
 /* =====================================================
@@ -1655,11 +3286,8 @@ function getStatus(
 
 function getSortedProducts(){
 
-    return [
+    return [...products].sort(
 
-        ...products
-
-    ].sort(
         (a,b) => {
 
             return (
@@ -1679,10 +3307,10 @@ function getSortedProducts(){
             );
 
         }
+
     );
 
 }
-
 
 
 /* =====================================================
@@ -1699,41 +3327,40 @@ function renderProducts(){
 
     const keyword =
         document
-        .getElementById(
-            "searchInput"
-        )
-        .value
-        .toLowerCase()
-        .trim();
+            .getElementById(
+                "searchInput"
+            )
+            .value
+            .toLowerCase()
+            .trim();
 
 
     let filtered =
         products.filter(
+
             product => {
 
                 return (
 
                     product.name
-                    .toLowerCase()
-                    .includes(keyword)
+                        .toLowerCase()
+                        .includes(keyword)
 
                     ||
 
                     product.code
-                    .toLowerCase()
-                    .includes(keyword)
+                        .toLowerCase()
+                        .includes(keyword)
 
                 );
 
             }
+
         );
 
 
-    /*
-        排名根据销售完成率
-    */
-
     filtered.sort(
+
         (a,b) => {
 
             return (
@@ -1753,12 +3380,19 @@ function renderProducts(){
             );
 
         }
+
     );
 
 
-    if(
-        filtered.length === 0
-    ){
+    document
+        .getElementById(
+            "productCount"
+        )
+        .textContent =
+        `${filtered.length} PRODUCTS`;
+
+
+    if(filtered.length === 0){
 
         list.innerHTML = `
 
@@ -1781,8 +3415,8 @@ function renderProducts(){
 
         filtered
         .map(
-            (product,index) => {
 
+            (product,index) => {
 
                 const percent =
                     getPercentage(
@@ -1792,95 +3426,67 @@ function renderProducts(){
 
 
                 const status =
-                    getStatus(
-                        percent
+                    getStatus(percent);
+
+
+                const remaining =
+                    Math.max(
+                        Number(product.target)
+                        -
+                        Number(product.sold),
+                        0
                     );
 
 
                 let rankClass = "";
 
 
-                if(
-                    index === 0
-                ){
+                if(index === 0){
 
-                    rankClass =
-                        "top1";
+                    rankClass = "top1";
+
+                }
+
+                else if(index === 1){
+
+                    rankClass = "top2";
+
+                }
+
+                else if(index === 2){
+
+                    rankClass = "top3";
 
                 }
 
 
-                if(
-                    index === 1
-                ){
-
-                    rankClass =
-                        "top2";
-
-                }
-
-
-                if(
-                    index === 2
-                ){
-
-                    rankClass =
-                        "top3";
-
-                }
-
-
-                let rankDisplay;
-
-
-                if(
-                    index === 0
-                ){
-
-                    rankDisplay = "🥇";
-
-                }
-                else if(
-                    index === 1
-                ){
-
-                    rankDisplay = "🥈";
-
-                }
-                else if(
-                    index === 2
-                ){
-
-                    rankDisplay = "🥉";
-
-                }
-                else{
-
-                    rankDisplay =
-                        "#" +
-                        (index + 1);
-
-                }
+                const rankNumber =
+                    String(index + 1)
+                    .padStart(2,"0");
 
 
                 return `
 
                     <article
                         class="product-card"
+                        style="animation-delay:${index * 0.05}s"
+                        onclick="openProductModal(${product.id})"
                     >
 
 
                         <div
-                            class="card-top"
+                            class="card-header"
                         >
 
                             <div
                                 class="
-                                    rank
+                                    rank-box
                                     ${rankClass}
                                 "
                             >
-                                ${rankDisplay}
+
+                                ${rankNumber}
+
                             </div>
 
 
@@ -1902,41 +3508,44 @@ function renderProducts(){
                         </div>
 
 
-
                         <div
-                            class="image-area"
+                            class="product-image-area"
                         >
 
                             <img
                                 class="product-image"
                                 src="${product.image}"
                                 alt="${product.name}"
-                                onerror="this.style.opacity='0.3'"
+                                onclick="event.stopPropagation()"
+                                onerror="
+                                    this.style.opacity='0.25';
+                                "
                             >
 
                         </div>
 
 
-
                         <div
-                            class="product-info"
+                            class="product-content"
                         >
-
 
                             <div
                                 class="product-name"
                                 title="${product.name}"
                             >
+
                                 ${product.name}
+
                             </div>
 
 
                             <div
                                 class="product-code"
                             >
-                                ${product.code}
-                            </div>
 
+                                ${product.code}
+
+                            </div>
 
 
                             <div
@@ -1959,19 +3568,24 @@ function renderProducts(){
                                         class="metric-value"
                                     >
 
-                                        RM
-                                        ${Number(
+                                        <span
+                                            class="currency"
+                                        >
+                                            RM
+                                        </span>
+
+                                        ${formatRM(
                                             product.target
-                                        ).toFixed(2)}
+                                        )}
 
                                     </div>
 
                                 </div>
 
 
-
                                 <div
                                     class="metric"
+                                    onclick="event.stopPropagation()"
                                 >
 
                                     <div
@@ -1984,6 +3598,13 @@ function renderProducts(){
                                     <div
                                         class="metric-value"
                                     >
+
+                                        <span
+                                            class="currency"
+                                        >
+                                            RM
+                                        </span>
+
 
                                         <input
                                             class="sales-input"
@@ -2001,39 +3622,49 @@ function renderProducts(){
                                             "
                                         >
 
-                                        <span>
-                                            RM
-                                        </span>
-
                                     </div>
 
                                 </div>
 
-
                             </div>
 
+
+                            <div
+                                class="remaining"
+                            >
+
+                                <span>
+                                    Remaining
+                                </span>
+
+                                <strong>
+                                    RM ${formatRM(remaining)}
+                                </strong>
+
+                            </div>
 
 
                             <div
                                 class="progress-section"
                             >
 
-
                                 <div
                                     class="progress-header"
                                 >
 
                                     <span
-                                        class="progress-label"
+                                        class="progress-title"
                                     >
-                                        Performance
+                                        Achievement
                                     </span>
 
 
                                     <span
                                         class="progress-percent"
                                     >
+
                                         ${percent.toFixed(2)}%
+
                                     </span>
 
                                 </div>
@@ -2049,41 +3680,49 @@ function renderProducts(){
                                             width:${Math.min(
                                                 percent,
                                                 100
-                                            )}%
+                                            )}%;
                                         "
                                     ></div>
 
                                 </div>
 
-
                             </div>
 
 
-
                             <div
-                                class="card-bottom"
+                                class="card-footer"
                             >
 
                                 <div
                                     class="card-number"
                                 >
+
                                     PRODUCT
                                     ${String(
                                         product.id
                                     ).padStart(2,"0")}
+
+                                </div>
+
+
+                                <div
+                                    class="performance-mini"
+                                >
+
+                                    ${percent.toFixed(2)}%
+
                                 </div>
 
                             </div>
 
-
                         </div>
-
 
                     </article>
 
                 `;
 
             }
+
         )
         .join("");
 
@@ -2093,26 +3732,19 @@ function renderProducts(){
 }
 
 
-
 /* =====================================================
    UPDATE SOLD
 ===================================================== */
 
-function updateSold(
-    id,
-    value
-){
+function updateSold(id,value){
 
     const product =
         products.find(
-            p =>
-                p.id === id
+            p => p.id === id
         );
 
 
-    if(
-        !product
-    ){
+    if(!product){
 
         return;
 
@@ -2124,9 +3756,7 @@ function updateSold(
 
 
     if(
-        Number.isNaN(
-            newValue
-        )
+        Number.isNaN(newValue)
         ||
         newValue < 0
     ){
@@ -2147,6 +3777,63 @@ function updateSold(
 }
 
 
+/* =====================================================
+   COUNT UP
+===================================================== */
+
+function animateValue(
+    element,
+    start,
+    end,
+    duration,
+    formatter
+){
+
+    const startTime =
+        performance.now();
+
+
+    function update(currentTime){
+
+        const progress =
+            Math.min(
+                (currentTime - startTime)
+                / duration,
+                1
+            );
+
+
+        const eased =
+            1 -
+            Math.pow(
+                1 - progress,
+                3
+            );
+
+
+        const value =
+            start +
+            (end - start) *
+            eased;
+
+
+        element.textContent =
+            formatter(value);
+
+
+        if(progress < 1){
+
+            requestAnimationFrame(update);
+
+        }
+
+    }
+
+
+    requestAnimationFrame(update);
+
+}
+
 
 /* =====================================================
    UPDATE STATS
@@ -2160,32 +3847,16 @@ function updateStats(){
 
     const totalTarget =
         products.reduce(
-            (
-                sum,
-                product
-            ) =>
-
-                sum +
-                Number(
-                    product.target
-                ),
-
+            (sum,product) =>
+                sum + Number(product.target),
             0
         );
 
 
     const totalSold =
         products.reduce(
-            (
-                sum,
-                product
-            ) =>
-
-                sum +
-                Number(
-                    product.sold
-                ),
-
+            (sum,product) =>
+                sum + Number(product.sold),
             0
         );
 
@@ -2205,90 +3876,328 @@ function updateStats(){
         0;
 
 
-    document
-        .getElementById(
+    animateValue(
+
+        document.getElementById(
             "totalProducts"
-        )
-        .textContent =
-        totalProducts;
+        ),
+
+        0,
+
+        totalProducts,
+
+        700,
+
+        value =>
+            Math.round(value)
+
+    );
 
 
-    document
-        .getElementById(
+    animateValue(
+
+        document.getElementById(
             "totalTarget"
-        )
-        .textContent =
-        "RM " +
-        totalTarget.toFixed(2);
+        ),
+
+        0,
+
+        totalTarget,
+
+        900,
+
+        value =>
+            "RM " +
+            formatRM(value)
+
+    );
 
 
-    document
-        .getElementById(
+    animateValue(
+
+        document.getElementById(
             "totalSold"
-        )
-        .textContent =
-        "RM " +
-        totalSold.toFixed(2);
+        ),
+
+        0,
+
+        totalSold,
+
+        900,
+
+        value =>
+            "RM " +
+            formatRM(value)
+
+    );
 
 
-    document
-        .getElementById(
+    animateValue(
+
+        document.getElementById(
             "overallProgress"
-        )
-        .textContent =
-        overall.toFixed(2) +
-        "%";
+        ),
+
+        0,
+
+        overall,
+
+        900,
+
+        value =>
+            value.toFixed(2) + "%"
+
+    );
 
 }
-
-
-
-/* =====================================================
-   RESET
-===================================================== */
-
-function resetData(){
-
-    renderProducts();
-
-}
-
 
 
 /* =====================================================
    DATE
 ===================================================== */
 
+function getToday(){
+
+    return new Date()
+        .toLocaleDateString(
+            "en-MY",
+            {
+                year:"numeric",
+                month:"long",
+                day:"numeric"
+            }
+        );
+
+}
+
+
 function showDate(){
 
     const date =
-        new Date();
+        getToday();
 
 
-    const formatted =
-        date.toLocaleDateString(
-            "en-MY",
-            {
+    document
+        .getElementById(
+            "headerDate"
+        )
+        .textContent =
+        date;
 
-                year:"numeric",
 
-                month:"long",
+    document
+        .getElementById(
+            "heroDate"
+        )
+        .textContent =
+        date;
 
-                day:"numeric"
+}
 
-            }
+
+/* =====================================================
+   OPEN PRODUCT MODAL
+===================================================== */
+
+function openProductModal(id){
+
+    const product =
+        products.find(
+            p => p.id === id
+        );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    const percent =
+        getPercentage(
+            product.sold,
+            product.target
+        );
+
+
+    const status =
+        getStatus(percent);
+
+
+    const remaining =
+        Math.max(
+            Number(product.target)
+            -
+            Number(product.sold),
+            0
         );
 
 
     document
         .getElementById(
-            "currentDate"
+            "modalImage"
+        )
+        .src =
+        product.image;
+
+
+    document
+        .getElementById(
+            "modalImage"
+        )
+        .alt =
+        product.name;
+
+
+    document
+        .getElementById(
+            "modalTitle"
         )
         .textContent =
-        formatted;
+        product.name;
+
+
+    document
+        .getElementById(
+            "modalCode"
+        )
+        .textContent =
+        product.code;
+
+
+    document
+        .getElementById(
+            "modalPercent"
+        )
+        .textContent =
+        percent.toFixed(2) + "%";
+
+
+    document
+        .getElementById(
+            "modalStatus"
+        )
+        .textContent =
+        status.text;
+
+
+    document
+        .getElementById(
+            "modalTarget"
+        )
+        .textContent =
+        "RM " +
+        formatRM(
+            product.target
+        );
+
+
+    document
+        .getElementById(
+            "modalSold"
+        )
+        .textContent =
+        "RM " +
+        formatRM(
+            product.sold
+        );
+
+
+    document
+        .getElementById(
+            "modalRemaining"
+        )
+        .textContent =
+        "RM " +
+        formatRM(
+            remaining
+        );
+
+
+    const ring =
+        document.getElementById(
+            "achievementRing"
+        );
+
+
+    ring.style
+        .setProperty(
+            "--ring-progress",
+            `${Math.min(
+                percent,
+                100
+            )}%`
+        );
+
+
+    document
+        .getElementById(
+            "productModal"
+        )
+        .classList
+        .add("active");
+
+
+    document.body.style.overflow =
+        "hidden";
 
 }
 
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeProductModal(){
+
+    document
+        .getElementById(
+            "productModal"
+        )
+        .classList
+        .remove("active");
+
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+function closeModal(event){
+
+    if(
+        event.target.id ===
+        "productModal"
+    ){
+
+        closeProductModal();
+
+    }
+
+}
+
+
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key ===
+            "Escape"
+        ){
+
+            closeProductModal();
+
+        }
+
+    }
+);
 
 
 /* =====================================================
@@ -2311,25 +4220,14 @@ function exportExcel(){
     }
 
 
-    /*
-        Sort by performance
-    */
-
     const sortedProducts =
         getSortedProducts();
 
 
-    /*
-        Excel data
-    */
-
     const excelData =
         sortedProducts.map(
-            (
-                product,
-                index
-            ) => {
 
+            (product,index) => {
 
                 const percent =
                     getPercentage(
@@ -2339,8 +4237,15 @@ function exportExcel(){
 
 
                 const status =
-                    getStatus(
-                        percent
+                    getStatus(percent);
+
+
+                const remaining =
+                    Math.max(
+                        product.target
+                        -
+                        product.sold,
+                        0
                     );
 
 
@@ -2365,6 +4270,11 @@ function exportExcel(){
                             product.sold
                         ),
 
+                    "Remaining (RM)":
+                        Number(
+                            remaining
+                        ),
+
                     "Performance (%)":
                         Number(
                             percent.toFixed(2)
@@ -2376,12 +4286,9 @@ function exportExcel(){
                 };
 
             }
+
         );
 
-
-    /*
-        Create worksheet
-    */
 
     const worksheet =
         XLSX.utils.json_to_sheet(
@@ -2389,93 +4296,73 @@ function exportExcel(){
         );
 
 
-    /*
-        Column widths
-    */
-
     worksheet["!cols"] = [
 
-        {
-            wch:8
-        },
+        {wch:8},
 
-        {
-            wch:35
-        },
+        {wch:38},
 
-        {
-            wch:18
-        },
+        {wch:18},
 
-        {
-            wch:16
-        },
+        {wch:16},
 
-        {
-            wch:16
-        },
+        {wch:16},
 
-        {
-            wch:20
-        },
+        {wch:18},
 
-        {
-            wch:20
-        }
+        {wch:20},
+
+        {wch:20}
 
     ];
 
 
-    /*
-        Format Excel cells
-    */
-
     for(
+
         let row = 2;
 
         row <=
         excelData.length + 1;
 
         row++
+
     ){
 
         if(
-            worksheet[
-                `D${row}`
-            ]
+            worksheet[`D${row}`]
         ){
 
-            worksheet[
-                `D${row}`
-            ].z =
+            worksheet[`D${row}`].z =
                 'RM #,##0.00';
 
         }
 
 
         if(
-            worksheet[
-                `E${row}`
-            ]
+            worksheet[`E${row}`]
         ){
 
-            worksheet[
-                `E${row}`
-            ].z =
+            worksheet[`E${row}`].z =
                 'RM #,##0.00';
 
         }
 
 
         if(
-            worksheet[
-                `F${row}`
-            ]
+            worksheet[`F${row}`]
         ){
 
-            worksheet[
-                `F${row}`
-            ].z =
+            worksheet[`F${row}`].z =
+                'RM #,##0.00';
+
+        }
+
+
+        if(
+            worksheet[`G${row}`]
+        ){
+
+            worksheet[`G${row}`].z =
                 '0.00';
 
         }
@@ -2483,41 +4370,22 @@ function exportExcel(){
     }
 
 
-    /*
-        Create workbook
-    */
-
     const workbook =
         XLSX.utils.book_new();
 
 
     XLSX.utils.book_append_sheet(
-
         workbook,
-
         worksheet,
-
         "Top 10 Products"
-
     );
 
 
-    /*
-        Date
-    */
-
     const date =
         new Date()
-        .toISOString()
-        .slice(
-            0,
-            10
-        );
+            .toISOString()
+            .slice(0,10);
 
-
-    /*
-        Download
-    */
 
     XLSX.writeFile(
 
@@ -2528,7 +4396,6 @@ function exportExcel(){
     );
 
 }
-
 
 
 /* =====================================================
@@ -2557,88 +4424,38 @@ function exportPDF(){
         window.jspdf;
 
 
-    /*
-        Create A4 Landscape
-    */
-
     const doc =
         new jsPDF({
 
-            orientation:
-                "landscape",
+            orientation:"landscape",
 
-            unit:
-                "mm",
+            unit:"mm",
 
-            format:
-                "a4"
+            format:"a4"
 
         });
 
-
-    /*
-        Products
-    */
 
     const sortedProducts =
         getSortedProducts();
 
 
-    /*
-        Date
-    */
-
-    const today =
-        new Date();
-
-
     const date =
-        today.toLocaleDateString(
-            "en-MY",
-            {
+        getToday();
 
-                year:"numeric",
-
-                month:"long",
-
-                day:"numeric"
-
-            }
-        );
-
-
-    /*
-        Total
-    */
 
     const totalTarget =
         products.reduce(
-            (
-                sum,
-                product
-            ) =>
-
-                sum +
-                Number(
-                    product.target
-                ),
-
+            (sum,product) =>
+                sum + Number(product.target),
             0
         );
 
 
     const totalSold =
         products.reduce(
-            (
-                sum,
-                product
-            ) =>
-
-                sum +
-                Number(
-                    product.sold
-                ),
-
+            (sum,product) =>
+                sum + Number(product.sold),
             0
         );
 
@@ -2658,14 +4475,14 @@ function exportPDF(){
         0;
 
 
-    /*
-        Title
-    */
-
-    doc.setFontSize(
-        20
+    doc.setTextColor(
+        45,
+        43,
+        39
     );
 
+
+    doc.setFontSize(21);
 
     doc.setFont(
         "helvetica",
@@ -2676,18 +4493,11 @@ function exportPDF(){
     doc.text(
         "PQM Top 10 Products",
         14,
-        15
+        16
     );
 
 
-    /*
-        Subtitle
-    */
-
-    doc.setFontSize(
-        10
-    );
-
+    doc.setFontSize(9);
 
     doc.setFont(
         "helvetica",
@@ -2696,7 +4506,7 @@ function exportPDF(){
 
 
     doc.text(
-        "Product Sales Performance Report",
+        "PRODUCT SALES PERFORMANCE REPORT",
         14,
         22
     );
@@ -2709,42 +4519,34 @@ function exportPDF(){
     );
 
 
-    /*
-        Summary
-    */
+    doc.setFontSize(9);
+
 
     doc.text(
-        `Total Target: RM ${totalTarget.toFixed(2)}`,
-        180,
-        20
+        `Total Target: RM ${formatRM(totalTarget)}`,
+        190,
+        18
     );
 
 
     doc.text(
-        `Total Sold: RM ${totalSold.toFixed(2)}`,
-        180,
-        25
+        `Total Sold: RM ${formatRM(totalSold)}`,
+        190,
+        24
     );
 
 
     doc.text(
         `Overall Progress: ${overall.toFixed(2)}%`,
-        180,
+        190,
         30
     );
 
 
-    /*
-        Table
-    */
-
     const tableData =
         sortedProducts.map(
-            (
-                product,
-                index
-            ) => {
 
+            (product,index) => {
 
                 const percent =
                     getPercentage(
@@ -2754,8 +4556,15 @@ function exportPDF(){
 
 
                 const status =
-                    getStatus(
-                        percent
+                    getStatus(percent);
+
+
+                const remaining =
+                    Math.max(
+                        product.target
+                        -
+                        product.sold,
+                        0
                     );
 
 
@@ -2767,13 +4576,17 @@ function exportPDF(){
 
                     product.code,
 
-                    `RM ${Number(
+                    `RM ${formatRM(
                         product.target
-                    ).toFixed(2)}`,
+                    )}`,
 
-                    `RM ${Number(
+                    `RM ${formatRM(
                         product.sold
-                    ).toFixed(2)}`,
+                    )}`,
+
+                    `RM ${formatRM(
+                        remaining
+                    )}`,
 
                     `${percent.toFixed(2)}%`,
 
@@ -2782,12 +4595,9 @@ function exportPDF(){
                 ];
 
             }
+
         );
 
-
-    /*
-        Auto Table
-    */
 
     doc.autoTable({
 
@@ -2807,6 +4617,8 @@ function exportPDF(){
 
                 "Sold (RM)",
 
+                "Remaining (RM)",
+
                 "Performance",
 
                 "Status"
@@ -2818,99 +4630,102 @@ function exportPDF(){
         body:
             tableData,
 
-        theme:
-            "grid",
+        theme:"grid",
 
         styles:{
 
-            font:
-                "helvetica",
+            font:"helvetica",
 
-            fontSize:
-                8,
+            fontSize:7.5,
 
-            cellPadding:
-                3,
+            cellPadding:3,
 
-            valign:
-                "middle"
+            valign:"middle",
+
+            textColor:[
+                50,
+                48,
+                44
+            ],
+
+            lineColor:[
+                220,
+                215,
+                205
+            ],
+
+            lineWidth:.2
 
         },
 
         headStyles:{
 
-            fontStyle:
-                "bold",
+            fontStyle:"bold",
 
-            halign:
-                "center"
+            textColor:[
+                255,
+                255,
+                255
+            ],
+
+            fillColor:[
+                145,
+                112,
+                61
+            ],
+
+            halign:"center"
+
+        },
+
+        alternateRowStyles:{
+
+            fillColor:[
+                248,
+                246,
+                241
+            ]
 
         },
 
         columnStyles:{
 
             0:{
-
-                halign:
-                    "center",
-
-                cellWidth:
-                    15
-
+                halign:"center",
+                cellWidth:13
             },
 
             1:{
-
-                cellWidth:
-                    65
-
+                cellWidth:52
             },
 
             2:{
-
-                cellWidth:
-                    35
-
+                cellWidth:31
             },
 
             3:{
-
-                halign:
-                    "right",
-
-                cellWidth:
-                    32
-
+                halign:"right",
+                cellWidth:30
             },
 
             4:{
-
-                halign:
-                    "right",
-
-                cellWidth:
-                    32
-
+                halign:"right",
+                cellWidth:30
             },
 
             5:{
-
-                halign:
-                    "center",
-
-                cellWidth:
-                    28
-
+                halign:"right",
+                cellWidth:30
             },
 
             6:{
+                halign:"center",
+                cellWidth:27
+            },
 
-                halign:
-                    "center",
-
-                cellWidth:
-                    35
-
+            7:{
+                halign:"center",
+                cellWidth:31
             }
 
         }
@@ -2918,32 +4733,24 @@ function exportPDF(){
     });
 
 
-    /*
-        Footer
-    */
-
     const pageCount =
-        doc.internal
-            .getNumberOfPages();
+        doc.internal.getNumberOfPages();
 
 
     for(
+
         let i = 1;
 
         i <= pageCount;
 
         i++
+
     ){
 
-        doc.setPage(
-            i
-        );
+        doc.setPage(i);
 
 
-        doc.setFontSize(
-            8
-        );
-
+        doc.setFontSize(8);
 
         doc.setFont(
             "helvetica",
@@ -2951,30 +4758,26 @@ function exportPDF(){
         );
 
 
+        doc.setTextColor(
+            130,
+            125,
+            118
+        );
+
+
         doc.text(
-
-            `PQM Top 10 Products | Page ${i} of ${pageCount}`,
-
+            `PQM PRODUCT PERFORMANCE | Page ${i} of ${pageCount}`,
             14,
-
             200
-
         );
 
     }
 
 
-    /*
-        Download
-    */
-
     const fileDate =
         new Date()
-        .toISOString()
-        .slice(
-            0,
-            10
-        );
+            .toISOString()
+            .slice(0,10);
 
 
     doc.save(
@@ -2986,16 +4789,17 @@ function exportPDF(){
 }
 
 
-
 /* =====================================================
-   INIT
+   INITIALIZE
 ===================================================== */
 
 showDate();
 
 renderProducts();
 
+
 </script>
+
 
 </body>
 
