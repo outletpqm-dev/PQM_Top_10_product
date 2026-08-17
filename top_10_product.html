@@ -9,14 +9,18 @@
 
 <title>PQM | Premium Top 10 Product Performance</title>
 
+
 <!-- =====================================================
      EXPORT LIBRARIES
 ===================================================== -->
 
-<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<!-- Excel Library - Fixed Version for Better Compatibility -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
+<!-- PDF Library -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+<!-- PDF AutoTable -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 
 
@@ -2301,6 +2305,67 @@ body{
 
 
 /* =====================================================
+   EXPORT MESSAGE
+===================================================== */
+
+.export-message{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:25px;
+
+    z-index:9999;
+
+    transform:
+        translate(-50%,20px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    padding:
+        12px 20px;
+
+    border:
+        1px solid rgba(184,149,90,.30);
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.95);
+
+    box-shadow:
+        0 15px 40px rgba(70,60,45,.18);
+
+    color:#514e48;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+
+    backdrop-filter:
+        blur(15px);
+
+}
+
+
+.export-message.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+
+}
+
+
+/* =====================================================
    RESPONSIVE
 ===================================================== */
 
@@ -3067,6 +3132,18 @@ body{
 </div>
 
 
+<!-- =====================================================
+     EXPORT MESSAGE
+===================================================== -->
+
+<div
+    class="export-message"
+    id="exportMessage"
+>
+    Excel file is being prepared...
+</div>
+
+
 <script>
 
 /* =====================================================
@@ -3251,7 +3328,7 @@ function getStatus(percent){
 
 /* =====================================================
    SORT PRODUCTS
-   Ranking is based on Achievement %
+   Ranking based on Achievement %
 ===================================================== */
 
 function getSortedProducts(){
@@ -3445,7 +3522,6 @@ function renderProducts(){
                         onclick="openProductModal(${product.id})"
                     >
 
-
                         <div
                             class="card-header"
                         >
@@ -3521,7 +3597,6 @@ function renderProducts(){
                             <div
                                 class="metrics"
                             >
-
 
                                 <div
                                     class="metric"
@@ -4108,200 +4183,350 @@ document.addEventListener(
 
 
 /* =====================================================
-   EXPORT EXCEL
+   EXPORT MESSAGE
 ===================================================== */
 
-function exportExcel(){
+function showExportMessage(message){
 
-    if(
-        typeof XLSX ===
-        "undefined"
-    ){
-
-        alert(
-            "Excel library failed to load. Please check your internet connection."
+    const element =
+        document.getElementById(
+            "exportMessage"
         );
 
-        return;
 
+    element.textContent =
+        message;
+
+
+    element.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            element.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+/* =====================================================
+   MOBILE DETECTION
+===================================================== */
+
+function isMobileDevice(){
+
+    return /Android|iPhone|iPad|iPod/i.test(
+        navigator.userAgent
+    );
+
+}
+
+
+/* =====================================================
+   EXPORT EXCEL
+   MOBILE SAFE VERSION
+===================================================== */
+
+async function exportExcel(){
+
+    /* =====================================================
+       MOBILE-SAFE EXCEL EXPORT
+
+       IMPORTANT FIXES:
+       1. Uses a fixed Array-of-Arrays worksheet instead of
+          json_to_sheet() for better mobile Excel compatibility.
+       2. Exports values as display strings so mobile Excel,
+          iOS Preview and Android viewers cannot hide/lose
+          custom-formatted numeric cells.
+       3. Explicitly sets the worksheet range.
+       4. Generates the XLSX as an ArrayBuffer/Blob first.
+       5. Uses Web Share only when the browser confirms that
+          the complete file can be shared.
+    ===================================================== */
+
+    if(typeof XLSX === "undefined"){
+        alert(
+            "Excel library failed to load.\n\nPlease check your internet connection and try again."
+        );
+        return;
     }
 
+    showExportMessage("Preparing complete Excel file...");
 
-    const sortedProducts =
-        getSortedProducts();
+    try{
 
+        /* -------------------------------------------------
+           ALWAYS EXPORT ALL 10 PRODUCTS
+        ------------------------------------------------- */
+        const sortedProducts = getSortedProducts();
 
-    const excelData =
-        sortedProducts.map(
+        /* -------------------------------------------------
+           MAIN SHEET - ARRAY OF ARRAYS
+           No JSON conversion and no custom number formats.
+           This is much more reliable on mobile viewers.
+        ------------------------------------------------- */
+        const rows = [
+            [
+                "Rank",
+                "Product Name",
+                "Product Code",
+                "Target (RM)",
+                "Sold (RM)",
+                "Remaining (RM)",
+                "Performance (%)",
+                "Status"
+            ]
+        ];
 
-            (product,index) => {
+        sortedProducts.forEach((product,index) => {
 
-                const percent =
-                    getPercentage(
-                        product.sold,
-                        product.target
+            const target = Number(product.target) || 0;
+            const sold = Number(product.sold) || 0;
+            const percent = getPercentage(sold,target);
+            const remaining = Math.max(target - sold,0);
+            const status = getStatus(percent);
+
+            rows.push([
+                index + 1,
+                String(product.name || ""),
+                String(product.code || ""),
+                "RM " + formatRM(target),
+                "RM " + formatRM(sold),
+                "RM " + formatRM(remaining),
+                percent.toFixed(2) + "%",
+                String(status.text || "")
+            ]);
+        });
+
+        const worksheet = XLSX.utils.aoa_to_sheet(rows);
+
+        /* Explicit worksheet range - guarantees all rows/columns. */
+        worksheet["!ref"] = "A1:H" + rows.length;
+
+        worksheet["!cols"] = [
+            {wch:8},
+            {wch:38},
+            {wch:20},
+            {wch:18},
+            {wch:18},
+            {wch:20},
+            {wch:20},
+            {wch:20}
+        ];
+
+        /* -------------------------------------------------
+           SUMMARY SHEET
+        ------------------------------------------------- */
+        const totalTarget = products.reduce(
+            (sum,product) => sum + (Number(product.target) || 0),
+            0
+        );
+
+        const totalSold = products.reduce(
+            (sum,product) => sum + (Number(product.sold) || 0),
+            0
+        );
+
+        const overallProgress = totalTarget > 0
+            ? (totalSold / totalTarget) * 100
+            : 0;
+
+        const summaryRows = [
+            ["PQM PRODUCT PERFORMANCE SUMMARY",""],
+            ["Generated Date",getToday()],
+            ["Total Products",String(products.length)],
+            ["Total Target (RM)","RM " + formatRM(totalTarget)],
+            ["Total Sold (RM)","RM " + formatRM(totalSold)],
+            ["Overall Progress (%)",overallProgress.toFixed(2) + "%"]
+        ];
+
+        const summarySheet = XLSX.utils.aoa_to_sheet(summaryRows);
+        summarySheet["!ref"] = "A1:B" + summaryRows.length;
+        summarySheet["!cols"] = [
+            {wch:30},
+            {wch:28}
+        ];
+
+        /* -------------------------------------------------
+           CREATE WORKBOOK
+        ------------------------------------------------- */
+        const workbook = XLSX.utils.book_new();
+
+        XLSX.utils.book_append_sheet(
+            workbook,
+            worksheet,
+            "Top 10 Products"
+        );
+
+        XLSX.utils.book_append_sheet(
+            workbook,
+            summarySheet,
+            "Summary"
+        );
+
+        /* -------------------------------------------------
+           XLSX PROPERTIES
+        ------------------------------------------------- */
+        workbook.Props = {
+            Title:"PQM Top 10 Products",
+            Subject:"PQM Product Sales Performance",
+            Author:"PQM",
+            Company:"PQM",
+            CreatedDate:new Date()
+        };
+
+        /* -------------------------------------------------
+           GENERATE XLSX BINARY
+           Array output is more reliable than writeFile()
+           on iOS Safari / Android Chrome.
+        ------------------------------------------------- */
+        const excelBuffer = XLSX.write(
+            workbook,
+            {
+                bookType:"xlsx",
+                type:"array",
+                compression:false,
+                cellStyles:false
+            }
+        );
+
+        if(!excelBuffer || excelBuffer.byteLength < 1000){
+            throw new Error("Generated Excel file is unexpectedly small.");
+        }
+
+        const blob = new Blob(
+            [excelBuffer],
+            {
+                type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            }
+        );
+
+        /* -------------------------------------------------
+           FILE NAME
+        ------------------------------------------------- */
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth()+1).padStart(2,"0");
+        const day = String(now.getDate()).padStart(2,"0");
+        const hours = String(now.getHours()).padStart(2,"0");
+        const minutes = String(now.getMinutes()).padStart(2,"0");
+
+        const fileName =
+            `PQM_Top_10_Products_${year}-${month}-${day}_${hours}-${minutes}.xlsx`;
+
+        /* -------------------------------------------------
+           MOBILE FILE SHARE
+           Only share if browser explicitly confirms files.
+        ------------------------------------------------- */
+        if(
+            isMobileDevice() &&
+            typeof navigator.share === "function" &&
+            typeof navigator.canShare === "function"
+        ){
+
+            try{
+
+                const file = new File(
+                    [blob],
+                    fileName,
+                    {
+                        type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        lastModified:Date.now()
+                    }
+                );
+
+                if(navigator.canShare({files:[file]})){
+
+                    showExportMessage(
+                        "Complete Excel ready — opening share..."
                     );
 
+                    await navigator.share({
+                        title:"PQM Top 10 Products",
+                        text:"PQM Product Sales Performance Report",
+                        files:[file]
+                    });
 
-                const status =
-                    getStatus(percent);
-
-
-                const remaining =
-                    Math.max(
-                        product.target
-                        -
-                        product.sold,
-                        0
+                    showExportMessage(
+                        "Excel shared successfully."
                     );
 
-
-                return {
-
-                    "Rank":
-                        index + 1,
-
-                    "Product Name":
-                        product.name,
-
-                    "Product Code":
-                        product.code,
-
-                    "Target (RM)":
-                        Number(
-                            product.target
-                        ),
-
-                    "Sold (RM)":
-                        Number(
-                            product.sold
-                        ),
-
-                    "Remaining (RM)":
-                        Number(
-                            remaining
-                        ),
-
-                    "Performance (%)":
-                        Number(
-                            percent.toFixed(2)
-                        ),
-
-                    "Status":
-                        status.text
-
-                };
+                    return;
+                }
 
             }
+            catch(error){
 
-        );
+                if(error && error.name === "AbortError"){
+                    showExportMessage("Excel export cancelled.");
+                    return;
+                }
 
-
-    const worksheet =
-        XLSX.utils.json_to_sheet(
-            excelData
-        );
-
-
-    worksheet["!cols"] = [
-
-        {wch:8},
-
-        {wch:38},
-
-        {wch:18},
-
-        {wch:16},
-
-        {wch:16},
-
-        {wch:18},
-
-        {wch:20},
-
-        {wch:20}
-
-    ];
-
-
-    for(
-
-        let row = 2;
-
-        row <=
-        excelData.length + 1;
-
-        row++
-
-    ){
-
-        if(
-            worksheet[`D${row}`]
-        ){
-
-            worksheet[`D${row}`].z =
-                'RM #,##0.00';
-
+                console.warn(
+                    "Mobile file sharing failed. Using download fallback.",
+                    error
+                );
+            }
         }
 
+        /* -------------------------------------------------
+           DOWNLOAD FALLBACK
+        ------------------------------------------------- */
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
 
-        if(
-            worksheet[`E${row}`]
-        ){
+        link.href = url;
+        link.download = fileName;
+        link.rel = "noopener";
+        link.style.position = "fixed";
+        link.style.left = "-9999px";
+        link.style.top = "0";
 
-            worksheet[`E${row}`].z =
-                'RM #,##0.00';
+        document.body.appendChild(link);
+        link.click();
 
-        }
+        showExportMessage("Complete Excel file downloaded.");
 
+        /* Give mobile browsers enough time before cleanup. */
+        setTimeout(() => {
 
-        if(
-            worksheet[`F${row}`]
-        ){
+            try{
+                if(link.parentNode){
+                    link.parentNode.removeChild(link);
+                }
+            }
+            catch(error){
+                console.warn(error);
+            }
 
-            worksheet[`F${row}`].z =
-                'RM #,##0.00';
+            try{
+                URL.revokeObjectURL(url);
+            }
+            catch(error){
+                console.warn(error);
+            }
 
-        }
-
-
-        if(
-            worksheet[`G${row}`]
-        ){
-
-            worksheet[`G${row}`].z =
-                '0.00';
-
-        }
+        },60000);
 
     }
+    catch(error){
 
+        console.error("Excel export failed:",error);
 
-    const workbook =
-        XLSX.utils.book_new();
+        showExportMessage("Excel export failed.");
 
-
-    XLSX.utils.book_append_sheet(
-        workbook,
-        worksheet,
-        "Top 10 Products"
-    );
-
-
-    const date =
-        new Date()
-            .toISOString()
-            .slice(0,10);
-
-
-    XLSX.writeFile(
-
-        workbook,
-
-        `PQM_Top_10_Products_${date}.xlsx`
-
-    );
-
+        alert(
+            "Excel export failed.\n\nPlease try again."
+        );
+    }
 }
 
 
@@ -4354,7 +4579,8 @@ function exportPDF(){
     const totalTarget =
         products.reduce(
             (sum,product) =>
-                sum + Number(product.target),
+                sum +
+                Number(product.target),
             0
         );
 
@@ -4362,7 +4588,8 @@ function exportPDF(){
     const totalSold =
         products.reduce(
             (sum,product) =>
-                sum + Number(product.sold),
+                sum +
+                Number(product.sold),
             0
         );
 
@@ -4389,7 +4616,10 @@ function exportPDF(){
     );
 
 
-    doc.setFontSize(21);
+    doc.setFontSize(
+        21
+    );
+
 
     doc.setFont(
         "helvetica",
@@ -4404,7 +4634,10 @@ function exportPDF(){
     );
 
 
-    doc.setFontSize(9);
+    doc.setFontSize(
+        9
+    );
+
 
     doc.setFont(
         "helvetica",
@@ -4426,7 +4659,9 @@ function exportPDF(){
     );
 
 
-    doc.setFontSize(9);
+    doc.setFontSize(
+        9
+    );
 
 
     doc.text(
@@ -4654,10 +4889,15 @@ function exportPDF(){
 
     ){
 
-        doc.setPage(i);
+        doc.setPage(
+            i
+        );
 
 
-        doc.setFontSize(8);
+        doc.setFontSize(
+            8
+        );
+
 
         doc.setFont(
             "helvetica",
@@ -4684,13 +4924,14 @@ function exportPDF(){
     const fileDate =
         new Date()
             .toISOString()
-            .slice(0,10);
+            .slice(
+                0,
+                10
+            );
 
 
     doc.save(
-
         `PQM_Top_10_Products_${fileDate}.pdf`
-
     );
 
 }
