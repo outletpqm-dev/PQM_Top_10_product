@@ -1,28 +1,29 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>PQM | Premium Top 10 Product Performance</title>
-
 
 <!-- =====================================================
      EXPORT LIBRARIES
 ===================================================== -->
 
 <!-- Excel Library -->
+
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 
 <!-- PDF Library -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<!-- PDF AutoTable -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<!-- PDF Table Library -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 
 <style>
 
@@ -62,7 +63,6 @@
 
     --shadow-hover:
         0 25px 65px rgba(70,60,45,.15);
-
 }
 
 
@@ -71,20 +71,14 @@
 ===================================================== */
 
 *{
-
     box-sizing:border-box;
     margin:0;
     padding:0;
-
 }
-
 
 html{
-
     scroll-behavior:smooth;
-
 }
-
 
 body{
 
@@ -122,9 +116,7 @@ body{
 
     min-height:100vh;
 
-    animation:
-        pageReveal .8s ease both;
-
+    animation:pageReveal .8s ease both;
 }
 
 
@@ -133,18 +125,12 @@ body{
 ===================================================== */
 
 ::-webkit-scrollbar{
-
     width:8px;
-
 }
-
 
 ::-webkit-scrollbar-track{
-
     background:#eeeae2;
-
 }
-
 
 ::-webkit-scrollbar-thumb{
 
@@ -157,7 +143,6 @@ body{
         );
 
     border-radius:20px;
-
 }
 
 
@@ -168,15 +153,11 @@ body{
 @keyframes pageReveal{
 
     from{
-
         opacity:0;
-
     }
 
     to{
-
         opacity:1;
-
     }
 
 }
@@ -205,9 +186,7 @@ body{
 
     border-bottom:
         1px solid rgba(50,45,38,.08);
-
 }
-
 
 .header::after{
 
@@ -228,9 +207,7 @@ body{
             rgba(184,149,90,.45),
             transparent
         );
-
 }
-
 
 .header-inner{
 
@@ -250,7 +227,6 @@ body{
     justify-content:space-between;
 
     gap:25px;
-
 }
 
 
@@ -265,9 +241,7 @@ body{
     align-items:center;
 
     gap:15px;
-
 }
-
 
 .logo-img{
 
@@ -280,16 +254,11 @@ body{
         drop-shadow(
             0 5px 10px rgba(100,80,45,.12)
         );
-
 }
-
 
 .brand-text{
-
     min-width:0;
-
 }
-
 
 .brand-title{
 
@@ -300,9 +269,7 @@ body{
     letter-spacing:.4px;
 
     color:#292724;
-
 }
-
 
 .brand-subtitle{
 
@@ -317,7 +284,6 @@ body{
     letter-spacing:3px;
 
     text-transform:uppercase;
-
 }
 
 
@@ -332,9 +298,7 @@ body{
     align-items:center;
 
     gap:10px;
-
 }
-
 
 .header-date{
 
@@ -350,7 +314,6 @@ body{
     font-size:10px;
 
     white-space:nowrap;
-
 }
 
 
@@ -396,9 +359,7 @@ body{
         border-color .25s ease,
         background .25s ease,
         box-shadow .25s ease;
-
 }
-
 
 .btn::before{
 
@@ -423,16 +384,11 @@ body{
         );
 
     transition:left .5s ease;
-
 }
-
 
 .btn:hover::before{
-
     left:100%;
-
 }
-
 
 .btn:hover{
 
@@ -446,9 +402,7 @@ body{
 
     box-shadow:
         0 10px 25px rgba(70,60,45,.10);
-
 }
-
 
 .btn-gold{
 
@@ -466,9 +420,7 @@ body{
 
     box-shadow:
         0 8px 25px rgba(184,149,90,.18);
-
 }
-
 
 .btn-gold:hover{
 
@@ -480,7 +432,6 @@ body{
         );
 
     color:#fff;
-
 }
 
 
@@ -496,7 +447,6 @@ body{
 
     padding:
         55px 42px 90px;
-
 }
 
 
@@ -516,14 +466,12 @@ body{
 
     gap:30px;
 
-    margin-bottom:38px;
-
+    margin-bottom:30px;
 }
-
 
 .hero::before{
 
-    content:"01";
+    content:"09";
 
     position:absolute;
 
@@ -540,9 +488,7 @@ body{
     color:rgba(50,45,38,.035);
 
     pointer-events:none;
-
 }
-
 
 .eyebrow{
 
@@ -559,9 +505,7 @@ body{
     font-weight:800;
 
     letter-spacing:3px;
-
 }
-
 
 .eyebrow-line{
 
@@ -575,9 +519,7 @@ body{
             var(--gold-dark),
             var(--gold)
         );
-
 }
-
 
 .hero-title{
 
@@ -593,9 +535,7 @@ body{
     font-weight:850;
 
     color:#282724;
-
 }
-
 
 .hero-title span{
 
@@ -612,9 +552,7 @@ body{
     background-clip:text;
 
     color:transparent;
-
 }
-
 
 .hero-description{
 
@@ -627,9 +565,7 @@ body{
     font-size:12px;
 
     line-height:1.8;
-
 }
-
 
 .hero-date{
 
@@ -642,9 +578,7 @@ body{
     font-size:10px;
 
     text-align:right;
-
 }
-
 
 .hero-date strong{
 
@@ -655,7 +589,433 @@ body{
     color:#4b4945;
 
     font-size:13px;
+}
 
+
+/* =====================================================
+   MONTHLY COLLECTION
+===================================================== */
+
+.monthly-section{
+
+    position:relative;
+
+    margin-bottom:34px;
+
+    border:
+        1px solid rgba(184,149,90,.20);
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.90),
+            rgba(248,245,238,.88)
+        );
+
+    box-shadow:
+        0 12px 38px rgba(70,60,45,.06);
+
+    overflow:hidden;
+}
+
+.monthly-section::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:260px;
+
+    height:260px;
+
+    right:-130px;
+
+    top:-150px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(184,149,90,.12),
+            transparent 68%
+        );
+
+    pointer-events:none;
+}
+
+.monthly-header{
+
+    position:relative;
+
+    z-index:2;
+
+    min-height:68px;
+
+    padding:
+        0 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    cursor:pointer;
+
+    user-select:none;
+}
+
+.monthly-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+}
+
+.monthly-icon{
+
+    width:34px;
+
+    height:34px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:10px;
+
+    border:
+        1px solid rgba(184,149,90,.28);
+
+    background:
+        rgba(184,149,90,.08);
+
+    color:var(--gold-dark);
+
+    font-size:13px;
+}
+
+.monthly-heading-text{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+}
+
+.monthly-title{
+
+    color:#302e2a;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+}
+
+.monthly-subtitle{
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    letter-spacing:.3px;
+}
+
+.monthly-toggle{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    font-weight:800;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+.monthly-toggle-arrow{
+
+    width:27px;
+
+    height:27px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    border:
+        1px solid rgba(184,149,90,.25);
+
+    color:var(--gold-dark);
+
+    background:
+        rgba(255,255,255,.70);
+
+    transition:
+        transform .35s ease,
+        background .25s ease;
+}
+
+.monthly-section.open .monthly-toggle-arrow{
+
+    transform:rotate(180deg);
+
+    background:
+        rgba(184,149,90,.10);
+}
+
+.monthly-content{
+
+    display:grid;
+
+    grid-template-rows:0fr;
+
+    transition:
+        grid-template-rows .45s cubic-bezier(.2,.8,.2,1);
+}
+
+.monthly-section.open .monthly-content{
+
+    grid-template-rows:1fr;
+}
+
+.monthly-content-inner{
+
+    min-height:0;
+
+    overflow:hidden;
+}
+
+.monthly-grid{
+
+    padding:
+        0 20px 20px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:10px;
+}
+
+.month-btn{
+
+    position:relative;
+
+    overflow:hidden;
+
+    min-height:65px;
+
+    padding:13px 14px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:4px;
+
+    text-decoration:none;
+
+    border:
+        1px solid rgba(55,48,38,.08);
+
+    border-radius:12px;
+
+    background:
+        rgba(255,255,255,.72);
+
+    color:#393630;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+
+    opacity:0;
+
+    transform:
+        translateY(-8px)
+        scale(.98);
+}
+
+.monthly-section.open .month-btn{
+
+    animation:
+        monthReveal .45s ease forwards;
+
+    animation-delay:
+        calc(var(--month-index) * .045s);
+}
+
+@keyframes monthReveal{
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.month-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            115deg,
+            transparent 25%,
+            rgba(184,149,90,.09),
+            transparent 75%
+        );
+
+    transform:
+        translateX(-110%);
+
+    transition:
+        transform .55s ease;
+}
+
+.month-btn:hover::before{
+
+    transform:
+        translateX(110%);
+}
+
+.month-btn:hover{
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(184,149,90,.40);
+
+    background:#fff;
+
+    box-shadow:
+        0 12px 28px rgba(70,60,45,.10);
+}
+
+.month-number{
+
+    position:relative;
+
+    z-index:2;
+
+    color:var(--gold-dark);
+
+    font-size:7px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+}
+
+.month-name{
+
+    position:relative;
+
+    z-index:2;
+
+    color:#34312c;
+
+    font-size:11px;
+
+    font-weight:800;
+}
+
+.month-status{
+
+    position:relative;
+
+    z-index:2;
+
+    color:var(--muted-light);
+
+    font-size:7px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+}
+
+.month-btn.current{
+
+    border-color:
+        rgba(184,149,90,.55);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(184,149,90,.12),
+            rgba(255,255,255,.88)
+        );
+
+    box-shadow:
+        inset 0 0 0 1px rgba(184,149,90,.06),
+        0 8px 25px rgba(184,149,90,.08);
+}
+
+.month-btn.current .month-name{
+
+    color:var(--gold-dark);
+}
+
+.month-btn.current .month-status{
+
+    color:var(--gold-dark);
+}
+
+.month-current-dot{
+
+    position:absolute;
+
+    top:11px;
+
+    right:11px;
+
+    width:6px;
+
+    height:6px;
+
+    border-radius:50%;
+
+    background:var(--gold);
+
+    box-shadow:
+        0 0 0 4px rgba(184,149,90,.10),
+        0 0 12px rgba(184,149,90,.30);
 }
 
 
@@ -673,9 +1033,7 @@ body{
     gap:14px;
 
     margin-bottom:40px;
-
 }
-
 
 .kpi{
 
@@ -706,9 +1064,7 @@ body{
         transform .3s ease,
         border-color .3s ease,
         box-shadow .3s ease;
-
 }
-
 
 .kpi:hover{
 
@@ -720,9 +1076,7 @@ body{
 
     box-shadow:
         0 22px 50px rgba(70,60,45,.12);
-
 }
-
 
 .kpi::before{
 
@@ -746,9 +1100,7 @@ body{
             rgba(184,149,90,.13),
             transparent 65%
         );
-
 }
-
 
 .kpi::after{
 
@@ -770,9 +1122,7 @@ body{
             var(--gold),
             transparent
         );
-
 }
-
 
 .kpi-top{
 
@@ -781,9 +1131,7 @@ body{
     align-items:center;
 
     justify-content:space-between;
-
 }
-
 
 .kpi-label{
 
@@ -796,9 +1144,7 @@ body{
     letter-spacing:1.8px;
 
     text-transform:uppercase;
-
 }
-
 
 .kpi-icon{
 
@@ -822,9 +1168,7 @@ body{
     font-size:10px;
 
     font-weight:800;
-
 }
-
 
 .kpi-value{
 
@@ -839,9 +1183,7 @@ body{
     letter-spacing:-1px;
 
     color:#292724;
-
 }
-
 
 .kpi-sub{
 
@@ -850,7 +1192,6 @@ body{
     color:var(--muted-light);
 
     font-size:9px;
-
 }
 
 
@@ -869,9 +1210,7 @@ body{
     gap:20px;
 
     margin-bottom:20px;
-
 }
-
 
 .toolbar-left{
 
@@ -880,9 +1219,7 @@ body{
     align-items:center;
 
     gap:11px;
-
 }
-
 
 .section-label{
 
@@ -891,9 +1228,7 @@ body{
     font-size:14px;
 
     font-weight:800;
-
 }
-
 
 .product-count{
 
@@ -915,7 +1250,6 @@ body{
     font-weight:800;
 
     letter-spacing:.7px;
-
 }
 
 
@@ -928,9 +1262,7 @@ body{
     position:relative;
 
     width:310px;
-
 }
-
 
 .search input{
 
@@ -956,16 +1288,11 @@ body{
     font-size:11px;
 
     transition:.25s ease;
-
 }
-
 
 .search input::placeholder{
-
     color:#aaa59c;
-
 }
-
 
 .search input:focus{
 
@@ -976,9 +1303,7 @@ body{
 
     box-shadow:
         0 0 0 4px rgba(184,149,90,.08);
-
 }
-
 
 .search-icon{
 
@@ -994,7 +1319,6 @@ body{
     color:var(--gold-dark);
 
     font-size:16px;
-
 }
 
 
@@ -1010,7 +1334,6 @@ body{
         repeat(4,1fr);
 
     gap:18px;
-
 }
 
 
@@ -1048,9 +1371,7 @@ body{
 
     animation:
         cardReveal .55s ease both;
-
 }
-
 
 @keyframes cardReveal{
 
@@ -1060,7 +1381,6 @@ body{
 
         transform:
             translateY(15px);
-
     }
 
     to{
@@ -1069,11 +1389,8 @@ body{
 
         transform:
             translateY(0);
-
     }
-
 }
-
 
 .product-card:hover{
 
@@ -1085,9 +1402,7 @@ body{
 
     border-color:
         rgba(184,149,90,.35);
-
 }
-
 
 .product-card::before{
 
@@ -1114,15 +1429,12 @@ body{
 
     transition:
         transform .4s ease;
-
 }
-
 
 .product-card:hover::before{
 
     transform:
         scale(1.5);
-
 }
 
 
@@ -1144,9 +1456,7 @@ body{
 
     padding:
         17px 17px 0;
-
 }
-
 
 .rank-box{
 
@@ -1175,9 +1485,7 @@ body{
     font-size:10px;
 
     font-weight:900;
-
 }
-
 
 .rank-box.top1{
 
@@ -1194,9 +1502,7 @@ body{
 
     box-shadow:
         0 5px 18px rgba(184,149,90,.22);
-
 }
-
 
 .rank-box.top2{
 
@@ -1208,9 +1514,7 @@ body{
         );
 
     color:#45433f;
-
 }
-
 
 .rank-box.top3{
 
@@ -1222,7 +1526,6 @@ body{
         );
 
     color:#fff;
-
 }
 
 
@@ -1250,9 +1553,7 @@ body{
     letter-spacing:.7px;
 
     text-transform:uppercase;
-
 }
-
 
 .status-dot{
 
@@ -1264,9 +1565,7 @@ body{
 
     box-shadow:
         0 0 7px currentColor;
-
 }
-
 
 .status.good{
 
@@ -1274,9 +1573,7 @@ body{
         rgba(79,146,112,.10);
 
     color:var(--green);
-
 }
-
 
 .status.warning{
 
@@ -1284,9 +1581,7 @@ body{
         rgba(189,142,63,.10);
 
     color:var(--yellow);
-
 }
-
 
 .status.bad{
 
@@ -1294,9 +1589,7 @@ body{
         rgba(189,98,93,.10);
 
     color:var(--red);
-
 }
-
 
 .status.over{
 
@@ -1304,7 +1597,6 @@ body{
         rgba(102,136,173,.10);
 
     color:var(--blue);
-
 }
 
 
@@ -1325,9 +1617,7 @@ body{
     position:relative;
 
     padding:18px;
-
 }
-
 
 .product-image-area::before{
 
@@ -1351,9 +1641,7 @@ body{
 
     transition:
         transform .45s ease;
-
 }
-
 
 .product-image-area::after{
 
@@ -1376,18 +1664,13 @@ body{
         blur(15px);
 
     opacity:.55;
-
 }
 
-
-.product-card:hover
-.product-image-area::before{
+.product-card:hover .product-image-area::before{
 
     transform:
         scale(1.12);
-
 }
-
 
 .product-image{
 
@@ -1411,12 +1694,9 @@ body{
     transition:
         transform .5s cubic-bezier(.2,.8,.2,1),
         filter .5s ease;
-
 }
 
-
-.product-card:hover
-.product-image{
+.product-card:hover .product-image{
 
     transform:
         scale(1.08)
@@ -1426,7 +1706,6 @@ body{
         drop-shadow(
             0 25px 25px rgba(80,65,45,.25)
         );
-
 }
 
 
@@ -1442,9 +1721,7 @@ body{
 
     padding:
         0 18px 18px;
-
 }
-
 
 .product-name{
 
@@ -1461,9 +1738,7 @@ body{
     text-overflow:ellipsis;
 
     color:#292724;
-
 }
-
 
 .product-code{
 
@@ -1474,7 +1749,6 @@ body{
     font-size:8px;
 
     letter-spacing:1.2px;
-
 }
 
 
@@ -1492,9 +1766,7 @@ body{
     gap:9px;
 
     margin-top:17px;
-
 }
-
 
 .metric{
 
@@ -1511,9 +1783,7 @@ body{
     transition:
         border-color .25s ease,
         background .25s ease;
-
 }
-
 
 .metric:hover{
 
@@ -1522,9 +1792,7 @@ body{
 
     border-color:
         rgba(184,149,90,.20);
-
 }
-
 
 .metric-label{
 
@@ -1537,9 +1805,7 @@ body{
     letter-spacing:1.2px;
 
     text-transform:uppercase;
-
 }
-
 
 .metric-value{
 
@@ -1556,9 +1822,7 @@ body{
     font-weight:800;
 
     color:#35322d;
-
 }
-
 
 .metric-value .currency{
 
@@ -1567,7 +1831,6 @@ body{
     font-size:8px;
 
     font-weight:700;
-
 }
 
 
@@ -1588,16 +1851,13 @@ body{
     color:var(--muted);
 
     font-size:8px;
-
 }
-
 
 .remaining strong{
 
     color:#5a5751;
 
     font-size:9px;
-
 }
 
 
@@ -1606,11 +1866,8 @@ body{
 ===================================================== */
 
 .progress-section{
-
     margin-top:17px;
-
 }
-
 
 .progress-header{
 
@@ -1621,9 +1878,7 @@ body{
     align-items:center;
 
     margin-bottom:8px;
-
 }
-
 
 .progress-title{
 
@@ -1636,9 +1891,7 @@ body{
     letter-spacing:1.1px;
 
     text-transform:uppercase;
-
 }
-
 
 .progress-percent{
 
@@ -1647,9 +1900,7 @@ body{
     font-size:9px;
 
     font-weight:900;
-
 }
-
 
 .progress{
 
@@ -1661,9 +1912,7 @@ body{
     border-radius:20px;
 
     overflow:hidden;
-
 }
-
 
 .progress-bar{
 
@@ -1686,9 +1935,7 @@ body{
 
     transition:
         width .8s cubic-bezier(.2,.8,.2,1);
-
 }
-
 
 .progress-bar::after{
 
@@ -1714,24 +1961,17 @@ body{
 
     animation:
         progressShine 2.4s infinite;
-
 }
-
 
 @keyframes progressShine{
 
     0%{
-
         left:-50%;
-
     }
 
     100%{
-
         left:120%;
-
     }
-
 }
 
 
@@ -1753,9 +1993,7 @@ body{
 
     border-top:
         1px solid rgba(55,48,38,.07);
-
 }
-
 
 .card-number{
 
@@ -1766,9 +2004,7 @@ body{
     font-weight:700;
 
     letter-spacing:1.3px;
-
 }
-
 
 .performance-mini{
 
@@ -1777,7 +2013,6 @@ body{
     font-size:8px;
 
     font-weight:800;
-
 }
 
 
@@ -1805,7 +2040,6 @@ body{
     color:var(--muted);
 
     font-size:12px;
-
 }
 
 
@@ -1845,18 +2079,14 @@ body{
     transition:
         opacity .3s ease,
         visibility .3s ease;
-
 }
-
 
 .modal-overlay.active{
 
     opacity:1;
 
     visibility:visible;
-
 }
-
 
 .modal{
 
@@ -1889,18 +2119,14 @@ body{
 
     transition:
         transform .35s ease;
-
 }
-
 
 .modal-overlay.active .modal{
 
     transform:
         translateY(0)
         scale(1);
-
 }
-
 
 .modal-close{
 
@@ -1931,9 +2157,7 @@ body{
     font-size:16px;
 
     transition:.2s;
-
 }
-
 
 .modal-close:hover{
 
@@ -1944,7 +2168,6 @@ body{
 
     border-color:
         rgba(184,149,90,.30);
-
 }
 
 
@@ -1962,9 +2185,7 @@ body{
     gap:28px;
 
     padding:30px;
-
 }
-
 
 .modal-image-area{
 
@@ -1977,9 +2198,7 @@ body{
     justify-content:center;
 
     position:relative;
-
 }
-
 
 .modal-image-area::before{
 
@@ -1999,9 +2218,7 @@ body{
             rgba(184,149,90,.15),
             transparent 68%
         );
-
 }
-
 
 .modal-image{
 
@@ -2019,9 +2236,7 @@ body{
         drop-shadow(
             0 25px 20px rgba(80,65,45,.20)
         );
-
 }
-
 
 .modal-info{
 
@@ -2030,9 +2245,7 @@ body{
     flex-direction:column;
 
     justify-content:center;
-
 }
-
 
 .modal-eyebrow{
 
@@ -2045,9 +2258,7 @@ body{
     letter-spacing:2px;
 
     text-transform:uppercase;
-
 }
-
 
 .modal-title{
 
@@ -2060,9 +2271,7 @@ body{
     letter-spacing:-1px;
 
     color:#292724;
-
 }
-
 
 .modal-code{
 
@@ -2073,9 +2282,7 @@ body{
     font-size:9px;
 
     letter-spacing:1px;
-
 }
-
 
 .modal-achievement{
 
@@ -2086,7 +2293,6 @@ body{
     align-items:center;
 
     gap:17px;
-
 }
 
 
@@ -2117,9 +2323,7 @@ body{
         );
 
     position:relative;
-
 }
-
 
 .achievement-ring::before{
 
@@ -2134,9 +2338,7 @@ body{
     border-radius:50%;
 
     background:#ffffff;
-
 }
-
 
 .achievement-ring span{
 
@@ -2149,9 +2351,7 @@ body{
     font-weight:900;
 
     color:var(--gold-dark);
-
 }
-
 
 .achievement-label{
 
@@ -2164,9 +2364,7 @@ body{
     letter-spacing:1px;
 
     text-transform:uppercase;
-
 }
-
 
 .achievement-status{
 
@@ -2177,7 +2375,6 @@ body{
     font-size:12px;
 
     font-weight:800;
-
 }
 
 
@@ -2196,9 +2393,7 @@ body{
 
     padding:
         0 30px 25px;
-
 }
-
 
 .modal-metric{
 
@@ -2211,9 +2406,7 @@ body{
         1px solid rgba(55,48,38,.07);
 
     border-radius:13px;
-
 }
-
 
 .modal-metric-label{
 
@@ -2226,9 +2419,7 @@ body{
     letter-spacing:1px;
 
     text-transform:uppercase;
-
 }
-
 
 .modal-metric-value{
 
@@ -2239,12 +2430,11 @@ body{
     font-weight:850;
 
     color:#37342f;
-
 }
 
 
 /* =====================================================
-   MONTH ON MONTH SECTION
+   MONTH ON MONTH
 ===================================================== */
 
 .mom-section{
@@ -2269,9 +2459,7 @@ body{
     position:relative;
 
     overflow:hidden;
-
 }
-
 
 .mom-section::before{
 
@@ -2297,9 +2485,7 @@ body{
         );
 
     pointer-events:none;
-
 }
-
 
 .mom-header{
 
@@ -2316,9 +2502,7 @@ body{
     gap:15px;
 
     margin-bottom:15px;
-
 }
-
 
 .mom-title{
 
@@ -2331,9 +2515,7 @@ body{
     letter-spacing:1.8px;
 
     text-transform:uppercase;
-
 }
-
 
 .mom-subtitle{
 
@@ -2342,9 +2524,7 @@ body{
     font-size:8px;
 
     letter-spacing:.4px;
-
 }
-
 
 .mom-grid{
 
@@ -2358,9 +2538,7 @@ body{
         1fr 1fr 1fr;
 
     gap:10px;
-
 }
-
 
 .mom-card{
 
@@ -2373,9 +2551,7 @@ body{
 
     border:
         1px solid rgba(55,48,38,.07);
-
 }
-
 
 .mom-label{
 
@@ -2388,9 +2564,7 @@ body{
     letter-spacing:1px;
 
     text-transform:uppercase;
-
 }
-
 
 .mom-value{
 
@@ -2401,9 +2575,7 @@ body{
     font-weight:900;
 
     color:#37342f;
-
 }
-
 
 .mom-change{
 
@@ -2418,30 +2590,19 @@ body{
     font-size:10px;
 
     font-weight:900;
-
 }
-
 
 .mom-change.up{
-
     color:var(--green);
-
 }
-
 
 .mom-change.down{
-
     color:var(--red);
-
 }
-
 
 .mom-change.same{
-
     color:var(--muted);
-
 }
-
 
 .mom-difference{
 
@@ -2450,9 +2611,7 @@ body{
     color:var(--muted);
 
     font-size:7px;
-
 }
-
 
 .mom-summary{
 
@@ -2468,14 +2627,10 @@ body{
     font-size:8px;
 
     line-height:1.6;
-
 }
 
-
 .mom-summary strong{
-
     color:#45413a;
-
 }
 
 
@@ -2496,7 +2651,6 @@ body{
     font-size:8px;
 
     letter-spacing:.7px;
-
 }
 
 
@@ -2522,7 +2676,6 @@ body{
     font-size:8px;
 
     letter-spacing:1px;
-
 }
 
 
@@ -2573,9 +2726,7 @@ body{
 
     backdrop-filter:
         blur(15px);
-
 }
-
 
 .export-message.show{
 
@@ -2583,7 +2734,6 @@ body{
 
     transform:
         translate(-50%,0);
-
 }
 
 
@@ -2597,9 +2747,13 @@ body{
 
         grid-template-columns:
             repeat(3,1fr);
-
     }
 
+    .monthly-grid{
+
+        grid-template-columns:
+            repeat(3,1fr);
+    }
 }
 
 
@@ -2609,16 +2763,19 @@ body{
 
         grid-template-columns:
             repeat(2,1fr);
-
     }
 
     .product-grid{
 
         grid-template-columns:
             repeat(2,1fr);
-
     }
 
+    .monthly-grid{
+
+        grid-template-columns:
+            repeat(3,1fr);
+    }
 }
 
 
@@ -2634,9 +2791,7 @@ body{
         flex-direction:column;
 
         align-items:stretch;
-
     }
-
 
     .header-right{
 
@@ -2646,31 +2801,21 @@ body{
 
         grid-template-columns:
             1fr 1fr;
-
     }
-
 
     .header-date{
-
         display:none;
-
     }
-
 
     .header-right .btn{
-
         width:100%;
-
     }
-
 
     .container{
 
         padding:
             32px 16px 60px;
-
     }
-
 
     .hero{
 
@@ -2680,26 +2825,54 @@ body{
 
         gap:14px;
 
-        margin-bottom:30px;
-
+        margin-bottom:25px;
     }
-
 
     .hero-title{
 
         font-size:42px;
 
         letter-spacing:-2.3px;
-
     }
-
 
     .hero-date{
-
         text-align:left;
-
     }
 
+    .monthly-section{
+        margin-bottom:28px;
+    }
+
+    .monthly-header{
+
+        min-height:64px;
+
+        padding:
+            0 15px;
+    }
+
+    .monthly-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:8px;
+
+        padding:
+            0 15px 15px;
+    }
+
+    .month-btn{
+
+        min-height:61px;
+
+        padding:
+            11px;
+    }
+
+    .monthly-toggle span{
+        display:none;
+    }
 
     .kpi-grid{
 
@@ -2707,65 +2880,46 @@ body{
             1fr 1fr;
 
         gap:10px;
-
     }
-
 
     .kpi{
 
         min-height:130px;
 
         padding:17px;
-
     }
-
 
     .kpi-value{
-
         font-size:19px;
-
     }
-
 
     .toolbar{
 
         flex-direction:column;
 
         align-items:stretch;
-
     }
-
 
     .search{
-
         width:100%;
-
     }
-
 
     .product-grid{
 
         grid-template-columns:
             1fr;
-
     }
-
 
     .product-image-area{
-
         height:285px;
-
     }
-
 
     .product-image{
 
         width:235px;
 
         height:235px;
-
     }
-
 
     .modal{
 
@@ -2774,25 +2928,18 @@ body{
         max-height:94vh;
 
         border-radius:20px;
-
     }
-
 
     .modal-top{
 
         grid-template-columns:1fr;
 
         padding:25px;
-
     }
-
 
     .modal-image-area{
-
         height:220px;
-
     }
-
 
     .modal-metrics{
 
@@ -2800,9 +2947,7 @@ body{
 
         padding:
             0 25px 20px;
-
     }
-
 
     .mom-section{
 
@@ -2810,66 +2955,45 @@ body{
             0 25px 20px;
 
         padding:16px;
-
     }
-
 
     .mom-grid{
-
         grid-template-columns:1fr;
-
     }
-
 
     .footer{
 
         flex-direction:column;
 
         gap:8px;
-
     }
-
 }
 
 
 @media(max-width:430px){
 
     .brand-title{
-
         font-size:14px;
-
     }
-
 
     .logo-img{
 
         width:44px;
 
         height:44px;
-
     }
-
 
     .kpi{
-
         padding:14px;
-
     }
-
 
     .kpi-label{
-
         font-size:7px;
-
     }
-
 
     .kpi-value{
-
         font-size:17px;
-
     }
-
 
     .btn{
 
@@ -2877,25 +3001,43 @@ body{
             10px 8px;
 
         font-size:9px;
-
     }
-
 
     .hero-title{
-
         font-size:38px;
-
     }
 
+    .month-name{
+        font-size:10px;
+    }
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        transition-duration:.01ms !important;
+
+        scroll-behavior:auto !important;
+    }
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      HEADER
@@ -2906,71 +3048,71 @@ body{
 <div class="header-inner">
 
 
-    <div class="brand">
+<div class="brand">
 
-        <img
-            class="logo-img"
-            src="image/logo-responsive.png"
-            alt="PQM Logo"
-        >
+    <img
+        class="logo-img"
+        src="image/logo-responsive.png"
+        alt="PQM Logo"
+    >
 
-        <div class="brand-text">
+    <div class="brand-text">
 
-            <div class="brand-title">
-                Product Collection
-            </div>
-
-            <div class="brand-subtitle">
-                Premium Sales Intelligence
-            </div>
-
+        <div class="brand-title">
+            Product Collection
         </div>
 
-    </div>
-
-
-    <div class="header-right">
-
-        <div class="header-date">
-
-            <span id="headerDate"></span>
-
+        <div class="brand-subtitle">
+            Premium Sales Intelligence
         </div>
-
-
-        <button
-            class="btn"
-            onclick="exportExcel()"
-        >
-
-            📊
-
-            <span>
-                Export Excel
-            </span>
-
-        </button>
-
-
-        <button
-            class="btn btn-gold"
-            onclick="exportPDF()"
-        >
-
-            📄
-
-            <span>
-                Export PDF
-            </span>
-
-        </button>
 
     </div>
 
 </div>
 
-</header>
 
+<div class="header-right">
+
+    <div class="header-date">
+
+        <span id="headerDate"></span>
+
+    </div>
+
+
+    <button
+        class="btn"
+        onclick="exportExcel()"
+    >
+
+        📊
+
+        <span>
+            Export Excel
+        </span>
+
+    </button>
+
+
+    <button
+        class="btn btn-gold"
+        onclick="exportPDF()"
+    >
+
+        📄
+
+        <span>
+            Export PDF
+        </span>
+
+    </button>
+
+</div>
+
+
+</div>
+
+</header>
 
 <!-- =====================================================
      MAIN
@@ -2978,56 +3120,129 @@ body{
 
 <main class="container">
 
-
 <!-- =====================================================
      HERO
 ===================================================== -->
 
 <section class="hero">
 
-    <div class="hero-left">
 
-        <div class="eyebrow">
+<div class="hero-left">
 
-            <span class="eyebrow-line"></span>
+    <div class="eyebrow">
 
-            PQM SALES PERFORMANCE
+        <span class="eyebrow-line"></span>
 
-        </div>
-
-
-        <h1 class="hero-title">
-
-            Sep Top 10
-
-            <span>
-                Products
-            </span>
-
-        </h1>
-
-
-        <p class="hero-description">
-
-            Executive overview of product sales performance,
-            target achievement, ranking and revenue progression.
-            Monitor your best-performing products in real time.
-
-        </p>
+        PQM SALES PERFORMANCE
 
     </div>
 
 
-    <div class="hero-date">
+    <h1 class="hero-title">
 
-        Last Updated
+        <span id="heroMonth">
+            September
+        </span>
 
-        <strong id="heroDate"></strong>
+        Top 10
 
-    </div>
+        <span>
+            Products
+        </span>
+
+    </h1>
+
+
+    <p class="hero-description">
+
+        Executive overview of product sales performance,
+        target achievement, ranking and revenue progression.
+        Monitor your best-performing products in real time.
+
+    </p>
+
+</div>
+
+
+<div class="hero-date">
+
+    Last Updated
+
+    <strong id="heroDate"></strong>
+
+</div>
+
 
 </section>
 
+<!-- =====================================================
+     MONTHLY COLLECTION
+===================================================== -->
+
+<section
+    class="monthly-section"
+    id="monthlySection"
+>
+
+
+<div
+    class="monthly-header"
+    onclick="toggleMonthlyCollection()"
+>
+
+
+    <div class="monthly-heading">
+
+        <div class="monthly-icon">
+            ◇
+        </div>
+
+        <div class="monthly-heading-text">
+
+            <div class="monthly-title">
+                MONTHLY COLLECTION
+            </div>
+
+            <div class="monthly-subtitle">
+                Select a month to view its product performance
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="monthly-toggle">
+
+        <span id="monthlyToggleText">
+            VIEW MONTHS
+        </span>
+
+        <div class="monthly-toggle-arrow">
+            ↓
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<div class="monthly-content">
+
+    <div class="monthly-content-inner">
+
+        <div
+            class="monthly-grid"
+            id="monthlyGrid"
+        ></div>
+
+    </div>
+
+</div>
+
+
+</section>
 
 <!-- =====================================================
      KPI
@@ -3036,127 +3251,127 @@ body{
 <section class="kpi-grid">
 
 
-    <div class="kpi">
+<div class="kpi">
 
-        <div class="kpi-top">
+    <div class="kpi-top">
 
-            <div class="kpi-label">
-                Total Products
-            </div>
-
-            <div class="kpi-icon">
-                ◆
-            </div>
-
+        <div class="kpi-label">
+            Total Products
         </div>
 
-
-        <div
-            class="kpi-value"
-            id="totalProducts"
-        >
-            0
-        </div>
-
-
-        <div class="kpi-sub">
-            Active products tracked
+        <div class="kpi-icon">
+            ◆
         </div>
 
     </div>
 
 
-    <div class="kpi">
+    <div
+        class="kpi-value"
+        id="totalProducts"
+    >
+        0
+    </div>
 
-        <div class="kpi-top">
 
-            <div class="kpi-label">
-                Total Target
-            </div>
+    <div class="kpi-sub">
+        Active products tracked
+    </div>
 
-            <div class="kpi-icon">
-                RM
-            </div>
+</div>
 
+
+<div class="kpi">
+
+    <div class="kpi-top">
+
+        <div class="kpi-label">
+            Total Target
         </div>
 
-
-        <div
-            class="kpi-value"
-            id="totalTarget"
-        >
-            RM 0.00
-        </div>
-
-
-        <div class="kpi-sub">
-            Combined sales target
+        <div class="kpi-icon">
+            RM
         </div>
 
     </div>
 
 
-    <div class="kpi">
+    <div
+        class="kpi-value"
+        id="totalTarget"
+    >
+        RM 0.00
+    </div>
 
-        <div class="kpi-top">
 
-            <div class="kpi-label">
-                Total Sold
-            </div>
+    <div class="kpi-sub">
+        Combined sales target
+    </div>
 
-            <div class="kpi-icon">
-                ↑
-            </div>
+</div>
 
+
+<div class="kpi">
+
+    <div class="kpi-top">
+
+        <div class="kpi-label">
+            Total Sold
         </div>
 
-
-        <div
-            class="kpi-value"
-            id="totalSold"
-        >
-            RM 0.00
-        </div>
-
-
-        <div class="kpi-sub">
-            Current sales achieved
+        <div class="kpi-icon">
+            ↑
         </div>
 
     </div>
 
 
-    <div class="kpi">
+    <div
+        class="kpi-value"
+        id="totalSold"
+    >
+        RM 0.00
+    </div>
 
-        <div class="kpi-top">
 
-            <div class="kpi-label">
-                Overall Progress
-            </div>
+    <div class="kpi-sub">
+        Current sales achieved
+    </div>
 
-            <div class="kpi-icon">
-                %
-            </div>
+</div>
 
+
+<div class="kpi">
+
+    <div class="kpi-top">
+
+        <div class="kpi-label">
+            Overall Progress
         </div>
 
-
-        <div
-            class="kpi-value"
-            id="overallProgress"
-        >
-            0.00%
-        </div>
-
-
-        <div class="kpi-sub">
-            Overall target achievement
+        <div class="kpi-icon">
+            %
         </div>
 
     </div>
+
+
+    <div
+        class="kpi-value"
+        id="overallProgress"
+    >
+        0.00%
+    </div>
+
+
+    <div class="kpi-sub">
+        Overall target achievement
+    </div>
+
+</div>
+
 
 </section>
-
 
 <!-- =====================================================
      TOOLBAR
@@ -3164,39 +3379,40 @@ body{
 
 <div class="toolbar">
 
-    <div class="toolbar-left">
 
-        <div class="section-label">
-            Product Ranking
-        </div>
+<div class="toolbar-left">
 
-        <div
-            class="product-count"
-            id="productCount"
-        >
-            10 PRODUCTS
-        </div>
-
+    <div class="section-label">
+        Product Ranking
     </div>
 
-
-    <div class="search">
-
-        <span class="search-icon">
-            ⌕
-        </span>
-
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search product or product code..."
-            oninput="renderProducts()"
-        >
-
+    <div
+        class="product-count"
+        id="productCount"
+    >
+        10 PRODUCTS
     </div>
 
 </div>
 
+
+<div class="search">
+
+    <span class="search-icon">
+        ⌕
+    </span>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search product or product code..."
+        oninput="renderProducts()"
+    >
+
+</div>
+
+
+</div>
 
 <!-- =====================================================
      PRODUCT GRID
@@ -3205,9 +3421,7 @@ body{
 <section
     class="product-grid"
     id="productList"
->
-</section>
-
+></section>
 
 <!-- =====================================================
      FOOTER
@@ -3215,19 +3429,19 @@ body{
 
 <footer class="footer">
 
-    <div>
-        PQM PRODUCT PERFORMANCE
-    </div>
 
-    <div>
-        RM • SALES TARGET • ACHIEVEMENT • RANKING
-    </div>
+<div>
+    PQM PRODUCT PERFORMANCE
+</div>
+
+<div>
+    RM • SALES TARGET • ACHIEVEMENT • RANKING
+</div>
+
 
 </footer>
 
-
 </main>
-
 
 <!-- =====================================================
      PRODUCT DETAIL MODAL
@@ -3239,273 +3453,264 @@ body{
     onclick="closeModal(event)"
 >
 
-    <div class="modal">
 
-        <button
-            class="modal-close"
-            onclick="closeProductModal()"
-        >
-            ×
-        </button>
+<div class="modal">
 
 
-        <!-- =================================================
-             MODAL TOP
-        ================================================= -->
+    <button
+        class="modal-close"
+        onclick="closeProductModal()"
+    >
+        ×
+    </button>
 
-        <div class="modal-top">
 
-            <div class="modal-image-area">
+    <div class="modal-top">
 
-                <img
-                    id="modalImage"
-                    class="modal-image"
-                    src=""
-                    alt=""
-                >
 
+        <div class="modal-image-area">
+
+            <img
+                id="modalImage"
+                class="modal-image"
+                src=""
+                alt=""
+            >
+
+        </div>
+
+
+        <div class="modal-info">
+
+
+            <div class="modal-eyebrow">
+                Product Performance
             </div>
 
 
-            <div class="modal-info">
+            <div
+                class="modal-title"
+                id="modalTitle"
+            ></div>
 
-                <div class="modal-eyebrow">
-                    Product Performance
-                </div>
+
+            <div
+                class="modal-code"
+                id="modalCode"
+            ></div>
+
+
+            <div class="modal-achievement">
 
 
                 <div
-                    class="modal-title"
-                    id="modalTitle"
+                    class="achievement-ring"
+                    id="achievementRing"
                 >
-                </div>
 
-
-                <div
-                    class="modal-code"
-                    id="modalCode"
-                >
-                </div>
-
-
-                <div class="modal-achievement">
-
-                    <div
-                        class="achievement-ring"
-                        id="achievementRing"
+                    <span
+                        id="modalPercent"
                     >
-
-                        <span
-                            id="modalPercent"
-                        >
-                            0.00%
-                        </span>
-
-                    </div>
-
-
-                    <div>
-
-                        <div class="achievement-label">
-                            Achievement
-                        </div>
-
-                        <div
-                            class="achievement-status"
-                            id="modalStatus"
-                        >
-                        </div>
-
-                    </div>
+                        0.00%
+                    </span>
 
                 </div>
 
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             CURRENT MONTH METRICS
-        ================================================= -->
-
-        <div class="modal-metrics">
-
-
-            <div class="modal-metric">
-
-                <div class="modal-metric-label">
-                    Target
-                </div>
-
-                <div
-                    class="modal-metric-value"
-                    id="modalTarget"
-                >
-                </div>
-
-            </div>
-
-
-            <div class="modal-metric">
-
-                <div class="modal-metric-label">
-                    September Sold
-                </div>
-
-                <div
-                    class="modal-metric-value"
-                    id="modalSold"
-                >
-                </div>
-
-            </div>
-
-
-            <div class="modal-metric">
-
-                <div class="modal-metric-label">
-                    Remaining
-                </div>
-
-                <div
-                    class="modal-metric-value"
-                    id="modalRemaining"
-                >
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             MONTH ON MONTH SALES
-        ================================================= -->
-
-        <div class="mom-section">
-
-            <div class="mom-header">
 
                 <div>
 
-                    <div class="mom-title">
-                        Month-on-Month Sales
+                    <div class="achievement-label">
+                        Achievement
                     </div>
 
                     <div
-                        class="mom-subtitle"
-                        id="momSubtitle"
-                    >
-                        August vs September
-                    </div>
+                        class="achievement-status"
+                        id="modalStatus"
+                    ></div>
 
                 </div>
 
-                <div
-                    class="product-count"
-                    id="momBadge"
-                >
-                    SALES TREND
-                </div>
 
             </div>
 
 
-            <div class="mom-grid">
+        </div>
 
 
-                <!-- PREVIOUS MONTH -->
+    </div>
 
-                <div class="mom-card">
 
-                    <div
-                        class="mom-label"
-                        id="previousMonthLabel"
-                    >
-                        August Sales
-                    </div>
+    <!-- CURRENT MONTH METRICS -->
 
-                    <div
-                        class="mom-value"
-                        id="modalPreviousMonth"
-                    >
-                        —
-                    </div>
+    <div class="modal-metrics">
 
+
+        <div class="modal-metric">
+
+            <div class="modal-metric-label">
+                Target
+            </div>
+
+            <div
+                class="modal-metric-value"
+                id="modalTarget"
+            ></div>
+
+        </div>
+
+
+        <div class="modal-metric">
+
+            <div
+                class="modal-metric-label"
+                id="modalSoldLabel"
+            >
+                September Sold
+            </div>
+
+            <div
+                class="modal-metric-value"
+                id="modalSold"
+            ></div>
+
+        </div>
+
+
+        <div class="modal-metric">
+
+            <div class="modal-metric-label">
+                Remaining
+            </div>
+
+            <div
+                class="modal-metric-value"
+                id="modalRemaining"
+            ></div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- MONTH ON MONTH SALES -->
+
+    <div class="mom-section">
+
+
+        <div class="mom-header">
+
+            <div>
+
+                <div class="mom-title">
+                    Month-on-Month Sales
                 </div>
 
-
-                <!-- CURRENT MONTH -->
-
-                <div class="mom-card">
-
-                    <div
-                        class="mom-label"
-                        id="currentMonthLabel"
-                    >
-                        September Sales
-                    </div>
-
-                    <div
-                        class="mom-value"
-                        id="modalCurrentMonth"
-                    >
-                        —
-                    </div>
-
-                </div>
-
-
-                <!-- CHANGE -->
-
-                <div class="mom-card">
-
-                    <div class="mom-label">
-                        Sales Change
-                    </div>
-
-                    <div
-                        class="mom-change"
-                        id="modalMomChange"
-                    >
-                        —
-                    </div>
-
-                    <div
-                        class="mom-difference"
-                        id="modalMomDifference"
-                    >
-                    </div>
-
+                <div
+                    class="mom-subtitle"
+                    id="momSubtitle"
+                >
+                    August vs September
                 </div>
 
             </div>
 
 
             <div
-                class="mom-summary"
-                id="modalMomSummary"
+                class="product-count"
+                id="momBadge"
             >
+                SALES TREND
             </div>
 
         </div>
 
 
-        <!-- =================================================
-             MODAL FOOTER
-        ================================================= -->
+        <div class="mom-grid">
 
-        <div class="modal-footer">
 
-            PQM PRODUCT PERFORMANCE • REAL-TIME SALES TRACKING
+            <div class="mom-card">
+
+                <div
+                    class="mom-label"
+                    id="previousMonthLabel"
+                >
+                    August Sales
+                </div>
+
+                <div
+                    class="mom-value"
+                    id="modalPreviousMonth"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="mom-card">
+
+                <div
+                    class="mom-label"
+                    id="currentMonthLabel"
+                >
+                    September Sales
+                </div>
+
+                <div
+                    class="mom-value"
+                    id="modalCurrentMonth"
+                >
+                    —
+                </div>
+
+            </div>
+
+
+            <div class="mom-card">
+
+                <div class="mom-label">
+                    Sales Change
+                </div>
+
+                <div
+                    class="mom-change"
+                    id="modalMomChange"
+                >
+                    —
+                </div>
+
+                <div
+                    class="mom-difference"
+                    id="modalMomDifference"
+                ></div>
+
+            </div>
+
 
         </div>
 
+
+        <div
+            class="mom-summary"
+            id="modalMomSummary"
+        ></div>
+
+
     </div>
+
+
+    <div class="modal-footer">
+
+        PQM PRODUCT PERFORMANCE • REAL-TIME SALES TRACKING
+
+    </div>
+
 
 </div>
 
+
+</div>
 
 <!-- =====================================================
      EXPORT MESSAGE
@@ -3518,18 +3723,200 @@ body{
     Excel file is being prepared...
 </div>
 
-
 <script>
+
+
+/* =====================================================
+   SEPTEMBER FIXED MONTH CONFIGURATION
+
+   IMPORTANT:
+   THIS PAGE IS THE SEPTEMBER VERSION.
+
+   DO NOT USE new Date() TO DETERMINE THE
+   CURRENT MONTH FOR THIS PAGE.
+===================================================== */
+
+const FIXED_MONTH = "September";
+const FIXED_PREVIOUS_MONTH = "August";
+
+
+/* =====================================================
+   MONTHLY COLLECTION URLS
+
+   ONLY CHANGE THE URLS BELOW
+===================================================== */
+
+const monthlyLinks = {
+
+    January:
+        "YOUR_JANUARY_URL",
+
+    February:
+        "YOUR_FEBRUARY_URL",
+
+    March:
+        "YOUR_MARCH_URL",
+
+    April:
+        "YOUR_APRIL_URL",
+
+    May:
+        "YOUR_MAY_URL",
+
+    June:
+        "YOUR_JUNE_URL",
+
+    July:
+        "YOUR_JULY_URL",
+
+    August:
+        "YOUR_AUGUST_URL",
+
+    September:
+        "https://outletpqm-dev.github.io/PQM_Top_10_product/Sep_top_10_product.html",
+
+    October:
+        "https://outletpqm-dev.github.io/PQM_Top_10_product/Oct_top_10_product.html",
+
+    November:
+        "YOUR_NOVEMBER_URL",
+
+    December:
+        "YOUR_DECEMBER_URL"
+
+};
+
+
+/* =====================================================
+   MONTH LIST
+===================================================== */
+
+const monthNames = [
+
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+
+];
+
+
+/* =====================================================
+   MONTHLY COLLECTION TOGGLE
+===================================================== */
+
+function toggleMonthlyCollection(){
+
+    const section =
+        document.getElementById(
+            "monthlySection"
+        );
+
+    const text =
+        document.getElementById(
+            "monthlyToggleText"
+        );
+
+    const isOpen =
+        section.classList.toggle(
+            "open"
+        );
+
+    text.textContent =
+        isOpen
+            ? "HIDE MONTHS"
+            : "VIEW MONTHS";
+
+}
+
+
+/* =====================================================
+   RENDER MONTHLY COLLECTION
+===================================================== */
+
+function renderMonthlyCollection(){
+
+    const grid =
+        document.getElementById(
+            "monthlyGrid"
+        );
+
+    const currentMonth =
+        FIXED_MONTH;
+
+
+    grid.innerHTML =
+        monthNames.map(
+
+            (month,index) => {
+
+                const isCurrent =
+                    month === currentMonth;
+
+                const url =
+                    monthlyLinks[month];
+
+
+                return `
+
+                    <a
+                        class="month-btn ${isCurrent ? "current" : ""}"
+                        style="--month-index:${index}"
+                        href="${url}"
+                        target="_self"
+                        ${url.startsWith("YOUR_") ? 'onclick="return false;"' : ""}
+                    >
+
+                        ${
+                            isCurrent
+                            ?
+                            `<span class="month-current-dot"></span>`
+                            :
+                            ""
+                        }
+
+                        <span class="month-number">
+                            MONTH ${String(index + 1).padStart(2,"0")}
+                        </span>
+
+                        <span class="month-name">
+                            ${month}
+                        </span>
+
+                        <span class="month-status">
+                            ${
+                                isCurrent
+                                ?
+                                "CURRENT MONTH"
+                                :
+                                "VIEW COLLECTION"
+                            }
+                        </span>
+
+                    </a>
+
+                `;
+
+            }
+
+        ).join("");
+
+}
+
 
 /* =====================================================
    PRODUCT DATA
 
-   IMPORTANT:
-   sold = SEPTEMBER SALES
-
+   SEPTEMBER SALES
    lastMonthSold = AUGUST SALES
-
-   YOU ONLY NEED TO CHANGE lastMonthSold
 ===================================================== */
 
 const products = [
@@ -3538,158 +3925,99 @@ const products = [
         id:1,
         name:"NanOllagen",
         code:"955616010728",
-
         target:3650.00,
-
         sold:2054.80,
-
-        /* ← ENTER AUGUST SALES HERE */
-        lastMonthSold:5783.00,
-
+        lastMonthSold:3650.00,
         image:"image/eysmy_955616010728_300x300.jpg"
     },
-
 
     {
         id:2,
         name:"Active Liva",
         code:"955616010829",
-
         target:3000.00,
-
         sold:2843.80,
-
-        /* ← ENTER AUGUST SALES HERE */
         lastMonthSold:4577.00,
-
         image:"image/eysmy_955616010829_300x300.jpg"
     },
-
 
     {
         id:3,
         name:"TigerMune",
         code:"955616010810",
-
         target:8500.00,
-
         sold:4832.50,
-
-        /* ← ENTER AUGUST SALES HERE */
         lastMonthSold:13119.00,
-
         image:"image/eysmy_955616010810_300x300.jpg"
     },
-
 
     {
         id:4,
         name:"Essence of American Ginseng",
         code:"955616010848",
-
         target:2400.00,
-
         sold:1135.75,
-
-        /* ← ENTER AUGUST SALES HERE */
         lastMonthSold:3372.00,
-
         image:"image/eysmy_955616010848_1000x1000.jpg"
     },
-
 
     {
         id:5,
         name:"Essence of Cordyceps",
         code:"955616040039",
-
         target:2500.00,
-
         sold:1597.10,
-
-        /* ← ENTER AUGUST SALES HERE */
         lastMonthSold:1851.00,
-
         image:"image/eysmy_955616040039-1_1000x1000.jpg"
     },
-
 
     {
         id:6,
         name:"Cordyceps Sinensis Mycelia",
         code:"955616030009",
-
         target:7250.00,
-
         sold:6229.50,
-
-        /* ← ENTER AUGUST SALES HERE */
         lastMonthSold:11626.00,
-
         image:"image/eysmy_955616030009_Capsules-of-Cordyceps-Sinensis-Mycelia_300x300.jpg"
     },
-
 
     {
         id:7,
         name:"Sleep EZ",
         code:"955616040023",
-
         target:3750.00,
-
         sold:3040.20,
-
-        /* ← ENTER AUGUST SALES HERE */
         lastMonthSold:4564.00,
-
         image:"image/eysmy_955616040023_300x300.jpg"
     },
-
 
     {
         id:8,
         name:"Lingzhi Cracked Spores Plus Capsules",
         code:"955764734526",
-
         target:3850.00,
-
         sold:5229.00,
-
-        /* ← ENTER AUGUST SALES HERE */
         lastMonthSold:13963.00,
-
         image:"image/eysmy_955764734526_ling-zhi-cracked-spores-capsules-plus_300x300.jpg"
     },
-
 
     {
         id:9,
         name:"Men Vitality Capsule",
         code:"955764734540",
-
         target:8600.00,
-
         sold:1820.40,
-
-        /* ← ENTER AUGUST SALES HERE */
         lastMonthSold:3361.00,
-
         image:"image/eysmy_955764734540_300x300.jpg"
     },
-
 
     {
         id:10,
         name:"Prosta Men Capsule",
         code:"955764734542",
-
         target:3500.00,
-
         sold:1820.40,
-
-        /* ← ENTER AUGUST SALES HERE */
         lastMonthSold:3875.00,
-
         image:"image/eysmy_955764734542_300x300.jpg"
     }
 
@@ -3714,39 +4042,22 @@ function formatRM(value){
 
 
 /* =====================================================
-   GET MONTH NAME
+   FIXED MONTH FUNCTIONS
+
+   SEPTEMBER PAGE = SEPTEMBER
+   PREVIOUS MONTH = AUGUST
 ===================================================== */
-
-function getMonthName(date){
-
-    return date.toLocaleDateString(
-        "en-MY",
-        {
-            month:"long"
-        }
-    );
-
-}
-
 
 function getCurrentMonthName(){
 
-    return getMonthName(
-        new Date()
-    );
+    return FIXED_MONTH;
 
 }
 
 
 function getPreviousMonthName(){
 
-    const date = new Date();
-
-    date.setMonth(
-        date.getMonth() - 1
-    );
-
-    return getMonthName(date);
+    return FIXED_PREVIOUS_MONTH;
 
 }
 
@@ -3755,7 +4066,10 @@ function getPreviousMonthName(){
    PERCENTAGE
 ===================================================== */
 
-function getPercentage(sold,target){
+function getPercentage(
+    sold,
+    target
+){
 
     if(
         !target ||
@@ -3775,10 +4089,13 @@ function getPercentage(sold,target){
 
 
 /* =====================================================
-   MONTH ON MONTH CALCULATION
+   MONTH ON MONTH
 ===================================================== */
 
-function getMonthOnMonth(current,previous){
+function getMonthOnMonth(
+    current,
+    previous
+){
 
     current =
         Number(current || 0);
@@ -3786,12 +4103,9 @@ function getMonthOnMonth(current,previous){
     previous =
         Number(previous || 0);
 
-
     const difference =
         current - previous;
 
-
-    /* No previous month data */
 
     if(
         previous === 0 &&
@@ -3814,8 +4128,6 @@ function getMonthOnMonth(current,previous){
 
     }
 
-
-    /* Previous month is zero */
 
     if(previous === 0){
 
@@ -4090,6 +4402,7 @@ function renderProducts(){
     list.innerHTML =
 
         filtered
+
         .map(
 
             (product,index) => {
@@ -4149,28 +4462,22 @@ function renderProducts(){
                         onclick="openProductModal(${product.id})"
                     >
 
-                        <div
-                            class="card-header"
-                        >
+                        <div class="card-header">
 
-                            <div
-                                class="
-                                    rank-box
-                                    ${rankClass}
-                                "
-                            >
+                            <div class="
+                                rank-box
+                                ${rankClass}
+                            ">
 
                                 ${rankNumber}
 
                             </div>
 
 
-                            <div
-                                class="
-                                    status
-                                    ${status.class}
-                                "
-                            >
+                            <div class="
+                                status
+                                ${status.class}
+                            ">
 
                                 <span
                                     class="status-dot"
@@ -4373,7 +4680,9 @@ function renderProducts(){
 
                             </div>
 
+
                         </div>
+
 
                     </article>
 
@@ -4382,6 +4691,7 @@ function renderProducts(){
             }
 
         )
+
         .join("");
 
 
@@ -4460,32 +4770,36 @@ function updateStats(){
 
     const totalTarget =
         products.reduce(
+
             (sum,product) =>
-                sum + Number(product.target || 0),
+                sum +
+                Number(product.target || 0),
+
             0
+
         );
 
 
     const totalSold =
         products.reduce(
+
             (sum,product) =>
-                sum + Number(product.sold || 0),
+                sum +
+                Number(product.sold || 0),
+
             0
+
         );
 
 
     const overall =
         totalTarget > 0
-
         ?
-
         (
             totalSold /
             totalTarget
         ) * 100
-
         :
-
         0;
 
 
@@ -4567,6 +4881,11 @@ function updateStats(){
 
 /* =====================================================
    DATE
+
+   IMPORTANT:
+   SEPTEMBER VERSION USES FIXED MONTH,
+   BUT LAST UPDATED STILL SHOWS THE ACTUAL
+   DATE THE PAGE IS OPENED.
 ===================================================== */
 
 function getToday(){
@@ -4606,14 +4925,20 @@ function showDate(){
         date;
 
 
-    /* Dynamic month labels */
-
     const currentMonth =
-        getCurrentMonthName();
+        FIXED_MONTH;
 
 
     const previousMonth =
-        getPreviousMonthName();
+        FIXED_PREVIOUS_MONTH;
+
+
+    document
+        .getElementById(
+            "heroMonth"
+        )
+        .textContent =
+        currentMonth;
 
 
     document
@@ -4630,6 +4955,14 @@ function showDate(){
         )
         .textContent =
         `${previousMonth} Sales`;
+
+
+    document
+        .getElementById(
+            "modalSoldLabel"
+        )
+        .textContent =
+        `${currentMonth} Sold`;
 
 
     document
@@ -4655,9 +4988,7 @@ function openProductModal(id){
 
 
     if(!product){
-
         return;
-
     }
 
 
@@ -4679,11 +5010,6 @@ function openProductModal(id){
             Number(product.sold || 0),
             0
         );
-
-
-    /* =================================================
-       CURRENT PRODUCT INFORMATION
-    ================================================= */
 
 
     document
@@ -4767,10 +5093,6 @@ function openProductModal(id){
         );
 
 
-    /* =================================================
-       ACHIEVEMENT RING
-    ================================================= */
-
     const ring =
         document.getElementById(
             "achievementRing"
@@ -4784,15 +5106,15 @@ function openProductModal(id){
 
 
     /* =================================================
-       MONTH ON MONTH SALES
+       FIXED SEPTEMBER / AUGUST
     ================================================= */
 
     const currentMonth =
-        getCurrentMonthName();
+        FIXED_MONTH;
 
 
     const previousMonth =
-        getPreviousMonthName();
+        FIXED_PREVIOUS_MONTH;
 
 
     const currentSales =
@@ -4803,10 +5125,10 @@ function openProductModal(id){
         product.lastMonthSold === null ||
         product.lastMonthSold === undefined ||
         product.lastMonthSold === ""
-
-        ? null
-
-        : Number(product.lastMonthSold);
+        ?
+        null
+        :
+        Number(product.lastMonthSold);
 
 
     document
@@ -4823,6 +5145,14 @@ function openProductModal(id){
         )
         .textContent =
         `${previousMonth} Sales`;
+
+
+    document
+        .getElementById(
+            "modalSoldLabel"
+        )
+        .textContent =
+        `${currentMonth} Sold`;
 
 
     document
@@ -4868,10 +5198,6 @@ function openProductModal(id){
         );
 
 
-    /* =================================================
-       NO AUGUST DATA
-    ================================================= */
-
     if(previousSales === null){
 
         document
@@ -4891,27 +5217,31 @@ function openProductModal(id){
 
 
         differenceElement.textContent =
-            "Enter lastMonthSold in the product data";
+            `Enter lastMonthSold in the product data`;
 
 
-        summaryElement.innerHTML =
-            `
-                <strong>August sales data has not been entered.</strong>
-                Please update
-                <strong>lastMonthSold</strong>
-                for this product to see the Month-on-Month comparison.
-            `;
+        summaryElement.innerHTML = `
+
+            <strong>
+                ${previousMonth} sales data has not been entered.
+            </strong>
+
+            Please update
+
+            <strong>
+                lastMonthSold
+            </strong>
+
+            for this product to see the
+            Month-on-Month comparison.
+
+        `;
 
 
         badgeElement.textContent =
             "DATA REQUIRED";
 
     }
-
-
-    /* =================================================
-       HAS AUGUST DATA
-    ================================================= */
 
     else{
 
@@ -4952,8 +5282,6 @@ function openProductModal(id){
         }
 
 
-        /* Difference */
-
         if(mom.difference > 0){
 
             differenceElement.textContent =
@@ -4980,8 +5308,6 @@ function openProductModal(id){
         }
 
 
-        /* Badge */
-
         if(mom.type === "up"){
 
             badgeElement.textContent =
@@ -5004,32 +5330,47 @@ function openProductModal(id){
         }
 
 
-        /* Summary */
-
         if(mom.type === "up"){
 
             if(mom.percent === null){
 
-                summaryElement.innerHTML =
-                    `
-                        Sales <strong>increased</strong>
-                        from
-                        <strong>RM ${formatRM(previousSales)}</strong>
-                        to
-                        <strong>RM ${formatRM(currentSales)}</strong>.
-                    `;
+                summaryElement.innerHTML = `
+
+                    Sales <strong>increased</strong>
+
+                    from
+
+                    <strong>
+                        RM ${formatRM(previousSales)}
+                    </strong>
+
+                    to
+
+                    <strong>
+                        RM ${formatRM(currentSales)}
+                    </strong>.
+
+                `;
 
             }
 
             else{
 
-                summaryElement.innerHTML =
-                    `
-                        Sales <strong>increased by ${mom.percent.toFixed(2)}%</strong>
-                        compared with ${previousMonth},
-                        an increase of
-                        <strong>RM ${formatRM(mom.difference)}</strong>.
-                    `;
+                summaryElement.innerHTML = `
+
+                    Sales <strong>
+                        increased by ${mom.percent.toFixed(2)}%
+                    </strong>
+
+                    compared with ${previousMonth},
+
+                    an increase of
+
+                    <strong>
+                        RM ${formatRM(mom.difference)}
+                    </strong>.
+
+                `;
 
             }
 
@@ -5037,34 +5378,40 @@ function openProductModal(id){
 
         else if(mom.type === "down"){
 
-            summaryElement.innerHTML =
-                `
-                    Sales <strong>decreased by ${mom.percent.toFixed(2)}%</strong>
-                    compared with ${previousMonth},
-                    a decrease of
-                    <strong>RM ${formatRM(
+            summaryElement.innerHTML = `
+
+                Sales <strong>
+                    decreased by ${mom.percent.toFixed(2)}%
+                </strong>
+
+                compared with ${previousMonth},
+
+                a decrease of
+
+                <strong>
+                    RM ${formatRM(
                         Math.abs(mom.difference)
-                    )}</strong>.
-                `;
+                    )}
+                </strong>.
+
+            `;
 
         }
 
         else{
 
-            summaryElement.innerHTML =
-                `
-                    Sales remained <strong>unchanged</strong>
-                    compared with ${previousMonth}.
-                `;
+            summaryElement.innerHTML = `
+
+                Sales remained <strong>unchanged</strong>
+
+                compared with ${previousMonth}.
+
+            `;
 
         }
 
     }
 
-
-    /* =================================================
-       OPEN MODAL
-    ================================================= */
 
     document
         .getElementById(
@@ -5119,7 +5466,9 @@ function closeModal(event){
 ===================================================== */
 
 document.addEventListener(
+
     "keydown",
+
     event => {
 
         if(
@@ -5132,6 +5481,7 @@ document.addEventListener(
         }
 
     }
+
 );
 
 
@@ -5157,6 +5507,7 @@ function showExportMessage(message){
 
 
     setTimeout(
+
         () => {
 
             element.classList.remove(
@@ -5164,7 +5515,9 @@ function showExportMessage(message){
             );
 
         },
+
         2500
+
     );
 
 }
@@ -5211,9 +5564,15 @@ async function exportExcel(){
             getSortedProducts();
 
 
-        /* =================================================
-           MAIN SHEET
-        ================================================= */
+        /* FIXED SEPTEMBER */
+
+        const currentMonth =
+            FIXED_MONTH;
+
+
+        const previousMonth =
+            FIXED_PREVIOUS_MONTH;
+
 
         const rows = [
 
@@ -5227,9 +5586,9 @@ async function exportExcel(){
 
                 "Target (RM)",
 
-                "September Sold (RM)",
+                `${currentMonth} Sold (RM)`,
 
-                "August Sold (RM)",
+                `${previousMonth} Sold (RM)`,
 
                 "Change (RM)",
 
@@ -5294,6 +5653,7 @@ async function exportExcel(){
 
 
                 let trend = "";
+
                 let changePercent = "";
 
 
@@ -5389,62 +5749,56 @@ async function exportExcel(){
         worksheet["!cols"] = [
 
             {wch:8},
-
             {wch:38},
-
             {wch:20},
-
             {wch:18},
-
             {wch:22},
-
             {wch:20},
-
             {wch:18},
-
             {wch:16},
-
             {wch:18},
-
             {wch:20},
-
             {wch:18},
-
             {wch:20}
 
         ];
 
 
-        /* =================================================
-           SUMMARY
-        ================================================= */
-
         const totalTarget =
             products.reduce(
+
                 (sum,product) =>
                     sum +
                     Number(product.target || 0),
+
                 0
+
             );
 
 
         const totalSold =
             products.reduce(
+
                 (sum,product) =>
                     sum +
                     Number(product.sold || 0),
+
                 0
+
             );
 
 
         const totalPrevious =
             products.reduce(
+
                 (sum,product) =>
                     sum +
                     Number(
                         product.lastMonthSold || 0
                     ),
+
                 0
+
             );
 
 
@@ -5455,16 +5809,12 @@ async function exportExcel(){
 
         const overallProgress =
             totalTarget > 0
-
             ?
-
             (
                 totalSold /
                 totalTarget
             ) * 100
-
             :
-
             0;
 
 
@@ -5495,6 +5845,16 @@ async function exportExcel(){
             ],
 
             [
+                "Report Month",
+                "September"
+            ],
+
+            [
+                "Previous Month",
+                "August"
+            ],
+
+            [
                 "Total Products",
                 String(
                     products.length
@@ -5510,7 +5870,7 @@ async function exportExcel(){
             ],
 
             [
-                "September Total Sold (RM)",
+                `${currentMonth} Total Sold (RM)`,
                 "RM " +
                 formatRM(
                     totalSold
@@ -5518,7 +5878,7 @@ async function exportExcel(){
             ],
 
             [
-                "August Total Sold (RM)",
+                `${previousMonth} Total Sold (RM)`,
                 "RM " +
                 formatRM(
                     totalPrevious
@@ -5537,15 +5897,19 @@ async function exportExcel(){
 
             [
                 "Month-on-Month Change (%)",
+
                 totalPrevious > 0
                     ? overallChange.toFixed(2) + "%"
                     : "N/A"
+
             ],
 
             [
                 "Overall Progress (%)",
+
                 overallProgress.toFixed(2) +
                 "%"
+
             ]
 
         ];
@@ -5564,16 +5928,11 @@ async function exportExcel(){
 
         summarySheet["!cols"] = [
 
-            {wch:34},
-
+            {wch:38},
             {wch:30}
 
         ];
 
-
-        /* =================================================
-           WORKBOOK
-        ================================================= */
 
         const workbook =
             XLSX.utils.book_new();
@@ -5604,10 +5963,10 @@ async function exportExcel(){
         workbook.Props = {
 
             Title:
-                "PQM Top 10 Products",
+                "PQM September Top 10 Products",
 
             Subject:
-                "PQM Product Sales Performance",
+                "PQM September Product Sales Performance",
 
             Author:
                 "PQM",
@@ -5668,10 +6027,6 @@ async function exportExcel(){
             );
 
 
-        /* =================================================
-           FILE NAME
-        ================================================= */
-
         const now =
             new Date();
 
@@ -5705,12 +6060,8 @@ async function exportExcel(){
 
 
         const fileName =
-            `PQM_Top_10_Products_${year}-${month}-${day}_${hours}-${minutes}.xlsx`;
+            `PQM_September_Top_10_Products_${year}-${month}-${day}_${hours}-${minutes}.xlsx`;
 
-
-        /* =================================================
-           MOBILE SHARE
-        ================================================= */
 
         if(
 
@@ -5747,9 +6098,13 @@ async function exportExcel(){
 
 
                 if(
+
                     navigator.canShare({
+
                         files:[file]
+
                     })
+
                 ){
 
                     showExportMessage(
@@ -5760,10 +6115,10 @@ async function exportExcel(){
                     await navigator.share({
 
                         title:
-                            "PQM Top 10 Products",
+                            "PQM September Top 10 Products",
 
                         text:
-                            "PQM Product Sales Performance Report",
+                            "PQM September Product Sales Performance Report",
 
                         files:
                             [file]
@@ -5785,9 +6140,12 @@ async function exportExcel(){
             catch(error){
 
                 if(
+
                     error &&
+
                     error.name ===
                     "AbortError"
+
                 ){
 
                     showExportMessage(
@@ -5798,6 +6156,7 @@ async function exportExcel(){
 
                 }
 
+
                 console.warn(
                     "Mobile sharing failed.",
                     error
@@ -5807,10 +6166,6 @@ async function exportExcel(){
 
         }
 
-
-        /* =================================================
-           DOWNLOAD FALLBACK
-        ================================================= */
 
         const url =
             URL.createObjectURL(
@@ -5953,55 +6308,68 @@ function exportPDF(){
         getToday();
 
 
+    /* FIXED SEPTEMBER */
+
+    const currentMonth =
+        FIXED_MONTH;
+
+
+    const previousMonth =
+        FIXED_PREVIOUS_MONTH;
+
+
     const totalTarget =
         products.reduce(
+
             (sum,product) =>
                 sum +
                 Number(product.target || 0),
+
             0
+
         );
 
 
     const totalSold =
         products.reduce(
+
             (sum,product) =>
                 sum +
                 Number(product.sold || 0),
+
             0
+
         );
 
 
     const totalPrevious =
         products.reduce(
+
             (sum,product) =>
                 sum +
                 Number(
                     product.lastMonthSold || 0
                 ),
+
             0
+
         );
 
 
     const overall =
         totalTarget > 0
-
         ?
-
         (
             totalSold /
             totalTarget
         ) * 100
-
         :
-
         0;
 
 
     const totalChange =
         totalPrevious > 0
-
         ?
-
         (
             (
                 totalSold -
@@ -6009,9 +6377,7 @@ function exportPDF(){
             ) /
             totalPrevious
         ) * 100
-
         :
-
         0;
 
 
@@ -6022,9 +6388,7 @@ function exportPDF(){
     );
 
 
-    doc.setFontSize(
-        21
-    );
+    doc.setFontSize(21);
 
 
     doc.setFont(
@@ -6034,15 +6398,13 @@ function exportPDF(){
 
 
     doc.text(
-        "PQM Top 10 Products",
+        "PQM September Top 10 Products",
         14,
         16
     );
 
 
-    doc.setFontSize(
-        9
-    );
+    doc.setFontSize(9);
 
 
     doc.setFont(
@@ -6073,14 +6435,14 @@ function exportPDF(){
 
 
     doc.text(
-        `September Sold: RM ${formatRM(totalSold)}`,
+        `${currentMonth} Sold: RM ${formatRM(totalSold)}`,
         190,
         24
     );
 
 
     doc.text(
-        `August Sold: RM ${formatRM(totalPrevious)}`,
+        `${previousMonth} Sold: RM ${formatRM(totalPrevious)}`,
         190,
         30
     );
@@ -6101,6 +6463,7 @@ function exportPDF(){
 
 
     const tableData =
+
         sortedProducts.map(
 
             (product,index) => {
@@ -6154,9 +6517,11 @@ function exportPDF(){
                 ){
 
                     trend =
-                        `↑ ${mom.percent !== null
+                        `↑ ${
+                            mom.percent !== null
                             ? mom.percent.toFixed(2) + "%"
-                            : "New Sales"}`;
+                            : "New Sales"
+                        }`;
 
                 }
 
@@ -6224,9 +6589,9 @@ function exportPDF(){
 
                 "Target",
 
-                "Sep Sold",
+                `${currentMonth} Sold`,
 
-                "Aug Sold",
+                `${previousMonth} Sold`,
 
                 "MoM Trend",
 
@@ -6256,15 +6621,23 @@ function exportPDF(){
             valign:"middle",
 
             textColor:[
+
                 50,
+
                 48,
+
                 44
+
             ],
 
             lineColor:[
+
                 220,
+
                 215,
+
                 205
+
             ],
 
             lineWidth:.2
@@ -6276,15 +6649,23 @@ function exportPDF(){
             fontStyle:"bold",
 
             textColor:[
+
                 255,
+
                 255,
+
                 255
+
             ],
 
             fillColor:[
+
                 145,
+
                 112,
+
                 61
+
             ],
 
             halign:"center"
@@ -6294,9 +6675,13 @@ function exportPDF(){
         alternateRowStyles:{
 
             fillColor:[
+
                 248,
+
                 246,
+
                 241
+
             ]
 
         }
@@ -6318,14 +6703,10 @@ function exportPDF(){
 
     ){
 
-        doc.setPage(
-            i
-        );
+        doc.setPage(i);
 
 
-        doc.setFontSize(
-            8
-        );
+        doc.setFontSize(8);
 
 
         doc.setFont(
@@ -6342,9 +6723,13 @@ function exportPDF(){
 
 
         doc.text(
-            `PQM PRODUCT PERFORMANCE | Page ${i} of ${pageCount}`,
+
+            `PQM SEPTEMBER PRODUCT PERFORMANCE | Page ${i} of ${pageCount}`,
+
             14,
+
             200
+
         );
 
     }
@@ -6360,7 +6745,7 @@ function exportPDF(){
 
 
     doc.save(
-        `PQM_Top_10_Products_${fileDate}.pdf`
+        `PQM_September_Top_10_Products_${fileDate}.pdf`
     );
 
 }
@@ -6372,10 +6757,12 @@ function exportPDF(){
 
 showDate();
 
+renderMonthlyCollection();
+
 renderProducts();
 
-</script>
 
+</script>
 
 </body>
 
